@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { SERVICES } from "@/data/portfolioData";
-import { Palette, Video, Globe, Smartphone } from "lucide-react";
+import { Palette, Video, Code2, ArrowRight, Check } from "lucide-react";
 
 export default function Services() {
   const getIcon = (icon: string) => {
@@ -8,55 +9,73 @@ export default function Services() {
         return <Palette className="w-5 h-5 text-cyan-400" />;
       case "Video":
         return <Video className="w-5 h-5 text-sky-400" />;
-      case "Globe":
-        return <Globe className="w-5 h-5 text-blue-400" />;
-      case "Smartphone":
-        return <Smartphone className="w-5 h-5 text-teal-400" />;
+      case "Code2":
+        return <Code2 className="w-5 h-5 text-blue-400" />;
       default:
         return <Palette className="w-5 h-5 text-cyan-400" />;
     }
   };
 
   return (
-    <section id="services" className="space-y-6 scroll-mt-20">
-      <div className="flex items-center justify-between">
+    <section id="portals" className="space-y-6 scroll-mt-20">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
           <span className="font-mono-code text-[11px] text-cyan-400 font-semibold tracking-wider uppercase">
-            // 01. DỊCH VỤ NHẬN LÀM
+            // 01. CÁC MẢNG NỘI DUNG CHUYÊN SÂU
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Các Mảng Tôi Hỗ Trợ
+            Chọn Mảng Bạn Muốn Tìm Hiểu
           </h2>
         </div>
-        <span className="hidden sm:inline font-mono-code text-xs text-blue-300/80">
-          Tư vấn & Báo giá linh hoạt
+        <span className="font-mono-code text-xs text-blue-300/80">
+          Mỗi mảng đều có trang chi tiết riêng
         </span>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-3 gap-5">
         {SERVICES.map((s) => (
           <div
             key={s.id}
-            className="rounded-2xl p-5 sm:p-6 blue-glass-panel space-y-3.5 transition-all duration-300"
+            className="rounded-2xl p-5 sm:p-6 blue-glass-panel flex flex-col justify-between space-y-4 group transition-all duration-300 hover:-translate-y-1"
           >
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center">
-              {getIcon(s.icon)}
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold text-white tracking-tight">{s.title}</h3>
-              <p className="text-xs sm:text-sm text-slate-300 font-normal mt-1 leading-relaxed">{s.desc}</p>
-            </div>
-
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {s.tags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-0.5 rounded-md text-[10px] font-mono-code bg-blue-950/40 text-blue-200 border border-blue-500/20"
-                >
-                  {tag}
+            <div className="space-y-3.5">
+              <div className="flex items-center justify-between">
+                <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center group-hover:scale-105 group-hover:border-cyan-400/40 transition-all">
+                  {getIcon(s.icon)}
+                </div>
+                <span className="text-[10px] font-mono-code px-2 py-0.5 rounded-full border border-blue-500/20 bg-blue-950/40 text-blue-300">
+                  Trang riêng
                 </span>
-              ))}
+              </div>
+
+              <div>
+                <h3 className="text-lg font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
+                  {s.title}
+                </h3>
+                <p className="text-xs text-slate-300 font-normal mt-1.5 leading-relaxed">
+                  {s.desc}
+                </p>
+              </div>
+
+              {/* Key Features Bullet points */}
+              <div className="space-y-1.5 pt-1">
+                {s.features.slice(0, 3).map((feat, idx) => (
+                  <div key={idx} className="flex items-start gap-1.5 text-xs text-slate-300">
+                    <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                    <span>{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <Link
+                href={s.href}
+                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl font-mono-code text-xs font-semibold border border-blue-500/30 bg-blue-950/40 hover:bg-blue-900/60 hover:border-cyan-400/50 text-cyan-200 transition-all cursor-pointer group/btn"
+              >
+                <span>Vào trang {s.title}</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
         ))}

@@ -1,12 +1,29 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { PORTFOLIO_WORKS } from "@/data/portfolioData";
 
 export default function Projects() {
   const [filter, setFilter] = useState<"all" | "design" | "video_ai" | "web" | "app">("all");
 
-  const filtered = filter === "all" ? PORTFOLIO_WORKS : PORTFOLIO_WORKS.filter((w) => w.category === filter);
+  const filtered =
+    filter === "all" ? PORTFOLIO_WORKS : PORTFOLIO_WORKS.filter((w) => w.category === filter);
+
+  const getCategoryLink = (category: string) => {
+    switch (category) {
+      case "design":
+        return "/poster";
+      case "video_ai":
+        return "/video-ai";
+      case "web":
+      case "app":
+        return "/web-app";
+      default:
+        return "/";
+    }
+  };
 
   return (
     <section id="projects" className="space-y-6 scroll-mt-20">
@@ -48,27 +65,46 @@ export default function Projects() {
         {filtered.map((work) => (
           <div
             key={work.id}
-            className="rounded-2xl p-5 blue-glass-panel flex flex-col justify-between space-y-4 transition-all"
+            className="rounded-2xl p-5 blue-glass-panel flex flex-col justify-between space-y-4 transition-all hover:border-cyan-400/40 group"
           >
-            <div className="space-y-2">
-              <span className="px-2 py-0.5 rounded-md text-[10px] font-mono-code uppercase text-cyan-300 bg-cyan-500/10 border border-cyan-400/20">
-                {work.categoryLabel}
-              </span>
-              <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="px-2 py-0.5 rounded-md text-[10px] font-mono-code uppercase text-cyan-300 bg-cyan-500/10 border border-cyan-400/20">
+                  {work.categoryLabel}
+                </span>
+                {work.highlight && (
+                  <span className="text-[10px] font-mono-code text-blue-300/80">
+                    {work.highlight}
+                  </span>
+                )}
+              </div>
+
+              <h3 className="text-base sm:text-lg font-bold text-white leading-snug group-hover:text-cyan-300 transition-colors">
                 {work.title}
               </h3>
+
               <p className="text-xs text-slate-300 font-normal leading-relaxed">{work.desc}</p>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 pt-2 border-t border-blue-500/15">
-              {work.tools.map((t, idx) => (
-                <span
-                  key={idx}
-                  className="px-2 py-0.5 rounded text-[10px] font-mono-code bg-blue-950/50 text-blue-200 border border-blue-500/15"
-                >
-                  {t}
-                </span>
-              ))}
+            <div className="space-y-3 pt-3 border-t border-blue-500/15">
+              <div className="flex flex-wrap gap-1.5">
+                {work.tools.map((t, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2 py-0.5 rounded text-[10px] font-mono-code bg-blue-950/50 text-blue-200 border border-blue-500/15"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <Link
+                href={getCategoryLink(work.category)}
+                className="inline-flex items-center gap-1 text-[11px] font-mono-code text-cyan-400 hover:text-cyan-200 hover:underline pt-0.5"
+              >
+                <span>Xem chi tiết mảng này</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </Link>
             </div>
           </div>
         ))}
