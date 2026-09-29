@@ -1,93 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #060b18;
-  --foreground: #f1f5f9;
-  --card: #0b142b;
-  --border: rgba(59, 130, 246, 0.15);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --background: #040816;
+  --foreground: #f8fafc;
+  --primary-blue: #2563eb;
+  --neon-cyan: #06b6d4;
+  --midnight-deep: #02050e;
 }
 
 body {
-  background-color: #060b18;
-  color: #f1f5f9;
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  background-color: #040816;
+  color: #f8fafc;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Typography Classes */
+.font-display {
+  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.font-techno {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-pixel {
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 0.06em;
 }
 
 .font-mono-code {
-  font-family: var(--font-mono), monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-/* Premium High-End Glassmorphism */
-.glass-card {
-  background: rgba(11, 21, 46, 0.65);
+/* Retro-Futuristic Isometric Coordinate Grid */
+.retro-grid {
+  background-size: 44px 44px;
+  background-image: 
+    linear-gradient(to right, rgba(6, 182, 212, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 25%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 25%, transparent 100%);
+}
+
+/* Subtle High-End Analog Film / Screen Texture */
+.digital-noise {
+  background-image: radial-gradient(rgba(34, 211, 238, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Luxury 3D Chrome Glass Card */
+.chrome-glass-card {
+  background: linear-gradient(135deg, rgba(13, 24, 54, 0.72) 0%, rgba(5, 11, 28, 0.88) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  box-shadow: 
+    0 20px 50px -15px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 3px 0 rgba(37, 99, 235, 0.3);
+  position: relative;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chrome-glass-card:hover {
+  border-color: rgba(34, 211, 238, 0.55);
+  box-shadow: 
+    0 25px 65px -12px rgba(37, 99, 235, 0.38),
+    0 0 30px -4px rgba(6, 182, 212, 0.25),
+    inset 0 1px 2.5px 0 rgba(255, 255, 255, 0.45);
+  transform: translateY(-4px);
+}
+
+/* Iconic Translucent Glass Pill Capsule */
+.specular-pill {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.16) 0%, rgba(37, 99, 235, 0.24) 50%, rgba(5, 12, 34, 0.75) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 130, 246, 0.18);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1.5px solid rgba(34, 211, 238, 0.5);
+  box-shadow: 
+    0 0 35px -6px rgba(6, 182, 212, 0.35),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 8px 0 rgba(37, 99, 235, 0.4);
 }
 
-.glass-card:hover {
-  background: rgba(14, 27, 60, 0.8);
-  border-color: rgba(34, 211, 238, 0.4);
-  box-shadow: 0 20px 45px -12px rgba(37, 99, 235, 0.25), 0 0 20px -4px rgba(34, 211, 238, 0.15);
-  transform: translateY(-3px);
-}
-
-/* Ambient Radial Glows with Breathing Animation */
-.ambient-glow {
+/* Volumetric Atmospheric Glow */
+.volumetric-glow {
   pointer-events: none;
   position: absolute;
   border-radius: 9999px;
   filter: blur(140px);
-  animation: ambient-breathe 8s ease-in-out infinite alternate;
+  animation: volumetric-pulse 9s ease-in-out infinite alternate;
 }
 
-@keyframes ambient-breathe {
+@keyframes volumetric-pulse {
   0% {
-    opacity: 0.35;
-    transform: scale(0.96) translate(0, 0);
+    opacity: 0.3;
+    transform: scale(0.95) translate(0, 0);
   }
   100% {
     opacity: 0.65;
-    transform: scale(1.08) translate(10px, -10px);
+    transform: scale(1.1) translate(15px, -15px);
   }
 }
 
-/* Tasteful Subtle Portrait Hover Float */
-@keyframes subtle-float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* Editorial Chrome Text Gradient */
+.text-chrome {
+  background: linear-gradient(135deg, #ffffff 0%, #cffafe 35%, #60a5fa 70%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.animate-subtle-float {
-  animation: subtle-float 6s ease-in-out infinite;
+/* Technical HUD Corner Markers */
+.hud-corner-tl {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid rgba(34, 211, 238, 0.8);
+  border-left: 2px solid rgba(34, 211, 238, 0.8);
+}
+
+.hud-corner-tr {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid rgba(34, 211, 238, 0.8);
+  border-right: 2px solid rgba(34, 211, 238, 0.8);
+}
+
+.hud-corner-bl {
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid rgba(34, 211, 238, 0.8);
+  border-left: 2px solid rgba(34, 211, 238, 0.8);
+}
+
+.hud-corner-br {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid rgba(34, 211, 238, 0.8);
+  border-right: 2px solid rgba(34, 211, 238, 0.8);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #060b18;
+  background: #040816;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.3);
-  border-radius: 4px;
+  background: rgba(37, 99, 235, 0.4);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(6, 182, 212, 0.55);
+  background: rgba(6, 182, 212, 0.7);
 }
