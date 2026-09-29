@@ -15,7 +15,7 @@ export default function About() {
 
       <div className="grid md:grid-cols-3 gap-4">
         {PRINCIPLES.map((p, idx) => (
-          <div key={idx} className="blue-glass-panel p-5 rounded-2xl space-y-2 transition-all">
+          <div key={idx} className="glass-card p-5 rounded-2xl space-y-2">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
               <h3 className="font-bold text-base text-white">{p.title}</h3>

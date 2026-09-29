@@ -36,7 +36,7 @@ export default function Services() {
         {SERVICES.map((s) => (
           <div
             key={s.id}
-            className="rounded-2xl p-5 sm:p-6 blue-glass-panel flex flex-col justify-between space-y-4 group transition-all duration-300 hover:-translate-y-1"
+            className="rounded-2xl p-5 sm:p-6 glass-card flex flex-col justify-between space-y-4 group"
           >
             <div className="space-y-3.5">
               <div className="flex items-center justify-between">

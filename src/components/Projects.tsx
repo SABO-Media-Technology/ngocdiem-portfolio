@@ -65,7 +65,7 @@ export default function Projects() {
         {filtered.map((work) => (
           <div
             key={work.id}
-            className="rounded-2xl p-5 blue-glass-panel flex flex-col justify-between space-y-4 transition-all hover:border-cyan-400/40 group"
+            className="rounded-2xl p-5 glass-card flex flex-col justify-between space-y-4 group"
           >
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">

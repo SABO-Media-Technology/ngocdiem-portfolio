@@ -5,16 +5,12 @@ import {
   Code2,
   Smartphone,
   Globe,
-  QrCode,
   ShieldCheck,
   Zap,
   CheckCircle2,
-  ArrowUpRight,
   MessageSquare,
-  Layers,
 } from "lucide-react";
 import { WORK_PROCESS } from "@/data/portfolioData";
-import { CrystalGlassStar, PixelSmiley3D, LiquidChromeRibbon } from "@/components/CyberVisuals";
 
 export default function WebAppPage() {
   const projects = [
@@ -54,36 +50,29 @@ export default function WebAppPage() {
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#070d1e] text-slate-100 selection:bg-blue-500/30 selection:text-cyan-200">
+    <div className="relative min-h-screen flex flex-col bg-[#060b18] text-slate-100 selection:bg-blue-500/30 selection:text-cyan-200">
       {/* Ambient background glows */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
         <div className="ambient-glow top-[-80px] left-[-80px] w-[500px] h-[500px] bg-blue-600/18"></div>
         <div className="ambient-glow top-[40%] right-[-120px] w-[500px] h-[500px] bg-cyan-500/15"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(6,182,212,0.08),rgba(0,0,0,0))]"></div>
-        <div className="absolute top-10 right-0 animate-liquid-sway opacity-50">
-          <LiquidChromeRibbon className="w-64 h-64" variant="bottom-right" />
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(6,182,212,0.06),rgba(0,0,0,0))]"></div>
       </div>
 
       <Navbar />
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-16">
         {/* Breadcrumb & Header */}
-        <div className="relative space-y-4">
-          <div className="absolute top-0 right-0 hidden sm:block animate-float-slow pointer-events-none">
-            <PixelSmiley3D className="w-14 h-14" />
-          </div>
-
+        <div className="space-y-4">
           <div className="flex items-center gap-2 text-xs font-mono-code text-cyan-400">
             <Link href="/" className="hover:underline text-slate-400 hover:text-cyan-300">
               Trang Chủ
             </Link>
             <span>/</span>
-            <span className="font-pixel text-[11px]">WEB & ỨNG DỤNG</span>
+            <span>Web & Ứng Dụng</span>
           </div>
 
           <div className="space-y-3 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-300 text-xs font-mono-code">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-300 text-xs font-mono-code">
               <Code2 className="w-3.5 h-3.5" />
               <span>Lập trình thực tế, chạy mượt mà</span>
             </div>
@@ -119,7 +108,7 @@ export default function WebAppPage() {
         {/* Section 1: Hai dịch vụ chính */}
         <section className="grid sm:grid-cols-2 gap-6">
           {/* Card Web */}
-          <div className="blue-glass-panel p-6 sm:p-7 rounded-3xl space-y-4">
+          <div className="glass-card p-6 sm:p-7 rounded-3xl space-y-4">
             <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center text-cyan-400">
               <Globe className="w-5 h-5" />
             </div>
@@ -147,7 +136,7 @@ export default function WebAppPage() {
           </div>
 
           {/* Card App */}
-          <div className="blue-glass-panel p-6 sm:p-7 rounded-3xl space-y-4">
+          <div className="glass-card p-6 sm:p-7 rounded-3xl space-y-4">
             <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center text-cyan-400">
               <Smartphone className="w-5 h-5" />
             </div>
@@ -190,7 +179,7 @@ export default function WebAppPage() {
             {projects.map((p, idx) => (
               <div
                 key={idx}
-                className="blue-glass-panel p-6 rounded-2xl space-y-4 hover:border-cyan-400/40 transition-all"
+                className="glass-card p-6 rounded-2xl space-y-4"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
@@ -240,7 +229,7 @@ export default function WebAppPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {WORK_PROCESS.map((p, idx) => (
-              <div key={idx} className="p-5 rounded-2xl blue-glass-panel space-y-2">
+              <div key={idx} className="p-5 rounded-2xl glass-card space-y-2">
                 <span className="font-mono-code text-cyan-400 font-bold text-sm tracking-wider">
                   {p.step}
                 </span>

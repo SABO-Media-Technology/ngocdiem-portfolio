@@ -6,7 +6,6 @@ import {
   Sparkles,
   Mic,
   Clapperboard,
-  Layers,
   CheckCircle2,
   TrendingUp,
   MessageSquare,
@@ -14,7 +13,6 @@ import {
   FileText,
 } from "lucide-react";
 import { VIDEO_AI_FORMATS, WORK_PROCESS } from "@/data/portfolioData";
-import { CrystalGlassStar, PixelCursor3D, LiquidChromeRibbon } from "@/components/CyberVisuals";
 
 export default function VideoAiPage() {
   const steps = [
@@ -69,36 +67,29 @@ export default function VideoAiPage() {
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#070d1e] text-slate-100 selection:bg-blue-500/30 selection:text-cyan-200">
+    <div className="relative min-h-screen flex flex-col bg-[#060b18] text-slate-100 selection:bg-blue-500/30 selection:text-cyan-200">
       {/* Ambient background glows */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
         <div className="ambient-glow top-[-80px] left-[-80px] w-[500px] h-[500px] bg-blue-600/18"></div>
         <div className="ambient-glow top-[40%] right-[-120px] w-[500px] h-[500px] bg-cyan-500/15"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(6,182,212,0.08),rgba(0,0,0,0))]"></div>
-        <div className="absolute top-10 right-0 animate-liquid-sway opacity-50">
-          <LiquidChromeRibbon className="w-64 h-64" variant="bottom-right" />
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(6,182,212,0.06),rgba(0,0,0,0))]"></div>
       </div>
 
       <Navbar />
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-16">
         {/* Breadcrumb & Header */}
-        <div className="relative space-y-4">
-          <div className="absolute top-0 right-0 hidden sm:block animate-float-cursor pointer-events-none">
-            <PixelCursor3D className="w-14 h-14" />
-          </div>
-
+        <div className="space-y-4">
           <div className="flex items-center gap-2 text-xs font-mono-code text-cyan-400">
             <Link href="/" className="hover:underline text-slate-400 hover:text-cyan-300">
               Trang Chủ
             </Link>
             <span>/</span>
-            <span className="font-pixel text-[11px]">VIDEO NGẮN AI</span>
+            <span>Video Ngắn AI</span>
           </div>
 
           <div className="space-y-3 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-300 text-xs font-mono-code">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-300 text-xs font-mono-code">
               <Video className="w-3.5 h-3.5" />
               <span>Sáng tạo video ngắn với trợ lực AI</span>
             </div>
@@ -146,7 +137,7 @@ export default function VideoAiPage() {
             {steps.map((st, idx) => {
               const Icon = st.icon;
               return (
-                <div key={idx} className="blue-glass-panel p-5 rounded-2xl space-y-3">
+                <div key={idx} className="glass-card p-5 rounded-2xl space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center text-cyan-400">
                       <Icon className="w-4 h-4" />
@@ -178,7 +169,7 @@ export default function VideoAiPage() {
             {examples.map((item, idx) => (
               <div
                 key={idx}
-                className="blue-glass-panel p-6 rounded-2xl space-y-4 flex flex-col justify-between"
+                className="glass-card p-6 rounded-2xl space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-[11px] font-mono-code">
@@ -208,7 +199,7 @@ export default function VideoAiPage() {
         </section>
 
         {/* Section 3: Cam kết chất lượng */}
-        <section className="blue-glass-panel p-6 sm:p-8 rounded-3xl space-y-4">
+        <section className="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
           <h3 className="text-lg font-bold text-white">Cam Kết Khi Nhận Làm Video:</h3>
           <div className="grid sm:grid-cols-3 gap-4 text-xs text-slate-300">
             <div className="flex items-start gap-2">
