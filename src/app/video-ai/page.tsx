@@ -14,6 +14,7 @@ import {
   FileText,
 } from "lucide-react";
 import { VIDEO_AI_FORMATS, WORK_PROCESS } from "@/data/portfolioData";
+import { CrystalGlassStar, PixelCursor3D, LiquidChromeRibbon } from "@/components/CyberVisuals";
 
 export default function VideoAiPage() {
   const steps = [
@@ -74,19 +75,26 @@ export default function VideoAiPage() {
         <div className="ambient-glow top-[-80px] left-[-80px] w-[500px] h-[500px] bg-blue-600/18"></div>
         <div className="ambient-glow top-[40%] right-[-120px] w-[500px] h-[500px] bg-cyan-500/15"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(6,182,212,0.08),rgba(0,0,0,0))]"></div>
+        <div className="absolute top-10 right-0 animate-liquid-sway opacity-50">
+          <LiquidChromeRibbon className="w-64 h-64" variant="bottom-right" />
+        </div>
       </div>
 
       <Navbar />
 
       <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-16">
         {/* Breadcrumb & Header */}
-        <div className="space-y-4">
+        <div className="relative space-y-4">
+          <div className="absolute top-0 right-0 hidden sm:block animate-float-cursor pointer-events-none">
+            <PixelCursor3D className="w-14 h-14" />
+          </div>
+
           <div className="flex items-center gap-2 text-xs font-mono-code text-cyan-400">
             <Link href="/" className="hover:underline text-slate-400 hover:text-cyan-300">
               Trang Chủ
             </Link>
             <span>/</span>
-            <span>Video Ngắn AI</span>
+            <span className="font-pixel text-[11px]">VIDEO NGẮN AI</span>
           </div>
 
           <div className="space-y-3 max-w-3xl">
