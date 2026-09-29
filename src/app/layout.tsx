@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Playfair_Display, JetBrains_Mono, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -14,34 +15,11 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin", "vietnamese"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Võ Ngọc Diễm — Portfolio cá nhân · Mobile & Full-stack Engineer",
+  title: "Võ Ngọc Diễm — Thiết Kế Poster, Video AI, Web & App",
   description:
-    "Portfolio của Võ Ngọc Diễm tại TP. Hồ Chí Minh: các sản phẩm đã ship (SABO ARENA, SABOHUB, Martial Arts Club, TaskCall). Nhận dự án · Tuyển dụng · Cộng tác chuyên môn.",
-  keywords: [
-    "Võ Ngọc Diễm",
-    "Ngọc Diễm portfolio",
-    "Flutter developer",
-    "Mobile engineer vietnam",
-    "SABO Arena",
-    "SABOHUB",
-    "Full-stack engineer",
-    "Supabase RLS",
-    "Ho Chi Minh City",
-  ],
+    "Portfolio sáng tạo của Võ Ngọc Diễm: Thiết kế poster, sáng tạo video AI, lập trình website & mobile app. Trẻ trung, linh hoạt, đúng hạn.",
   authors: [{ name: "Võ Ngọc Diễm" }],
-  openGraph: {
-    title: "Võ Ngọc Diễm — Mobile & Full-stack Engineer · Shipped Products",
-    description: "Sản phẩm thực tế đã ship · Nền tảng Tài chính & Công nghệ · Liên hệ hợp tác.",
-    locale: "vi_VN",
-    type: "website",
-  },
 };
 
 export default function RootLayout({
@@ -52,9 +30,9 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${playfair.variable} ${jetbrainsMono.variable} ${inter.variable} dark scroll-smooth h-full antialiased`}
+      className={`${plusJakarta.variable} ${jetbrainsMono.variable} dark scroll-smooth h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#040006] text-zinc-100 font-sans selection:bg-amber-500/30 selection:text-amber-200">
+      <body className="min-h-full flex flex-col bg-[#070d1e] text-slate-100 font-sans selection:bg-blue-500/30 selection:text-cyan-200">
         {children}
       </body>
     </html>

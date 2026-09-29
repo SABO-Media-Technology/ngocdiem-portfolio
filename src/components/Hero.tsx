@@ -1,54 +1,70 @@
-import { ArrowDown, MessageSquare, GraduationCap, Palette, Video, Globe, Smartphone } from "lucide-react";
+import { ArrowDown, MessageSquare, GraduationCap, Sparkles } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative pt-6 sm:pt-14 pb-6 text-center max-w-3xl mx-auto space-y-6">
+    <section id="hero" className="relative pt-8 sm:pt-16 pb-8 text-center max-w-3xl mx-auto space-y-7">
       {/* Status Badge */}
-      <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-mono-code">
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-300 text-xs font-mono-code backdrop-blur-md shadow-sm shadow-cyan-500/10">
+        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
         <span>{PERSONAL_INFO.status}</span>
       </div>
 
-      {/* Main Title */}
-      <div className="space-y-2">
-        <h1 className="font-serif-title text-3xl sm:text-5xl md:text-6xl font-normal tracking-tight text-white leading-[1.15]">
-          Thiết kế Poster, Video AI <br className="hidden sm:block" />
-          <span className="italic bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 bg-clip-text text-transparent">
+      {/* Main Title - Youthful, Bold, Modern */}
+      <div className="space-y-3">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.12]">
+          Thiết kế Poster, Video AI <br />
+          <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-300 bg-clip-text text-transparent">
             & Lập trình Web / App
           </span>
         </h1>
-        <p className="font-mono-code text-xs text-zinc-400 tracking-wider">
+        <p className="font-mono-code text-xs sm:text-sm text-blue-200/80 tracking-wider">
           {PERSONAL_INFO.name} · {PERSONAL_INFO.role}
         </p>
       </div>
 
       {/* Short Bio */}
-      <div className="max-w-xl mx-auto space-y-2.5">
-        <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
+      <div className="max-w-xl mx-auto space-y-3">
+        <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
           {PERSONAL_INFO.bio}
         </p>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-white/10 bg-white/[0.03] text-xs text-zinc-300 font-mono-code">
-          <GraduationCap className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-blue-500/20 bg-blue-950/40 text-xs text-blue-200 font-mono-code">
+          <GraduationCap className="w-4 h-4 text-cyan-400 shrink-0" />
           <span>{PERSONAL_INFO.education}</span>
         </div>
+      </div>
+
+      {/* Quick Service Tags */}
+      <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs font-mono-code text-slate-200">
+        <span className="px-3 py-1.5 rounded-xl bg-blue-950/40 border border-blue-500/25 flex items-center gap-1.5">
+          🎨 Poster & Banner
+        </span>
+        <span className="px-3 py-1.5 rounded-xl bg-blue-950/40 border border-blue-500/25 flex items-center gap-1.5">
+          🎬 Video AI Viral
+        </span>
+        <span className="px-3 py-1.5 rounded-xl bg-blue-950/40 border border-blue-500/25 flex items-center gap-1.5">
+          🌐 Thiết Kế Web
+        </span>
+        <span className="px-3 py-1.5 rounded-xl bg-blue-950/40 border border-blue-500/25 flex items-center gap-1.5">
+          📱 Lập Trình App
+        </span>
       </div>
 
       {/* CTA Buttons */}
       <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
         <a
           href="#services"
-          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl font-mono-code text-xs uppercase font-semibold bg-amber-400 hover:bg-amber-300 text-black transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono-code text-xs uppercase font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white shadow-lg shadow-blue-500/30 transition-all hover:-translate-y-0.5 cursor-pointer"
         >
-          <span>Xem dịch vụ</span>
+          <span>Khám phá dịch vụ</span>
           <ArrowDown className="w-3.5 h-3.5" />
         </a>
         <a
           href="#contact"
-          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl font-mono-code text-xs uppercase border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 transition-all"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono-code text-xs uppercase font-semibold border border-blue-500/30 bg-blue-950/30 hover:bg-blue-900/40 text-blue-100 transition-all hover:-translate-y-0.5"
         >
-          <MessageSquare className="w-3.5 h-3.5 text-amber-400" />
-          <span>Liên hệ ngay</span>
+          <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
+          <span>Liên hệ trao đổi</span>
         </a>
       </div>
     </section>

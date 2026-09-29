@@ -5,15 +5,15 @@ export default function Services() {
   const getIcon = (icon: string) => {
     switch (icon) {
       case "Palette":
-        return <Palette className="w-5 h-5 text-amber-400" />;
+        return <Palette className="w-5 h-5 text-cyan-400" />;
       case "Video":
-        return <Video className="w-5 h-5 text-purple-400" />;
+        return <Video className="w-5 h-5 text-sky-400" />;
       case "Globe":
-        return <Globe className="w-5 h-5 text-cyan-400" />;
+        return <Globe className="w-5 h-5 text-blue-400" />;
       case "Smartphone":
-        return <Smartphone className="w-5 h-5 text-emerald-400" />;
+        return <Smartphone className="w-5 h-5 text-teal-400" />;
       default:
-        return <Palette className="w-5 h-5 text-amber-400" />;
+        return <Palette className="w-5 h-5 text-cyan-400" />;
     }
   };
 
@@ -21,14 +21,14 @@ export default function Services() {
     <section id="services" className="space-y-6 scroll-mt-20">
       <div className="flex items-center justify-between">
         <div>
-          <span className="font-mono-code text-[11px] text-amber-400 font-semibold tracking-wider uppercase">
+          <span className="font-mono-code text-[11px] text-cyan-400 font-semibold tracking-wider uppercase">
             // 01. DỊCH VỤ NHẬN LÀM
           </span>
-          <h2 className="font-serif-title text-2xl sm:text-3xl text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Các Mảng Tôi Hỗ Trợ
           </h2>
         </div>
-        <span className="hidden sm:inline font-mono-code text-xs text-zinc-400">
+        <span className="hidden sm:inline font-mono-code text-xs text-blue-300/80">
           Tư vấn & Báo giá linh hoạt
         </span>
       </div>
@@ -37,22 +37,22 @@ export default function Services() {
         {SERVICES.map((s) => (
           <div
             key={s.id}
-            className="rounded-2xl p-5 sm:p-6 glass-panel space-y-3 hover:border-amber-400/30 transition-all"
+            className="rounded-2xl p-5 sm:p-6 blue-glass-panel space-y-3.5 transition-all duration-300"
           >
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center">
               {getIcon(s.icon)}
             </div>
 
             <div>
-              <h3 className="font-serif-title text-lg font-bold text-white">{s.title}</h3>
-              <p className="text-xs sm:text-sm text-zinc-300 font-light mt-1 leading-relaxed">{s.desc}</p>
+              <h3 className="text-lg font-bold text-white tracking-tight">{s.title}</h3>
+              <p className="text-xs sm:text-sm text-slate-300 font-normal mt-1 leading-relaxed">{s.desc}</p>
             </div>
 
             <div className="flex flex-wrap gap-1.5 pt-1">
               {s.tags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className="px-2 py-0.5 rounded text-[10px] font-mono-code bg-white/[0.03] text-zinc-400 border border-white/5"
+                  className="px-2.5 py-0.5 rounded-md text-[10px] font-mono-code bg-blue-950/40 text-blue-200 border border-blue-500/20"
                 >
                   {tag}
                 </span>
