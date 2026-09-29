@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Võ Ngọc Diễm — Personal Portfolio
 
-## Getting Started
+Trang Portfolio cá nhân chuyên nghiệp của **Võ Ngọc Diễm** (Mobile & Full-stack Engineer tại SABO M&T · Cử nhân Tài chính - Ngân hàng ĐH Sài Gòn).
 
-First, run the development server:
+Được thiết kế theo phong cách **Cinematic Obsidian Dark Luxury** tương tự chuẩn mực của `longsang.sabo.com.vn`.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Công nghệ sử dụng (Tech Stack)
+
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+- **UI Library:** [React 19](https://react.dev/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Typography:** Google Fonts (`Playfair Display`, `JetBrains Mono`, `Plus Jakarta Sans`)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Language:** TypeScript
+
+---
+
+## 📂 Cấu trúc thư mục
+
+```text
+src/
+├── app/
+│   ├── globals.css      # Cấu hình màu nền #040006, font serif, font mono và glassmorphism
+│   ├── layout.tsx       # Tích hợp Google Fonts, SEO Metadata và OpenGraph
+│   └── page.tsx         # Trang chính kết nối toàn bộ các sections
+├── components/
+│   ├── Navbar.tsx       # Thanh điều hướng trên cùng, sao chép email nhanh
+│   ├── Hero.tsx         # Giới thiệu tiêu điểm, bằng cử nhân SGU, số liệu thực chiến
+│   ├── Projects.tsx     # Danh mục sản phẩm đã ship (SABO Arena, SABOHUB,...)
+│   ├── ProjectModal.tsx # Cửa sổ xem chi tiết ca kiến trúc và giải pháp
+│   ├── About.tsx        # Câu chuyện chuyển hướng Tài chính × Công nghệ
+│   ├── Skills.tsx       # Bảng ma trận kỹ năng Mobile, Backend, Web, DevOps
+│   ├── Experience.tsx   # Lộ trình học vấn SGU và kinh nghiệm tại SABO M&T
+│   ├── Contact.tsx      # Form liên hệ và thông tin kết nối
+│   └── Footer.tsx       # Chân trang tối giản
+└── data/
+    └── portfolioData.ts # Toàn bộ dữ liệu nội dung dạng type-safe (dễ chỉnh sửa)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Hướng dẫn cài đặt & Chạy cục bộ
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# 1. Di chuyển vào thư mục dự án
+cd /home/sabopc/Projects/portfolio
 
-## Learn More
+# 2. Cài đặt các gói phụ thuộc (nếu cần)
+pnpm install
 
-To learn more about Next.js, take a look at the following resources:
+# 3. Khởi chạy môi trường phát triển (Local Dev Server)
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Mở trình duyệt tại [http://localhost:3000](http://localhost:3000) để trải nghiệm.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📦 Build & Kiểm thử Production
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Kiểm tra TypeScript và đóng gói tĩnh (Static Pre-render)
+pnpm build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Chạy bản production cục bộ
+pnpm start
+```
+
+---
+
+## 🌐 Triển khai lên Production (Vercel)
+
+Dự án Next.js này đã được tối ưu hóa 100% để deploy lên Vercel:
+
+1. Đẩy mã nguồn lên GitHub cá nhân của bạn:
+   ```bash
+   git add .
+   git commit -m "feat: initial luxury cinematic portfolio"
+   git branch -M main
+   git remote add origin https://github.com/<your-username>/portfolio.git
+   git push -u origin main
+   ```
+2. Truy cập [vercel.com](https://vercel.com) -> Import Repository -> Chọn Framework **Next.js** -> Nhấn **Deploy**.
+3. Cấu hình tên miền tùy chỉnh (ví dụ: `diem.sabo.com.vn` hoặc `vongocdiem.com`).
