@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex items-center gap-3">
           <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-sm shadow-amber-400/50"></span>
           <span>
-            © 2026 {PERSONAL_INFO.name} · {PERSONAL_INFO.organization}
+            © 2026 {PERSONAL_INFO.name} · {PERSONAL_INFO.roleTitle}
           </span>
         </div>
 
