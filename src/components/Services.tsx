@@ -1,5 +1,5 @@
 import { SERVICES } from "@/data/portfolioData";
-import { Palette, Video, Globe, Smartphone, Check } from "lucide-react";
+import { Palette, Video, Globe, Smartphone } from "lucide-react";
 
 export default function Services() {
   const getIcon = (icon: string) => {
@@ -18,57 +18,45 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="space-y-8 scroll-mt-24">
-      <div className="space-y-1">
-        <span className="font-mono-code text-xs px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold">
-          01 // DỊCH VỤ NHẬN LÀM
+    <section id="services" className="space-y-6 scroll-mt-20">
+      <div className="flex items-center justify-between">
+        <div>
+          <span className="font-mono-code text-[11px] text-amber-400 font-semibold tracking-wider uppercase">
+            // 01. DỊCH VỤ NHẬN LÀM
+          </span>
+          <h2 className="font-serif-title text-2xl sm:text-3xl text-white tracking-tight">
+            Các Mảng Tôi Hỗ Trợ
+          </h2>
+        </div>
+        <span className="hidden sm:inline font-mono-code text-xs text-zinc-400">
+          Tư vấn & Báo giá linh hoạt
         </span>
-        <h2 className="font-serif-title text-2xl sm:text-3xl text-white tracking-tight pt-1">
-          Các Dịch Vụ Tôi Có Thể Hỗ Trợ Bạn
-        </h2>
-        <p className="text-xs sm:text-sm text-zinc-400">
-          Giải pháp thiết kế hình ảnh, video AI & phát triển công nghệ linh hoạt theo nhu cầu thực tế
-        </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-6">
-        {SERVICES.map((service) => (
+      <div className="grid sm:grid-cols-2 gap-4">
+        {SERVICES.map((s) => (
           <div
-            key={service.id}
-            className="rounded-2xl p-6 sm:p-7 glass-panel flex flex-col justify-between space-y-5 hover:border-amber-400/40 transition-all duration-300"
+            key={s.id}
+            className="rounded-2xl p-5 sm:p-6 glass-panel space-y-3 hover:border-amber-400/30 transition-all"
           >
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center">
-                  {getIcon(service.icon)}
-                </div>
-                <span className="font-mono-code text-[11px] px-2.5 py-1 rounded-md bg-amber-400/10 text-amber-300 border border-amber-400/20 font-medium">
-                  {service.badge}
-                </span>
-              </div>
-
-              <div>
-                <h3 className="font-serif-title text-xl font-bold text-white">{service.title}</h3>
-                <p className="font-mono-code text-xs text-zinc-400 mt-0.5">{service.subtitle}</p>
-              </div>
-
-              <p className="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
-                {service.description}
-              </p>
+            <div className="w-9 h-9 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center">
+              {getIcon(s.icon)}
             </div>
 
-            <div className="space-y-2 pt-4 border-t border-white/10">
-              <div className="font-mono-code text-[11px] uppercase tracking-wider text-zinc-400 font-medium">
-                // Sản phẩm bàn giao:
-              </div>
-              <ul className="space-y-2 text-xs font-light text-zinc-300">
-                {service.deliverables.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <Check className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <div>
+              <h3 className="font-serif-title text-lg font-bold text-white">{s.title}</h3>
+              <p className="text-xs sm:text-sm text-zinc-300 font-light mt-1 leading-relaxed">{s.desc}</p>
+            </div>
+
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {s.tags.map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="px-2 py-0.5 rounded text-[10px] font-mono-code bg-white/[0.03] text-zinc-400 border border-white/5"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         ))}
