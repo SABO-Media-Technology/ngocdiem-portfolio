@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { HOW_I_WORK_STEPS, HOW_I_WORK_COPY, ProcessStep } from "@/data/portfolioData";
-import { CheckCircle2, ArrowRight, Zap, RefreshCw, Layers, Compass, Hammer } from "lucide-react";
+import { HOW_I_WORK_STEPS, HOW_I_WORK_COPY } from "@/data/portfolioData";
+import { CheckCircle2, Zap, RefreshCw, Layers, Compass, Hammer } from "lucide-react";
 
 export default function HowIWork() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
@@ -34,16 +34,16 @@ export default function HowIWork() {
         {/* SECTION HEADER */}
         <div className="space-y-4">
           <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
-            <span className="font-pixel text-[10px]">SECTION // 06</span>
+            <span className="font-pixel text-[10px]">MỤC // 06</span>
             <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-            <span>OPERATIONAL PROCESS ARCHITECTURE</span>
+            <span>QUY TRÌNH THỰC THI CHUẨN HÓA</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                FROM IDEA <span className="text-[#35D9FF] font-pixel text-3xl sm:text-5xl">→</span>{" "}
-                <span className="text-chrome">EXECUTION</span>
+                TỪ Ý TƯỞNG <span className="text-[#35D9FF] font-pixel text-3xl sm:text-5xl">→</span>{" "}
+                <span className="text-chrome">HIỆN THỰC HÓA</span>
               </h2>
               <p className="mt-4 text-base sm:text-lg md:text-xl text-[#35D9FF] font-heading font-medium max-w-2xl leading-relaxed">
                 {HOW_I_WORK_COPY}
@@ -51,15 +51,15 @@ export default function HowIWork() {
             </div>
 
             <div className="px-3.5 py-1.5 rounded-full bg-[#071A3D]/70 border border-[#35D9FF]/30 text-xs font-mono-code text-[#35D9FF] self-start md:self-auto">
-              5-STAGE PIPELINE
+              CHU TRÌNH 5 BƯỚC
             </div>
           </div>
         </div>
 
-        {/* FLOWING CONNECTED NODES PIPELINE (Desktop horizontal, mobile vertical) */}
+        {/* FLOWING CONNECTED NODES PIPELINE */}
         <div className="relative">
           
-          {/* Desktop Flowing Glowing Connection Line */}
+          {/* Desktop Connection Line */}
           <div className="hidden lg:block absolute top-[52px] left-8 right-8 h-[2px] bg-gradient-to-r from-[#2563FF] via-[#35D9FF] to-[#2563FF] opacity-60 z-0 shadow-[0_0_15px_#35D9FF]" />
 
           {/* 5 Process Nodes */}
@@ -112,7 +112,7 @@ export default function HowIWork() {
                   {/* Deliverable Badge */}
                   <div className="pt-2 border-t border-[#35D9FF]/15 text-[10px] font-mono-code text-[#94A3B8]">
                     <span className="text-[#35D9FF] font-semibold block">
-                      OUTPUT:
+                      KẾT QUẢ ĐẦU RA:
                     </span>
                     <span>{step.deliverable}</span>
                   </div>

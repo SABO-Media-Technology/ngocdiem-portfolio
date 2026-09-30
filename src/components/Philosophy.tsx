@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Sparkles, Terminal } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Philosophy() {
@@ -37,7 +36,6 @@ export default function Philosophy() {
         }}
       >
         <div className="relative w-[340px] sm:w-[540px] md:w-[680px] aspect-square">
-          {/* Layered Specular Glass & Chrome Geometric Star/Ring SVG */}
           <svg
             viewBox="0 0 400 400"
             className="w-full h-full animate-float-slow"
@@ -59,10 +57,8 @@ export default function Philosophy() {
               </radialGradient>
             </defs>
 
-            {/* Background Radial Glow */}
             <circle cx="200" cy="200" r="180" fill="url(#glassSphere)" />
 
-            {/* Outer Specular Chrome Ring */}
             <circle
               cx="200"
               cy="200"
@@ -73,7 +69,6 @@ export default function Philosophy() {
               opacity="0.7"
             />
 
-            {/* Inner Chrome Orbit */}
             <ellipse
               cx="200"
               cy="200"
@@ -96,7 +91,6 @@ export default function Philosophy() {
               opacity="0.6"
             />
 
-            {/* Core Chrome Specular Polyhedron / Star */}
             <path
               d="M200 40 L240 160 L360 200 L240 240 L200 360 L160 240 L40 200 L160 160 Z"
               fill="url(#chromeGrad1)"
@@ -112,30 +106,30 @@ export default function Philosophy() {
         
         {/* Top Technical Metadata */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#071A3D]/80 border border-[#35D9FF]/30 text-xs font-mono-code text-[#35D9FF] shadow-[0_0_15px_rgba(53,217,255,0.2)]">
-          <span className="font-pixel text-[9px]">MANIFESTO // 09</span>
-          <span className="text-[#94A3B8]">OPERATIONAL PHILOSOPHY</span>
+          <span className="font-pixel text-[9px]">TUYÊN NGÔN // 09</span>
+          <span className="text-[#94A3B8]">TRIẾT LÝ HÀNH ĐỘNG</span>
         </div>
 
-        {/* DRAMATIC OVERSIZED TYPOGRAPHY (Exact required copy) */}
+        {/* DRAMATIC OVERSIZED TYPOGRAPHY IN VIETNAMESE */}
         <div className="space-y-1 sm:space-y-3 font-display text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.92]">
           <div className="text-white hover:scale-105 transition-transform duration-300">
-            GOOD WORK
+            CÔNG VIỆC TỐT
           </div>
           <div className="text-chrome hover:scale-105 transition-transform duration-300">
-            SHOULD MAKE
+            LÀ LÀM CHO
           </div>
           <div className="text-outline-cyan hover:text-[#35D9FF] transition-colors hover:scale-105 duration-300">
-            THINGS
+            MỌI THỨ
           </div>
           <div className="text-white hover:scale-105 transition-transform duration-300">
-            SIMPLER.
+            ĐƠN GIẢN HƠN.
           </div>
         </div>
 
-        {/* SMALL SUPPORTING COPY (Exact required copy) */}
+        {/* SMALL SUPPORTING COPY IN VIETNAMESE */}
         <div className="max-w-2xl mx-auto pt-4">
           <p className="text-base sm:text-xl text-[#F5FAFF] font-heading font-normal leading-relaxed p-6 rounded-2xl bg-[#050816]/75 border border-[#35D9FF]/25 backdrop-blur-xl shadow-2xl">
-            “Whether it’s managing operations, creating content, working with AI or developing digital solutions, I’m always looking for a better way to make things work.”
+            “{PERSONAL_INFO.philosophyCopy}”
           </p>
         </div>
 

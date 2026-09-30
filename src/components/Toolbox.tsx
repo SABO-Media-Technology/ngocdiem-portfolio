@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { TOOLBOX_CATEGORIES, ToolCategory } from "@/data/portfolioData";
-import { Bot, Palette, Briefcase, Globe, Sparkles, Terminal } from "lucide-react";
+import { TOOLBOX_CATEGORIES } from "@/data/portfolioData";
+import { Bot, Palette, Briefcase, Globe, Sparkles } from "lucide-react";
 
 export default function Toolbox() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -37,18 +37,18 @@ export default function Toolbox() {
         {/* SECTION HEADER */}
         <div className="space-y-4">
           <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
-            <span className="font-pixel text-[10px]">SECTION // 05</span>
+            <span className="font-pixel text-[10px]">MỤC // 05</span>
             <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-            <span>OPERATIONAL ARSENAL</span>
+            <span>KHO VŨ KHÍ CÔNG NGHỆ</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                TOOLS <span className="text-chrome">I WORK WITH</span>
+                CÔNG CỤ <span className="text-chrome">TÔI SỬ DỤNG</span>
               </h2>
               <p className="mt-3 text-base sm:text-lg text-[#94A3B8] font-heading">
-                Specialized tooling across artificial intelligence, visual media, business governance, and digital runtimes.
+                Hệ thống công cụ chuyên sâu từ trí tuệ nhân tạo, thiết kế thị giác, quản trị vận hành đến môi trường số.
               </p>
             </div>
 
@@ -63,7 +63,7 @@ export default function Toolbox() {
                     : "bg-[#071A3D]/70 text-[#94A3B8] hover:text-white border border-[#35D9FF]/20"
                 }`}
               >
-                ALL (4)
+                TẤT CẢ (4)
               </button>
               {TOOLBOX_CATEGORIES.map((cat) => (
                 <button
@@ -83,7 +83,7 @@ export default function Toolbox() {
           </div>
         </div>
 
-        {/* 4 ELEGANT CATEGORY GRIDS (No huge logo wall) */}
+        {/* 4 ELEGANT CATEGORY GRIDS */}
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
           {displayedCategories.map((category) => (
             <div
@@ -107,7 +107,7 @@ export default function Toolbox() {
                 </div>
 
                 <span className="font-pixel text-[9px] px-2 py-0.5 rounded bg-[#0A2463] text-[#35D9FF] border border-[#35D9FF]/30">
-                  {category.items.length} TOOLS
+                  {category.items.length} CÔNG CỤ
                 </span>
               </div>
 

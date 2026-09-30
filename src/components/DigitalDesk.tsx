@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { DIGITAL_DESK_FOLDERS, DeskFolder, DeskFile } from "@/data/portfolioData";
-import { Folder, FileText, Terminal, HardDrive, Cpu, Shield, Sparkles, CheckCircle2, ChevronRight } from "lucide-react";
+import { Folder, FileText, Terminal } from "lucide-react";
 
 export default function DigitalDesk() {
   const [activeFolderId, setActiveFolderId] = useState(DIGITAL_DESK_FOLDERS[0].id);
@@ -27,24 +27,24 @@ export default function DigitalDesk() {
         {/* SECTION HEADER */}
         <div className="space-y-3">
           <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
-            <span className="font-pixel text-[10px]">SECTION // 04</span>
+            <span className="font-pixel text-[10px]">MỤC // 04</span>
             <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-            <span>INTERACTIVE WORKSPACE</span>
+            <span>KHÔNG GIAN LÀM VIỆC TƯƠNG TÁC</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                MY DIGITAL <span className="text-chrome">DESK</span>
+                BÀN LÀM VIỆC <span className="text-chrome">SỐ</span>
               </h2>
               <p className="mt-3 text-base sm:text-lg text-[#94A3B8] font-heading">
-                Step inside a futuristic desktop environment to explore project files, SOP blueprints, and AI prompts.
+                Trải nghiệm môi trường desktop tương lai để khám phá các tập tin dự án, quy trình SOP và bộ prompt AI.
               </p>
             </div>
 
             <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#071A3D]/80 border border-[#35D9FF]/30 text-xs font-mono-code text-[#35D9FF] self-start md:self-auto">
               <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-ping" />
-              <span>FILESYSTEM ACTIVE</span>
+              <span>HỆ THỐNG TẬP TIN SẴN SÀNG</span>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function DigitalDesk() {
         {/* FUTURISTIC DESKTOP ENVIRONMENT CASING */}
         <div className="rounded-3xl border-2 border-[#35D9FF]/35 bg-[#050816]/90 shadow-[0_20px_70px_rgba(0,0,0,0.8)] backdrop-blur-2xl overflow-hidden relative">
           
-          {/* Top Window Bar with Retro Window Controls */}
+          {/* Top Window Bar */}
           <div className="flex items-center justify-between px-5 py-3.5 bg-[#071A3D]/90 border-b border-[#35D9FF]/20 text-xs font-mono-code">
             <div className="flex items-center gap-2.5">
               <div className="flex items-center gap-1.5">
@@ -61,23 +61,23 @@ export default function DigitalDesk() {
                 <span className="w-3 h-3 rounded-full bg-green-500/80 border border-green-400" />
               </div>
               <span className="font-pixel text-[10px] text-[#35D9FF] ml-2 hidden sm:inline">
-                DIỄM_OS 2.6 // VIRTUAL DESKTOP
+                DIỄM_OS 2.6 // BÀN LÀM VIỆC ẢO
               </span>
             </div>
 
             <div className="flex items-center gap-4 text-[#94A3B8] text-[11px]">
-              <span className="hidden md:inline">ROOT: /USER/NGOCDIEM/DESK</span>
-              <span className="text-[#35D9FF]">STATUS: ONLINE</span>
+              <span className="hidden md:inline">GỐC: /NGOCDIEM/DESKTOP</span>
+              <span className="text-[#35D9FF]">TRẠNG THÁI: TRỰC TUYẾN</span>
             </div>
           </div>
 
-          {/* Desktop Body: 3-column / 2-column layout */}
+          {/* Desktop Body */}
           <div className="grid lg:grid-cols-12 min-h-[500px]">
             
-            {/* COLUMN 1: FOLDER DIRECTORY (Left Side) */}
+            {/* COLUMN 1: FOLDER DIRECTORY */}
             <div className="lg:col-span-4 p-4 sm:p-5 border-b lg:border-b-0 lg:border-r border-[#35D9FF]/20 bg-[#071A3D]/40 space-y-3">
               <div className="text-[10px] font-mono-code text-[#35D9FF] uppercase tracking-wider px-2">
-                // SYSTEM FOLDERS ({DIGITAL_DESK_FOLDERS.length})
+                // THƯ MỤC HỆ THỐNG ({DIGITAL_DESK_FOLDERS.length})
               </div>
 
               <div className="space-y-1.5">
@@ -131,10 +131,10 @@ export default function DigitalDesk() {
               <div className="space-y-2 pb-5 border-b border-[#35D9FF]/20">
                 <div className="flex items-center justify-between">
                   <span className="font-pixel text-xs text-[#35D9FF]">
-                    LOCATION: {activeFolder.slug}
+                    VỊ TRÍ: {activeFolder.slug}
                   </span>
                   <span className="text-xs font-mono-code text-[#94A3B8]">
-                    {activeFolder.files.length} ITEMS
+                    {activeFolder.files.length} TẬP TIN
                   </span>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-white">
@@ -148,7 +148,7 @@ export default function DigitalDesk() {
               {/* File Listing Table */}
               <div className="space-y-2.5 flex-1">
                 <div className="text-[10px] font-mono-code text-[#35D9FF] uppercase tracking-wider">
-                  FILE SYSTEM ENTRIES:
+                  DANH MỤC TẬP TIN:
                 </div>
 
                 <div className="space-y-2">
@@ -182,7 +182,7 @@ export default function DigitalDesk() {
                         <div className="flex items-center gap-3 text-[11px] font-mono-code self-end sm:self-center">
                           <span className="text-[#94A3B8]">{file.size}</span>
                           <span className="px-2 py-0.5 rounded bg-[#0A2463] text-[#35D9FF] border border-[#35D9FF]/30 text-[9px] font-pixel">
-                            {file.status || "OK"}
+                            {file.status || "HỢP LỆ"}
                           </span>
                         </div>
                       </div>
@@ -197,9 +197,9 @@ export default function DigitalDesk() {
                   <div className="flex items-center justify-between text-[10px] font-mono-code text-[#35D9FF]">
                     <span className="flex items-center gap-1.5">
                       <Terminal className="w-3.5 h-3.5" />
-                      INSPECTOR // {selectedFile.name}
+                      THANH TRA TẬP TIN // {selectedFile.name}
                     </span>
-                    <span>SIZE: {selectedFile.size}</span>
+                    <span>DUNG LƯỢNG: {selectedFile.size}</span>
                   </div>
 
                   <p className="text-xs sm:text-sm text-slate-200 font-heading leading-relaxed">

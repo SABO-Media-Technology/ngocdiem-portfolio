@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ProjectCaseStudy } from "@/data/portfolioData";
-import { X, CheckCircle, Wrench, ShieldAlert, Compass, Layers, Sparkles, ExternalLink, ArrowRight } from "lucide-react";
+import { X, CheckCircle, Wrench, ShieldAlert, Compass, Layers, Sparkles } from "lucide-react";
 
 interface CaseStudyModalProps {
   project: ProjectCaseStudy | null;
@@ -10,8 +10,6 @@ interface CaseStudyModalProps {
 }
 
 export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
-  const [activeGalleryTab, setActiveGalleryTab] = useState(0);
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -51,7 +49,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#35D9FF]/20 bg-[#0A2463]/40">
           <div className="flex items-center gap-3">
             <span className="px-2 py-0.5 rounded bg-[#2563FF]/30 border border-[#35D9FF]/40 text-[10px] font-pixel text-[#35D9FF]">
-              CASE_STUDY // {project.number}
+              HỒ SƠ CA DỰ ÁN // {project.number}
             </span>
             <span className="font-mono-code text-xs text-[#94A3B8]">
               {project.role}
@@ -62,7 +60,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             type="button"
             onClick={onClose}
             className="p-1.5 rounded-xl bg-[#050816]/60 border border-[#35D9FF]/30 text-slate-300 hover:text-white hover:border-[#35D9FF] transition-all cursor-pointer"
-            aria-label="Close case study"
+            aria-label="Đóng cửa sổ"
           >
             <X className="w-5 h-5" />
           </button>
@@ -97,7 +95,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
           <div className="grid sm:grid-cols-2 gap-4 p-5 rounded-2xl bg-[#050816]/60 border border-[#35D9FF]/20 text-xs font-mono-code">
             <div>
               <span className="text-[#35D9FF] font-pixel text-[10px] block mb-1">
-                // MY ROLE
+                // VAI TRÒ CỦA TÔI
               </span>
               <span className="text-white font-semibold text-sm">
                 {project.role}
@@ -105,10 +103,10 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             </div>
             <div>
               <span className="text-[#35D9FF] font-pixel text-[10px] block mb-1">
-                // ECOSYSTEM CONTEXT
+                // BỐI CẢNH HỆ SINH THÁI
               </span>
               <span className="text-[#94A3B8] text-xs">
-                SABO Arena & Media Operations
+                SABO Arena &amp; Vận Hành Truyền Thông
               </span>
             </div>
           </div>
@@ -120,7 +118,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             <div className="p-6 rounded-2xl bg-[#050816]/70 border border-red-500/20 space-y-3">
               <div className="flex items-center gap-2 text-xs font-mono-code text-red-400">
                 <ShieldAlert className="w-4 h-4 text-red-400" />
-                <span className="font-bold">THE CHALLENGE</span>
+                <span className="font-bold">BÀI TOÁN &amp; THÁCH THỨC</span>
               </div>
               <p className="text-sm text-slate-300 leading-relaxed font-heading">
                 {project.challenge}
@@ -131,7 +129,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             <div className="p-6 rounded-2xl bg-[#050816]/70 border border-[#35D9FF]/30 space-y-3">
               <div className="flex items-center gap-2 text-xs font-mono-code text-[#35D9FF]">
                 <Compass className="w-4 h-4 text-[#35D9FF]" />
-                <span className="font-bold">STRATEGIC APPROACH</span>
+                <span className="font-bold">PHƯƠNG PHÁP TIẾP CẬN CHIẾN LƯỢC</span>
               </div>
               <p className="text-sm text-slate-300 leading-relaxed font-heading">
                 {project.approach}
@@ -145,7 +143,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             <div className="flex items-center gap-2 text-xs font-mono-code text-[#35D9FF]">
               <Layers className="w-4 h-4" />
               <span className="font-bold uppercase tracking-wider">
-                WHAT I DID // HANDS-ON EXECUTION
+                VIỆC ĐÃ THỰC HIỆN // THỰC THI TRỰC TIẾP
               </span>
             </div>
 
@@ -169,7 +167,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             <div className="flex items-center gap-2 text-xs font-mono-code text-[#35D9FF]">
               <Wrench className="w-4 h-4" />
               <span className="font-bold uppercase tracking-wider">
-                TOOLS & TECHNOLOGIES
+                CÔNG CỤ &amp; CÔNG NGHỆ ÁP DỤNG
               </span>
             </div>
 
@@ -185,12 +183,12 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             </div>
           </div>
 
-          {/* 7. OUTCOME (Qualitative only, strict adherence: no fake stats) */}
+          {/* 7. OUTCOME */}
           <div className="p-6 rounded-2xl bg-gradient-to-r from-[#071A3D] to-[#0A2463] border border-[#35D9FF]/40 space-y-2.5">
             <div className="flex items-center gap-2 text-xs font-mono-code text-[#35D9FF]">
               <CheckCircle className="w-4 h-4 text-[#35D9FF]" />
               <span className="font-bold uppercase tracking-wider">
-                QUALITATIVE OUTCOME
+                KẾT QUẢ ĐẠT ĐƯỢC (ĐỊNH TÍNH THỰC TẾ)
               </span>
             </div>
             <p className="text-sm sm:text-base text-[#F5FAFF] leading-relaxed font-heading">
@@ -198,17 +196,17 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
             </p>
           </div>
 
-          {/* 8. GALLERY (Rich visual representations of deliverables) */}
+          {/* 8. GALLERY */}
           <div className="space-y-4 pt-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-xs font-mono-code text-[#35D9FF]">
                 <Sparkles className="w-4 h-4" />
                 <span className="font-bold uppercase tracking-wider">
-                  PROJECT GALLERY & DELIVERABLES
+                  THƯ VIỆN ẤN PHẨM &amp; TƯ LIỆU BÀN GIAO
                 </span>
               </div>
               <span className="text-[11px] font-mono-code text-[#94A3B8]">
-                {project.gallery.length} ASSETS
+                {project.gallery.length} HẠNG MỤC
               </span>
             </div>
 
@@ -219,7 +217,7 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
                   className="p-5 rounded-2xl bg-[#050816]/75 border border-[#35D9FF]/25 hover:border-[#35D9FF] transition-all space-y-2.5 group"
                 >
                   <div className="flex items-center justify-between text-[10px] font-mono-code text-[#35D9FF]">
-                    <span className="font-pixel">{asset.badge || "ASSET"}</span>
+                    <span className="font-pixel">{asset.badge || "ẤN PHẨM"}</span>
                     <span className="text-[#94A3B8]">{asset.category}</span>
                   </div>
 
@@ -240,14 +238,14 @@ export default function CaseStudyModal({ project, onClose }: CaseStudyModalProps
         {/* Modal Footer */}
         <div className="p-4 sm:p-5 border-t border-[#35D9FF]/20 bg-[#0A2463]/40 flex items-center justify-between text-xs font-mono-code">
           <span className="text-[#94A3B8]">
-            DIỄM® ARCHIVE // CONFIDENTIAL REVIEW
+            DIỄM® HỒ SƠ // ĐỐI SOÁT CHẤT LƯỢNG
           </span>
           <button
             type="button"
             onClick={onClose}
             className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#35D9FF] text-white font-bold cursor-pointer hover:opacity-90 transition-opacity"
           >
-            CLOSE CASE STUDY
+            ĐÓNG CỬA SỔ
           </button>
         </div>
 

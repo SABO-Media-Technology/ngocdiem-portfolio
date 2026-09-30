@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowDown, ArrowUpRight, Sparkles, Folder, Terminal, Cpu } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Terminal } from "lucide-react";
 import Scene3D from "./Scene3D";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
@@ -25,7 +25,7 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex flex-col justify-center pt-28 sm:pt-32 pb-20 overflow-hidden select-none"
     >
-      {/* 3D WebGL Background Scene: Chrome Knots, Translucent Glass Star, Pixel Elements */}
+      {/* 3D WebGL Background Scene */}
       <Scene3D className="absolute inset-0 z-0 pointer-events-none opacity-85" />
 
       {/* Volumetric Color Blooms */}
@@ -46,13 +46,13 @@ export default function Hero() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-pulse" />
             <span className="font-pixel text-[9px] tracking-wider text-[#35D9FF]">
-              SYSTEM // DIGITAL WORLD 0.1
+              HỆ THỐNG // KHÔNG GIAN SỐ 2026
             </span>
           </div>
           <div className="flex items-center gap-3 text-[#94A3B8]">
-            <span>LAT: 10.8231° N · LON: 106.6297° E</span>
+            <span>TOẠ ĐỘ: 10.8231° B · 106.6297° Đ</span>
             <span>·</span>
-            <span className="text-[#35D9FF]">SABO ECOSYSTEM</span>
+            <span className="text-[#35D9FF]">TP. HỒ CHÍ MINH</span>
           </div>
         </div>
 
@@ -71,25 +71,25 @@ export default function Hero() {
               <span className="text-white font-semibold">VÕ NGỌC DIỄM</span>
             </span>
             <span className="hidden sm:inline-block text-xs font-mono-code text-[#94A3B8]">
-              — PERSONAL PORTFOLIO
+              — HỒ SƠ NĂNG LỰC SỐ
             </span>
           </div>
 
           {/* OVERSPECIFIED HERO HEADLINE */}
           <div className="space-y-1 sm:space-y-2">
             <div className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.92] text-white">
-              BUSINESS
+              VẬN HÀNH
             </div>
             <div className="flex flex-wrap items-baseline gap-3 sm:gap-6 font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.92]">
               <span className="text-outline hover:text-white transition-colors">
-                OPERATIONS
+                DOANH NGHIỆP
               </span>
               <span className="text-[#35D9FF] font-pixel text-xl sm:text-4xl md:text-5xl align-middle">
                 ×
               </span>
             </div>
             <div className="flex flex-wrap items-baseline gap-3 sm:gap-6 font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.92]">
-              <span className="text-chrome">DIGITAL</span>
+              <span className="text-chrome">KỸ THUẬT SỐ</span>
               <span className="text-[#35D9FF] font-pixel text-xl sm:text-4xl md:text-5xl align-middle">
                 ×
               </span>
@@ -102,9 +102,9 @@ export default function Hero() {
           {/* TAGLINE & POSITIONING */}
           <div className="pt-2 max-w-2xl space-y-3">
             <p className="text-xl sm:text-2xl md:text-3xl font-heading font-medium text-[#F5FAFF] leading-snug">
-              “I make things work.{" "}
+              “Tôi làm cho mọi thứ vận hành.{" "}
               <span className="text-[#35D9FF] font-semibold underline decoration-[#2563FF] decoration-2 underline-offset-4">
-                Then I make them better.”
+                Sau đó, tôi làm cho chúng tốt hơn.”
               </span>
             </p>
             <p className="text-sm sm:text-base text-[#94A3B8] font-heading font-normal">
@@ -133,7 +133,7 @@ export default function Hero() {
               href="#work"
               className="inline-flex items-center gap-3 px-7 sm:px-8 py-4 rounded-xl font-mono-code text-xs sm:text-sm uppercase font-bold bg-gradient-to-r from-[#2563FF] via-[#1d4ed8] to-[#35D9FF] hover:from-[#1d4ed8] hover:to-[#35D9FF] text-white shadow-xl shadow-[#2563FF]/30 transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer border border-[#35D9FF]/40"
             >
-              <span>[ EXPLORE MY WORK ]</span>
+              <span>[ KHÁM PHÁ DỰ ÁN ]</span>
               <ArrowDown className="w-4 h-4 text-white animate-bounce" />
             </a>
 
@@ -141,21 +141,21 @@ export default function Hero() {
               href="#contact"
               className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-4 rounded-xl font-mono-code text-xs sm:text-sm uppercase font-bold border border-[#35D9FF]/45 bg-[#071A3D]/60 hover:bg-[#0A2463]/90 hover:border-[#35D9FF] text-[#F5FAFF] shadow-lg shadow-[#050816]/50 transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer"
             >
-              <span>LET&apos;S CONNECT</span>
+              <span>LIÊN HỆ HỢP TÁC</span>
               <ArrowUpRight className="w-4 h-4 text-[#35D9FF]" />
             </a>
           </div>
 
         </div>
 
-        {/* FLOATING RETRO-COMPUTING ACCENT BADGE (Subtle desktop window at bottom right) */}
+        {/* FLOATING ACCENT BADGE */}
         <div className="hidden lg:flex absolute right-6 bottom-4 items-center gap-3 p-3 rounded-2xl glass-panel border border-[#35D9FF]/30 text-xs font-mono-code text-slate-300 animate-float-slow">
           <div className="w-8 h-8 rounded-xl bg-[#2563FF]/25 border border-[#35D9FF]/40 flex items-center justify-center text-[#35D9FF]">
             <Terminal className="w-4 h-4" />
           </div>
           <div className="text-[11px] leading-tight">
             <div className="text-[#35D9FF] font-semibold">DIỄM_OS v2.6</div>
-            <div className="text-[#94A3B8] text-[10px]">OPERATIONS RUNTIME ACTIVE</div>
+            <div className="text-[#94A3B8] text-[10px]">HỆ THỐNG VẬN HÀNH SẴN SÀNG</div>
           </div>
         </div>
 

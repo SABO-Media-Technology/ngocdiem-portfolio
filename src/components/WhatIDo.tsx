@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { WHAT_I_DO, WhatIDoItem } from "@/data/portfolioData";
-import { CheckCircle, Briefcase, FileSpreadsheet, Globe, Bot, ArrowRight } from "lucide-react";
+import { WHAT_I_DO } from "@/data/portfolioData";
+import { CheckCircle, Briefcase, FileSpreadsheet, Globe, Bot } from "lucide-react";
 
 export default function WhatIDo() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -32,23 +32,23 @@ export default function WhatIDo() {
         {/* SECTION HEADER */}
         <div className="space-y-4">
           <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
-            <span className="font-pixel text-[10px]">SECTION // 02</span>
+            <span className="font-pixel text-[10px]">MỤC // 02</span>
             <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-            <span>BUSINESS CAPABILITY MATRIX</span>
+            <span>MA TRẬN NĂNG LỰC DOANH NGHIỆP</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                WHAT <span className="text-outline hover:text-white transition-colors">I DO</span>
+                LĨNH VỰC <span className="text-outline hover:text-white transition-colors">HOẠT ĐỘNG</span>
               </h2>
               <p className="mt-3 text-lg sm:text-xl md:text-2xl text-[#35D9FF] font-heading font-medium">
-                “I work across different layers of a business.”
+                “Tôi làm việc trên nhiều tầng nấc khác nhau của một doanh nghiệp.”
               </p>
             </div>
 
             <p className="max-w-md text-sm sm:text-base text-[#94A3B8] font-heading font-normal">
-              Connecting ground-level physical operations with digital growth, financial discipline, and automated systems.
+              Kết nối vận hành cơ sở thực tế với tăng trưởng kỹ thuật số, kỷ luật tài chính và hệ thống tự động hóa.
             </p>
           </div>
         </div>
@@ -82,7 +82,7 @@ export default function WhatIDo() {
                       {card.number}
                     </span>
                     <span className="font-mono-code text-xs text-[#94A3B8] uppercase tracking-wider">
-                      // LAYER
+                      // TẦNG NĂNG LỰC
                     </span>
                   </div>
 
@@ -107,7 +107,7 @@ export default function WhatIDo() {
                 {/* The 4 Core Items Listed for Each Card */}
                 <div className="pt-6 space-y-2.5">
                   <div className="text-[10px] font-mono-code text-[#35D9FF] uppercase tracking-wider">
-                    KEY SCOPE & DELIVERABLES:
+                    PHẠM VI &amp; ĐẦU VIỆC TRỌNG TÂM:
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {card.items.map((item) => (

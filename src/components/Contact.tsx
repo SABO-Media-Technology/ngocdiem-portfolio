@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, Copy, Check, Mail, Globe, Terminal, Sparkles } from "lucide-react";
+import { ArrowUpRight, Copy, Check, Mail, Globe } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Contact() {
@@ -15,11 +15,11 @@ export default function Contact() {
 
   const contactChannels = [
     {
-      name: "Email",
+      name: "Email Cá Nhân",
       val: PERSONAL_INFO.email,
       href: `mailto:${PERSONAL_INFO.email}`,
       icon: <Mail className="w-5 h-5 text-[#35D9FF]" />,
-      actionLabel: copiedEmail ? "COPIED!" : "COPY",
+      actionLabel: copiedEmail ? "ĐÃ SAO CHÉP!" : "SAO CHÉP",
       isCopy: true,
     },
     {
@@ -31,7 +31,7 @@ export default function Contact() {
           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
         </svg>
       ),
-      actionLabel: "VISIT ↗",
+      actionLabel: "TRUY CẬP ↗",
       isCopy: false,
     },
     {
@@ -43,15 +43,15 @@ export default function Contact() {
           <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
         </svg>
       ),
-      actionLabel: "CONNECT ↗",
+      actionLabel: "KẾT NỐI ↗",
       isCopy: false,
     },
     {
-      name: "Portfolio / Website",
+      name: "Trang Web / Portfolio",
       val: "diem.saboarena.com",
       href: PERSONAL_INFO.website,
       icon: <Globe className="w-5 h-5 text-[#35D9FF]" />,
-      actionLabel: "EXPLORE ↗",
+      actionLabel: "KHÁM PHÁ ↗",
       isCopy: false,
     },
   ];
@@ -75,10 +75,10 @@ export default function Contact() {
 
           {/* Section Indicator */}
           <div className="flex items-center justify-between text-xs font-mono-code text-[#35D9FF] pb-4 border-b border-[#35D9FF]/20">
-            <span className="font-pixel text-[10px]">TRANSMISSION // 10</span>
+            <span className="font-pixel text-[10px]">KẾT NỐI // 10</span>
             <span className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-ping" />
-              STATUS: READY FOR INQUIRIES
+              TRẠNG THÁI: SẴN SÀNG TRAO ĐỔI DỰ ÁN
             </span>
           </div>
 
@@ -87,36 +87,36 @@ export default function Contact() {
             {/* LEFT: DRAMATIC HEADLINE & SUPPORTING TEXT */}
             <div className="lg:col-span-7 space-y-6">
               
-              {/* LARGE HEADLINE (Exact required text) */}
+              {/* LARGE HEADLINE IN VIETNAMESE */}
               <div className="space-y-1 font-display text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-[0.92] text-white">
-                <div>HAVE</div>
-                <div className="text-chrome">SOMETHING</div>
+                <div>BẠN CÓ</div>
+                <div className="text-chrome">DỰ ÁN CẦN</div>
                 <div className="text-outline-cyan hover:text-[#35D9FF] transition-colors">
-                  TO BUILD?
+                  HIỆN THỰC HÓA?
                 </div>
               </div>
 
-              {/* SUPPORTING TEXT (Exact required text) */}
+              {/* SUPPORTING TEXT */}
               <p className="text-xl sm:text-2xl text-slate-200 font-heading font-medium">
                 {PERSONAL_INFO.contactSub}
               </p>
 
-              {/* MAIN CTA: LET'S TALK ↗ */}
+              {/* MAIN CTA */}
               <div className="pt-2">
                 <a
-                  href={`mailto:${PERSONAL_INFO.email}?subject=Project%20Inquiry%20%E2%80%94%20V%C3%B5%20Ng%E1%BB%8Dc%20Di%E1%BB%85m`}
+                  href={`mailto:${PERSONAL_INFO.email}?subject=Trao%20%C4%91%E1%BB%95i%20d%E1%BB%B1%20%C3%A1n%20%E2%80%94%20V%C3%B5%20Ng%E1%BB%8Dc%20Di%E1%BB%85m`}
                   className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-mono-code text-sm sm:text-base uppercase font-bold bg-gradient-to-r from-[#2563FF] via-[#1d4ed8] to-[#35D9FF] hover:from-[#1d4ed8] hover:to-[#35D9FF] text-white shadow-xl shadow-[#2563FF]/40 transition-all hover:scale-105 active:scale-95 cursor-pointer border border-[#35D9FF]/50"
                 >
-                  <span>LET&apos;S TALK</span>
+                  <span>LIÊN HỆ HỢP TÁC</span>
                   <ArrowUpRight className="w-5 h-5 text-white" />
                 </a>
               </div>
             </div>
 
-            {/* RIGHT: CONTACT CHANNELS (Email, Facebook, LinkedIn, Portfolio / Website) */}
+            {/* RIGHT: CONTACT CHANNELS */}
             <div className="lg:col-span-5 space-y-3 font-mono-code text-xs">
               <div className="text-[10px] text-[#35D9FF] uppercase tracking-wider mb-2">
-                DIRECT COMMUNICATION CHANNELS:
+                KÊNH TRAO ĐỔI TRỰC TIẾP:
               </div>
 
               {contactChannels.map((c) => (
@@ -147,12 +147,12 @@ export default function Contact() {
                       {copiedEmail ? (
                         <>
                           <Check className="w-3.5 h-3.5 text-green-400" />
-                          <span className="text-green-400">COPIED</span>
+                          <span className="text-green-400">ĐÃ SAO CHÉP</span>
                         </>
                       ) : (
                         <>
                           <Copy className="w-3.5 h-3.5" />
-                          <span>COPY</span>
+                          <span>SAO CHÉP</span>
                         </>
                       )}
                     </button>

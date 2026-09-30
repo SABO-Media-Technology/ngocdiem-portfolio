@@ -1,7 +1,7 @@
 "use client";
 
 import { EXPERIENCE_TIMELINE } from "@/data/portfolioData";
-import { Briefcase, Calendar, CheckCircle2, ChevronRight, ShieldCheck } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export default function Experience() {
   return (
@@ -14,31 +14,31 @@ export default function Experience() {
         {/* SECTION HEADER */}
         <div className="space-y-4">
           <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
-            <span className="font-pixel text-[10px]">SECTION // 07</span>
+            <span className="font-pixel text-[10px]">MỤC // 07</span>
             <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-            <span>CAREER PATHWAY</span>
+            <span>LỘ TRÌNH KINH NGHIỆM</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                CAREER <span className="text-chrome">EXPERIENCE</span>
+                KINH NGHIỆM <span className="text-chrome">THỰC CHIẾN</span>
               </h2>
               <p className="mt-3 text-base sm:text-lg text-[#94A3B8] font-heading">
-                Chronological timeline demonstrating growth from banking &amp; finance into multi-disciplinary operations and digital leadership.
+                Lộ trình phát triển từ nền tảng nghiệp vụ ngân hàng &amp; tài chính sang quản lý vận hành đa nhiệm và giải pháp số.
               </p>
             </div>
 
             <div className="px-3.5 py-1.5 rounded-full bg-[#071A3D]/70 border border-[#35D9FF]/30 text-xs font-mono-code text-[#35D9FF] flex items-center gap-2 self-start md:self-auto">
               <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-pulse" />
-              <span>CURRENT: SABO M&T</span>
+              <span>HIỆN TẠI: SABO M&amp;T</span>
             </div>
           </div>
         </div>
 
         {/* TIMELINE LIST */}
         <div className="relative border-l-2 border-[#35D9FF]/30 ml-4 sm:ml-8 pl-6 sm:pl-12 space-y-10 sm:space-y-12">
-          {EXPERIENCE_TIMELINE.map((item, idx) => (
+          {EXPERIENCE_TIMELINE.map((item) => (
             <div key={item.period} className="relative group">
               
               {/* Timeline Glowing Node Dot */}
@@ -70,7 +70,7 @@ export default function Experience() {
 
                   {item.current && (
                     <span className="px-2.5 py-0.5 rounded-md bg-[#35D9FF]/20 text-[#35D9FF] text-[10px] font-pixel border border-[#35D9FF]/40">
-                      CURRENT ROLE
+                      VAI TRÒ HIỆN TẠI
                     </span>
                   )}
                 </div>

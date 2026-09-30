@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
-import { PERSONAL_INFO } from "@/data/portfolioData";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,10 +34,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "WORK", href: "#work", id: "work" },
-    { name: "ABOUT", href: "#about", id: "about" },
-    { name: "EXPERIENCE", href: "#experience", id: "experience" },
-    { name: "CONTACT", href: "#contact", id: "contact" },
+    { name: "DỰ ÁN", href: "#work", id: "work" },
+    { name: "NĂNG LỰC", href: "#capabilities", id: "capabilities" },
+    { name: "GIỚI THIỆU", href: "#about", id: "about" },
+    { name: "KINH NGHIỆM", href: "#experience", id: "experience" },
+    { name: "LIÊN HỆ", href: "#contact", id: "contact" },
   ];
 
   return (
@@ -59,14 +59,14 @@ export default function Navbar() {
           <Link
             href="/"
             className="group flex items-center gap-1.5 focus:outline-none"
-            aria-label="Võ Ngọc Diễm Home"
+            aria-label="Võ Ngọc Diễm Trang chủ"
           >
             <span className="font-display font-black text-lg sm:text-xl tracking-tight text-white group-hover:text-[#35D9FF] transition-colors">
               DIỄM<span className="text-[#35D9FF] text-xs align-super ml-0.5">®</span>
             </span>
             <span className="hidden md:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#2563FF]/15 border border-[#35D9FF]/25 text-[10px] font-mono-code text-[#35D9FF] ml-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#35D9FF] animate-pulse" />
-              OPS × DIGITAL × AI
+              VẬN HÀNH × DIGITAL × AI
             </span>
           </Link>
 
@@ -91,32 +91,32 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Small Menu Indicator */}
+            {/* Menu Indicator / Call to action */}
             <div className="flex items-center pl-3 border-l border-[#35D9FF]/20">
               <a
                 href="#contact"
                 className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2563FF]/20 hover:bg-[#2563FF]/35 border border-[#35D9FF]/40 text-xs font-mono-code text-[#F5FAFF] transition-all hover:border-[#35D9FF] hover:shadow-[0_0_15px_rgba(53,217,255,0.3)]"
               >
                 <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-ping" />
-                <span>LET&apos;S TALK</span>
+                <span>KẾT NỐI NGAY</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#35D9FF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
           </nav>
 
-          {/* MOBILE HAMBURGER BUTTON */}
+          {/* MOBILE BUTTON */}
           <div className="flex md:hidden items-center gap-2">
             <a
               href="#contact"
               className="px-3 py-1 rounded-full bg-[#2563FF]/20 border border-[#35D9FF]/30 text-[11px] font-mono-code text-[#35D9FF]"
             >
-              TALK ↗
+              LIÊN HỆ ↗
             </a>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-1.5 rounded-xl bg-[#0A2463]/60 border border-[#35D9FF]/30 text-white hover:text-[#35D9FF] transition-colors focus:outline-none"
-              aria-label="Toggle navigation menu"
+              aria-label="Mở bảng điều hướng"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -124,14 +124,14 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* MOBILE FULL-SCREEN / SLIDE-DOWN DRAWER */}
+      {/* MOBILE DRAWER */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden bg-[#050816]/95 backdrop-blur-2xl flex flex-col pt-24 px-6 pb-8 border-b border-[#35D9FF]/20 animate-in fade-in duration-200">
           <div className="flex items-center justify-between pb-4 border-b border-[#35D9FF]/20 text-xs font-mono-code text-[#35D9FF]">
-            <span>NAVIGATION // VÕ NGỌC DIỄM</span>
+            <span>ĐIỀU HƯỚNG // VÕ NGỌC DIỄM</span>
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#35D9FF]" />
-              ACTIVE
+              TRỰC TUYẾN
             </span>
           </div>
 
@@ -153,14 +153,14 @@ export default function Navbar() {
 
           <div className="mt-auto space-y-4 pt-6 border-t border-[#35D9FF]/20">
             <div className="text-xs font-mono-code text-slate-400">
-              OPERATIONS × DIGITAL × AI
+              VẬN HÀNH DOANH NGHIỆP × KỸ THUẬT SỐ × AI
             </div>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#35D9FF] text-white font-mono-code font-bold text-xs uppercase flex items-center justify-center gap-2 shadow-lg shadow-[#2563FF]/30"
             >
-              <span>CONNECT WITH DIỄM</span>
+              <span>KẾT NỐI VỚI DIỄM</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>

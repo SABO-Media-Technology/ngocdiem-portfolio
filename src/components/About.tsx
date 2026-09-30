@@ -1,7 +1,7 @@
 "use client";
 
 import { PERSONAL_INFO } from "@/data/portfolioData";
-import { Sparkles, GraduationCap, Compass, Layers, ShieldCheck } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 
 export default function About() {
   return (
@@ -14,13 +14,13 @@ export default function About() {
         {/* SECTION HEADER */}
         <div className="space-y-4">
           <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
-            <span className="font-pixel text-[10px]">SECTION // 08</span>
+            <span className="font-pixel text-[10px]">MỤC // 08</span>
             <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-            <span>BACKGROUND & ETHOS</span>
+            <span>BỐI CẢNH &amp; TÔN CHỈ HOẠT ĐỘNG</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-            A LITTLE <span className="text-chrome">ABOUT ME</span>
+            ĐÔI NÉT <span className="text-chrome">VỀ TÔI</span>
           </h2>
         </div>
 
@@ -48,21 +48,21 @@ export default function About() {
             <div className="pt-4 border-t border-[#35D9FF]/20 flex flex-wrap items-center justify-between gap-4 text-xs font-mono-code text-[#94A3B8]">
               <div className="flex items-center gap-2">
                 <GraduationCap className="w-4 h-4 text-[#35D9FF]" />
-                <span>SAIGON UNIVERSITY (SGU) · FINANCE & BANKING GRADUATE</span>
+                <span>CỬ NHÂN TÀI CHÍNH - NGÂN HÀNG · ĐẠI HỌC SÀI GÒN (SGU)</span>
               </div>
-              <span className="text-[#35D9FF]">HO CHI MINH CITY, VN</span>
+              <span className="text-[#35D9FF]">TP. HỒ CHÍ MINH, VIỆT NAM</span>
             </div>
           </div>
 
           <div className="lg:col-span-4 p-8 rounded-3xl bg-[#050816]/70 border border-[#35D9FF]/20 space-y-4 font-heading">
             <div className="text-xs font-mono-code text-[#35D9FF] uppercase tracking-wider">
-              // THE INTERDISCIPLINARY ADVANTAGE
+              // LỢI THẾ KẾT NỐI LIÊN NGÀNH
             </div>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Rather than viewing operations, design, or AI as isolated silos, I treat them as unified levers to build systems that are robust, beautiful, and effortless to maintain.
+              Thay vì xem vận hành, thiết kế hay trí tuệ nhân tạo là những mảnh ghép tách biệt, tôi kết hợp chúng thành một đòn bẩy thống nhất để xây dựng hệ thống vừa vững chắc, vừa thẩm mỹ và tinh gọn khi duy trì.
             </p>
             <div className="pt-2 text-xs font-mono-code text-[#35D9FF]">
-              OPERATIONS × DIGITAL × AI
+              VẬN HÀNH × DIGITAL × AI
             </div>
           </div>
 

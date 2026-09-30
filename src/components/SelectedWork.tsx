@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { SELECTED_PROJECTS, ProjectCaseStudy } from "@/data/portfolioData";
 import CaseStudyModal from "./CaseStudyModal";
-import { ArrowUpRight, Sparkles, Layers, Eye, FolderGit2 } from "lucide-react";
+import { ArrowUpRight, Eye, Layers } from "lucide-react";
 
 export default function SelectedWork() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<ProjectCaseStudy | null>(null);
@@ -19,164 +19,160 @@ export default function SelectedWork() {
         {/* SECTION HEADER */}
         <div className="space-y-4">
           <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
-            <span className="font-pixel text-[10px]">SECTION // 03</span>
+            <span className="font-pixel text-[10px]">MỤC // 03</span>
             <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-            <span>PORTFOLIO EXHIBIT</span>
+            <span>TRIỂN LÃM DỰ ÁN</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                SELECTED <span className="text-chrome">WORK</span>
+                DỰ ÁN <span className="text-chrome">TIÊU BIỂU</span>
               </h2>
               <p className="mt-3 text-base sm:text-lg text-[#94A3B8] font-heading">
-                In-depth editorial case studies across business operations, digital ecosystems, AI workflows and brand design.
+                Hồ sơ ca dự án chuyên sâu về vận hành doanh nghiệp, hệ sinh thái số, quy trình AI và thiết kế nhận diện thương hiệu.
               </p>
             </div>
 
             <div className="px-4 py-2 rounded-xl bg-[#071A3D]/70 border border-[#35D9FF]/30 text-xs font-mono-code text-[#35D9FF] flex items-center gap-2 self-start md:self-auto">
               <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-pulse" />
-              <span>4 MASTER CASE STUDIES</span>
+              <span>4 BỘ HỒ SƠ DỰ ÁN</span>
             </div>
           </div>
         </div>
 
         {/* 4 LARGE EDITORIAL PROJECT CARDS */}
         <div className="space-y-12 sm:space-y-16">
-          {SELECTED_PROJECTS.map((project, index) => {
-            const isEven = index % 2 === 1;
+          {SELECTED_PROJECTS.map((project) => (
+            <div
+              key={project.id}
+              className="group relative rounded-3xl p-6 sm:p-10 chrome-glass-card border border-[#35D9FF]/25 hover:border-[#35D9FF]/70 transition-all duration-500 space-y-8"
+            >
+              {/* HUD Corners */}
+              <div className="hud-corner-tl" />
+              <div className="hud-corner-tr" />
+              <div className="hud-corner-bl" />
+              <div className="hud-corner-br" />
 
-            return (
-              <div
-                key={project.id}
-                className="group relative rounded-3xl p-6 sm:p-10 chrome-glass-card border border-[#35D9FF]/25 hover:border-[#35D9FF]/70 transition-all duration-500 space-y-8"
-              >
-                {/* HUD Corners */}
-                <div className="hud-corner-tl" />
-                <div className="hud-corner-tr" />
-                <div className="hud-corner-bl" />
-                <div className="hud-corner-br" />
+              {/* Top Meta Line: Number, Tags & Ecosystem context */}
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#35D9FF]/15">
+                <div className="flex items-center gap-3">
+                  <span className="font-pixel text-2xl sm:text-3xl text-[#35D9FF]">
+                    DỰ ÁN {project.number}
+                  </span>
+                  <span className="font-mono-code text-xs text-[#94A3B8]">
+                    // CA_DỰ_ÁN
+                  </span>
+                </div>
 
-                {/* Top Meta Line: Number, Tags & Ecosystem context */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#35D9FF]/15">
-                  <div className="flex items-center gap-3">
-                    <span className="font-pixel text-2xl sm:text-3xl text-[#35D9FF]">
-                      PROJECT {project.number}
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 rounded-full bg-[#2563FF]/20 border border-[#35D9FF]/30 text-[11px] font-mono-code text-[#35D9FF]"
+                    >
+                      {tag}
                     </span>
-                    <span className="font-mono-code text-xs text-[#94A3B8]">
-                      // CASE_STUDY
-                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Project Core Description & Action Bar */}
+              <div className="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <div className="lg:col-span-7 space-y-4">
+                  <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-white group-hover:text-[#35D9FF] transition-colors leading-tight">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-base sm:text-lg text-slate-200 font-heading leading-relaxed">
+                    “{project.tagline}”
+                  </p>
+
+                  <div className="pt-2 flex items-center gap-2 text-xs font-mono-code text-[#94A3B8]">
+                    <span className="text-[#35D9FF] font-semibold">VAI TRÒ:</span>
+                    <span>{project.role}</span>
                   </div>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
+                  {/* View Case Study Button */}
+                  <div className="pt-4">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedCaseStudy(project)}
+                      className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-xl font-mono-code text-xs uppercase font-bold bg-gradient-to-r from-[#2563FF] to-[#35D9FF] text-white shadow-lg shadow-[#2563FF]/30 hover:opacity-95 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      <span>XEM CHI TIẾT CA DỰ ÁN</span>
+                      <ArrowUpRight className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right Column: Key Challenge & Approach Preview */}
+                <div className="lg:col-span-5 p-5 rounded-2xl bg-[#050816]/70 border border-[#35D9FF]/20 space-y-3 font-heading">
+                  <div className="text-[11px] font-mono-code text-[#35D9FF] flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>TÓM TẮT PHƯƠNG PHÁP</span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {project.approach}
+                  </p>
+
+                  <div className="pt-2 flex flex-wrap gap-1.5">
+                    {project.tools.map((tool) => (
                       <span
-                        key={tag}
-                        className="px-3 py-1 rounded-full bg-[#2563FF]/20 border border-[#35D9FF]/30 text-[11px] font-mono-code text-[#35D9FF]"
+                        key={tool}
+                        className="px-2.5 py-0.5 rounded-md bg-[#0A2463]/70 border border-[#35D9FF]/20 text-[10px] font-mono-code text-slate-300"
                       >
-                        {tag}
+                        {tool}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Project Core Description & Action Bar */}
-                <div className="grid lg:grid-cols-12 gap-8 items-start">
-                  
-                  <div className="lg:col-span-7 space-y-4">
-                    <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-white group-hover:text-[#35D9FF] transition-colors leading-tight">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-base sm:text-lg text-slate-200 font-heading leading-relaxed">
-                      “{project.description}”
-                    </p>
-
-                    <div className="pt-2 flex items-center gap-2 text-xs font-mono-code text-[#94A3B8]">
-                      <span className="text-[#35D9FF] font-semibold">ROLE:</span>
-                      <span>{project.role}</span>
-                    </div>
-
-                    {/* View Case Study Button */}
-                    <div className="pt-4">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedCaseStudy(project)}
-                        className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-xl font-mono-code text-xs uppercase font-bold bg-gradient-to-r from-[#2563FF] to-[#35D9FF] text-white shadow-lg shadow-[#2563FF]/30 hover:opacity-95 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                      >
-                        <span>VIEW CASE STUDY</span>
-                        <ArrowUpRight className="w-4 h-4 text-white" />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Key Challenge & Approach Preview */}
-                  <div className="lg:col-span-5 p-5 rounded-2xl bg-[#050816]/70 border border-[#35D9FF]/20 space-y-3 font-heading">
-                    <div className="text-[11px] font-mono-code text-[#35D9FF] flex items-center gap-1.5">
-                      <Layers className="w-3.5 h-3.5" />
-                      <span>OPERATIONAL SUMMARY</span>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      {project.approach}
-                    </p>
-
-                    <div className="pt-2 flex flex-wrap gap-1.5">
-                      {project.tools.map((tool) => (
-                        <span
-                          key={tool}
-                          className="px-2.5 py-0.5 rounded-md bg-[#0A2463]/70 border border-[#35D9FF]/20 text-[10px] font-mono-code text-slate-300"
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* VISUAL DELIVERABLE PLACEHOLDERS (Exact items requested in Section 8) */}
-                <div className="pt-4 space-y-3">
-                  <div className="flex items-center justify-between text-xs font-mono-code text-[#35D9FF]">
-                    <span className="flex items-center gap-1.5">
-                      <Eye className="w-3.5 h-3.5" />
-                      VISUAL ASSET VAULT & DELIVERABLES:
-                    </span>
-                    <span className="text-[10px] text-[#94A3B8]">
-                      CLICK &quot;VIEW CASE STUDY&quot; FOR FULL SPECS
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
-                    {project.gallery.map((item, idx) => (
-                      <div
-                        key={idx}
-                        onClick={() => setSelectedCaseStudy(project)}
-                        className="group/card p-3 rounded-xl bg-[#071A3D]/70 hover:bg-[#0A2463] border border-[#35D9FF]/20 hover:border-[#35D9FF] transition-all cursor-pointer space-y-1.5 flex flex-col justify-between"
-                      >
-                        <div className="flex items-center justify-between text-[9px] font-mono-code text-[#35D9FF]">
-                          <span className="font-pixel">0{idx + 1}</span>
-                          <span className="text-[#94A3B8] truncate max-w-[60px]">
-                            {item.category}
-                          </span>
-                        </div>
-
-                        <div className="text-xs font-display font-bold text-white group-hover/card:text-[#35D9FF] transition-colors leading-tight line-clamp-2">
-                          {item.label}
-                        </div>
-
-                        <div className="text-[10px] text-[#94A3B8] font-mono-code truncate">
-                          {item.badge}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
               </div>
-            );
-          })}
+
+              {/* VISUAL DELIVERABLE PLACEHOLDERS */}
+              <div className="pt-4 space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono-code text-[#35D9FF]">
+                  <span className="flex items-center gap-1.5">
+                    <Eye className="w-3.5 h-3.5" />
+                    TƯ LIỆU THỰC TẾ &amp; ẤN PHẨM BÀN GIAO:
+                  </span>
+                  <span className="text-[10px] text-[#94A3B8]">
+                    NHẤN &quot;XEM CHI TIẾT&quot; ĐỂ XEM ĐẦY ĐỦ QUY CHUẨN
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+                  {project.gallery.map((item, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => setSelectedCaseStudy(project)}
+                      className="group/card p-3 rounded-xl bg-[#071A3D]/70 hover:bg-[#0A2463] border border-[#35D9FF]/20 hover:border-[#35D9FF] transition-all cursor-pointer space-y-1.5 flex flex-col justify-between"
+                    >
+                      <div className="flex items-center justify-between text-[9px] font-mono-code text-[#35D9FF]">
+                        <span className="font-pixel">0{idx + 1}</span>
+                        <span className="text-[#94A3B8] truncate max-w-[60px]">
+                          {item.category}
+                        </span>
+                      </div>
+
+                      <div className="text-xs font-display font-bold text-white group-hover/card:text-[#35D9FF] transition-colors leading-tight line-clamp-2">
+                        {item.label}
+                      </div>
+
+                      <div className="text-[10px] text-[#94A3B8] font-mono-code truncate">
+                        {item.badge}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          ))}
         </div>
 
       </div>

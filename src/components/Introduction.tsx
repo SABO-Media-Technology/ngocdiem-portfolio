@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Sparkles, Terminal, ShieldCheck, Compass, Layers, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Introduction() {
   const [showRealPhoto, setShowRealPhoto] = useState(true);
 
   const floatingBadges = [
-    { label: "OPERATIONS", pos: "top-4 -left-6 sm:-left-10", delay: "0s" },
-    { label: "DIGITAL", pos: "top-1/3 -right-6 sm:-right-10", delay: "-1.5s" },
-    { label: "AI", pos: "bottom-1/3 -left-6 sm:-left-8", delay: "-3s" },
-    { label: "CREATIVE", pos: "bottom-6 -right-6 sm:-right-8", delay: "-4.5s" },
+    { label: "VẬN HÀNH", pos: "top-4 -left-6 sm:-left-10", delay: "0s" },
+    { label: "KỸ THUẬT SỐ", pos: "top-1/3 -right-6 sm:-right-10", delay: "-1.5s" },
+    { label: "TRÍ TUỆ NHÂN TẠO", pos: "bottom-1/3 -left-6 sm:-left-8", delay: "-3s" },
+    { label: "SÁNG TẠO", pos: "bottom-6 -right-6 sm:-right-8", delay: "-4.5s" },
   ];
 
   return (
@@ -25,9 +25,9 @@ export default function Introduction() {
         
         {/* Section Header */}
         <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF] mb-3">
-          <span className="font-pixel text-[10px]">SECTION // 01</span>
+          <span className="font-pixel text-[10px]">MỤC // 01</span>
           <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-          <span>PORTRAIT & CONTEXT</span>
+          <span>CHÂN DUNG & BỐI CẢNH</span>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -36,7 +36,7 @@ export default function Introduction() {
           <div className="lg:col-span-6 flex justify-center order-2 lg:order-1">
             <div className="relative w-full max-w-[380px] sm:max-w-[420px]">
               
-              {/* Floating Labels: OPERATIONS, DIGITAL, AI, CREATIVE */}
+              {/* Floating Labels */}
               {floatingBadges.map((badge) => (
                 <div
                   key={badge.label}
@@ -66,7 +66,7 @@ export default function Introduction() {
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-ping" />
                     <span className="font-pixel text-[9px] text-[#35D9FF]">
-                      // ARCHIVE: DIỄM.NODE
+                      // DỮ LIỆU: DIỄM.HỒ_SƠ
                     </span>
                   </div>
                   <button
@@ -74,17 +74,17 @@ export default function Introduction() {
                     onClick={() => setShowRealPhoto(!showRealPhoto)}
                     className="text-[10px] px-2 py-0.5 rounded-md bg-[#2563FF]/20 hover:bg-[#2563FF]/40 border border-[#35D9FF]/30 text-[#35D9FF] transition-colors cursor-pointer"
                   >
-                    {showRealPhoto ? "VIEW EDITORIAL GLYPH" : "VIEW PHOTO"}
+                    {showRealPhoto ? "XEM ĐỒ HỌA TRỪU TƯỢNG" : "XEM ẢNH THẬT"}
                   </button>
                 </div>
 
-                {/* Main Portrait Box (3:4 Editorial Ratio) */}
+                {/* Main Portrait Box (3:4 Ratio) */}
                 <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden bg-[#071A3D] shadow-2xl border border-[#35D9FF]/20">
                   {showRealPhoto ? (
                     <>
                       <Image
                         src={PERSONAL_INFO.avatar}
-                        alt="Võ Ngọc Diễm Portrait"
+                        alt="Chân dung Võ Ngọc Diễm"
                         fill
                         priority
                         className="object-cover object-top transition duration-700 hover:scale-[1.03]"
@@ -95,7 +95,7 @@ export default function Introduction() {
                       <div className="absolute inset-0 bg-[#2563FF]/10 mix-blend-color pointer-events-none" />
                     </>
                   ) : (
-                    /* Stylish Placeholder Composition (Chrome / 3D Graphics / Typography) */
+                    /* Stylish Placeholder Composition */
                     <div className="absolute inset-0 flex flex-col items-center justify-center p-8 bg-gradient-to-br from-[#071A3D] via-[#0A2463] to-[#050816] text-center space-y-4">
                       <div className="w-24 h-24 rounded-3xl specular-pill flex items-center justify-center border-2 border-[#35D9FF]/50 shadow-[0_0_35px_rgba(53,217,255,0.4)]">
                         <span className="font-display font-black text-4xl text-chrome">
@@ -107,16 +107,16 @@ export default function Introduction() {
                           VÕ NGỌC DIỄM
                         </div>
                         <div className="font-mono-code text-xs text-[#35D9FF]">
-                          BUSINESS OPERATIONS × DIGITAL × AI
+                          VẬN HÀNH × DIGITAL × AI
                         </div>
                       </div>
                       <div className="p-3 rounded-xl bg-[#050816]/70 border border-[#35D9FF]/20 text-[11px] font-mono-code text-slate-300 max-w-[260px]">
-                        “Finance & Banking background expanded into operations, content & AI workflows.”
+                        “Cử nhân Tài chính – Ngân hàng mở rộng sang vận hành, nội dung số &amp; quy trình AI.”
                       </div>
                     </div>
                   )}
 
-                  {/* Frosted Glass Overlay Badge on portrait */}
+                  {/* Frosted Glass Overlay Badge */}
                   <div className="absolute bottom-3 inset-x-3 p-3.5 rounded-2xl backdrop-blur-md bg-[#071A3D]/80 border border-[#35D9FF]/30 space-y-1 shadow-2xl">
                     <div className="flex items-center justify-between">
                       <div>
@@ -124,11 +124,11 @@ export default function Introduction() {
                           {PERSONAL_INFO.name}
                         </div>
                         <div className="text-[11px] text-[#35D9FF] font-mono-code">
-                          Operations · Digital · AI
+                          Vận hành · Digital · AI
                         </div>
                       </div>
                       <span className="px-2 py-0.5 rounded-md bg-[#2563FF]/30 text-[#35D9FF] text-[9px] font-pixel border border-[#35D9FF]/30">
-                        VERIFIED
+                        XÁC THỰC
                       </span>
                     </div>
                   </div>
@@ -136,10 +136,10 @@ export default function Introduction() {
 
                 {/* Bottom Technical Details */}
                 <div className="mt-3 pt-2.5 border-t border-[#35D9FF]/20 flex items-center justify-between text-[11px] font-mono-code text-[#94A3B8] px-1">
-                  <span>DISCIPLINE: FINANCE × TECH</span>
+                  <span>CHUYÊN NGÀNH: TÀI CHÍNH × CÔNG NGHỆ</span>
                   <span className="text-[#35D9FF] flex items-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    Active 2026
+                    Hoạt động 2026
                   </span>
                 </div>
               </div>
@@ -152,35 +152,35 @@ export default function Introduction() {
             
             <div className="space-y-4">
               <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                HELLO, <br />
-                <span className="text-chrome">I&apos;M DIỄM.</span>
+                XIN CHÀO, <br />
+                <span className="text-chrome">TÔI LÀ DIỄM.</span>
               </h2>
               
               <div className="w-16 h-1 bg-gradient-to-r from-[#2563FF] to-[#35D9FF] rounded-full" />
             </div>
 
-            {/* EXACT COPY FROM PROMPT */}
+            {/* EXACT COPY FROM PROMPT IN VIETNAMESE */}
             <div className="p-6 sm:p-8 rounded-3xl chrome-glass-card space-y-4 border border-[#35D9FF]/25">
               <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-heading font-normal">
-                “I’m a Finance &amp; Banking graduate with hands-on experience across business operations, administration, finance, digital content, design and AI-powered workflows.
+                “Tôi tốt nghiệp ngành Tài chính – Ngân hàng với kinh nghiệm thực chiến trong vận hành doanh nghiệp, hành chính, tài chính, nội dung số, thiết kế và tối ưu quy trình bằng AI.
               </p>
               <p className="text-base sm:text-lg text-[#35D9FF] leading-relaxed font-heading font-medium">
-                Working across different functions has taught me to look at problems from both the operational and digital perspective.”
+                Làm việc qua nhiều mảng khác nhau giúp tôi nhìn nhận và giải quyết vấn đề từ cả góc độ vận hành lẫn kỹ thuật số.”
               </p>
             </div>
 
             {/* Core Capability Pillars */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 font-mono-code text-xs">
               <div className="p-4 rounded-2xl bg-[#071A3D]/50 border border-[#35D9FF]/20 space-y-1 hover:border-[#35D9FF]/50 transition-colors">
-                <div className="text-[10px] text-[#35D9FF] font-pixel">PILLAR // 01</div>
-                <div className="font-bold text-white text-sm">Operational Rigor</div>
-                <div className="text-[11px] text-[#94A3B8]">Process mapping, SOPs & venue management</div>
+                <div className="text-[10px] text-[#35D9FF] font-pixel">TRỤ CỘT // 01</div>
+                <div className="font-bold text-white text-sm">Kỷ Luật Vận Hành</div>
+                <div className="text-[11px] text-[#94A3B8]">Xây dựng quy trình SOP, điều phối sàn bida &amp; quản lý cơ sở</div>
               </div>
 
               <div className="p-4 rounded-2xl bg-[#071A3D]/50 border border-[#35D9FF]/20 space-y-1 hover:border-[#35D9FF]/50 transition-colors">
-                <div className="text-[10px] text-[#35D9FF] font-pixel">PILLAR // 02</div>
-                <div className="font-bold text-white text-sm">Digital & AI Native</div>
-                <div className="text-[11px] text-[#94A3B8]">Automation, short-form media & agile web apps</div>
+                <div className="text-[10px] text-[#35D9FF] font-pixel">TRỤ CỘT // 02</div>
+                <div className="font-bold text-white text-sm">Nhạy Bén Số &amp; AI</div>
+                <div className="text-[11px] text-[#94A3B8]">Tự động hóa tác vụ, video ngắn bắt trend &amp; ứng dụng web</div>
               </div>
             </div>
 
