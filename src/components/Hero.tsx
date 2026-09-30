@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Terminal } from "lucide-react";
 import Scene3D from "./Scene3D";
 import { PERSONAL_INFO } from "@/data/portfolioData";
@@ -129,21 +130,21 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="pt-4 flex flex-wrap items-center gap-4 sm:gap-5">
-            <a
-              href="#work"
+            <Link
+              href="/du-an"
               className="inline-flex items-center gap-3 px-7 sm:px-8 py-4 rounded-xl font-mono-code text-xs sm:text-sm uppercase font-bold bg-gradient-to-r from-[#2563FF] via-[#1d4ed8] to-[#35D9FF] hover:from-[#1d4ed8] hover:to-[#35D9FF] text-white shadow-xl shadow-[#2563FF]/30 transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer border border-[#35D9FF]/40"
             >
               <span>[ KHÁM PHÁ DỰ ÁN ]</span>
               <ArrowDown className="w-4 h-4 text-white animate-bounce" />
-            </a>
+            </Link>
 
-            <a
-              href="#contact"
+            <Link
+              href="/lien-he"
               className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-4 rounded-xl font-mono-code text-xs sm:text-sm uppercase font-bold border border-[#35D9FF]/45 bg-[#071A3D]/60 hover:bg-[#0A2463]/90 hover:border-[#35D9FF] text-[#F5FAFF] shadow-lg shadow-[#050816]/50 transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer"
             >
               <span>LIÊN HỆ HỢP TÁC</span>
               <ArrowUpRight className="w-4 h-4 text-[#35D9FF]" />
-            </a>
+            </Link>
           </div>
 
         </div>

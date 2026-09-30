@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { MessageSquare, X, Send, Bot, Sparkles, ArrowRight, UserCheck, CheckCircle2 } from "lucide-react";
 
 interface QuickPrompt {
@@ -29,36 +30,45 @@ export default function QuickAssistant() {
       label: "🎱 Vận hành CLB & Giải đấu",
       question: "Diễm có kinh nghiệm gì trong vận hành CLB và tổ chức giải đấu bida?",
       answer:
-        "Diễm trực tiếp điều phối vận hành tại SABO Billiards: xây dựng checklist mở/đóng ca chuẩn (SOP), quản lý xoay bàn, chăm sóc hội viên và kết nối bảng đấu thi đấu thực tế trực tiếp lên ứng dụng di động SABO Arena.",
-      actionText: "Xem ca dự án SABO Billiards →",
-      actionLink: "#work",
+        "Diễm trực tiếp điều phối vận hành tại SABO Billiards: xây dựng checklist mở/đóng ca chuẩn (SOP), quản lý xoay bàn, chăm sóc hội viên và kết nối bảng đấu thi đấu thực tế lên ứng dụng di động SABO Arena.",
+      actionText: "Xem chi tiết dự án SABO Billiards →",
+      actionLink: "/du-an",
+    },
+    {
+      id: "admin",
+      label: "💼 Hành chính & Quản trị tài chính",
+      question: "Diễm phụ trách công việc hành chính, nhân sự và tài chính như thế nào?",
+      answer:
+        "Xuất phát từ chuyên ngành Tài chính – Ngân hàng (ĐH Sài Gòn), Diễm quản lý hồ sơ nhân sự, bảng chấm công, theo dõi đối soát chi phí hoạt động nội bộ và lưu trữ hợp đồng, chứng từ khoa học.",
+      actionText: "Xem mảng Hành chính & Tài chính →",
+      actionLink: "/nang-luc",
     },
     {
       id: "ai",
-      label: "🤖 Ứng dụng AI & Tự động hóa",
-      question: "Diễm áp dụng AI vào công việc thực tế như thế nào?",
+      label: "🤖 Ứng dụng AI vào công việc",
+      question: "Diễm áp dụng AI vào công việc văn phòng thực tế ra sao?",
       answer:
-        "Diễm xây dựng các thư viện prompt chuẩn hóa cho nghiệp vụ kinh doanh, thử nghiệm tác tử tự chủ (Manus AI), và ứng dụng mô hình video tạo sinh (Higgsfield, Kling) kết hợp Google Sheets Scripts để loại bỏ các thao tác lặp lại thủ công.",
-      actionText: "Xem Phòng thử nghiệm AI →",
-      actionLink: "#desk",
+        "Diễm xây dựng các prompt mẫu để ChatGPT hỗ trợ soạn thảo văn bản, tóm tắt họp, lên kịch bản video ngắn và kết hợp các hàm Google Sheets để tự động hóa tính toán, giảm 50% thời gian xử lý thủ công.",
+      actionText: "Xem ca ứng dụng AI thực tế →",
+      actionLink: "/du-an",
     },
     {
       id: "design",
-      label: "🎨 Thiết kế Poster & Ấn phẩm in",
+      label: "🎨 Thiết kế Poster & Dựng Video",
       question: "Phong cách và tiêu chuẩn thiết kế ấn phẩm của Diễm ra sao?",
       answer:
-        "Diễm chuyên thiết kế poster sự kiện thể thao, backdrop và standee chuẩn in ấn khổ lớn (300 DPI, hệ màu CMYK), kiểm duyệt test proof trực tiếp tại xưởng in để đảm bảo màu sắc sắc nét và độ tương phản cao.",
+        "Diễm chuyên thiết kế poster sự kiện thể thao, standee chuẩn in ấn khổ lớn (300 DPI, hệ màu CMYK), kiểm duyệt mẫu in trực tiếp tại xưởng và dựng video ngắn highlight bằng CapCut bắt mắt.",
       actionText: "Xem dự án SABO Design →",
-      actionLink: "#work",
+      actionLink: "/du-an",
     },
     {
       id: "contact",
-      label: "📅 Đặt lịch trao đổi / Hợp tác",
-      question: "Tôi muốn trao đổi công việc hoặc hợp tác dự án với Diễm?",
+      label: "📅 Kết nối / Trao đổi công việc",
+      question: "Tôi muốn liên hệ trao đổi công việc hoặc hợp tác dự án với Diễm?",
       answer:
-        "Rất sẵn lòng! Bạn có thể gửi email trực tiếp tới ngocdiem1112@gmail.com hoặc điền form liên hệ nhanh ở cuối trang để Diễm phản hồi trong vòng 24 giờ làm việc.",
-      actionText: "Điền form liên hệ ngay →",
-      actionLink: "#contact",
+        "Rất sẵn lòng! Bạn có thể gửi email trực tiếp tới ngocdiem1112@gmail.com hoặc điền form liên hệ nhanh để Diễm phản hồi sớm nhất.",
+      actionText: "Mở trang Liên Hệ Hợp Tác →",
+      actionLink: "/lien-he",
     },
   ];
 
@@ -147,13 +157,13 @@ export default function QuickAssistant() {
 
                   {m.actionText && m.actionLink && (
                     <div className="mt-2.5 pt-2 border-t border-[#35D9FF]/20">
-                      <a
+                      <Link
                         href={m.actionLink}
                         onClick={() => setIsOpen(false)}
                         className="inline-flex items-center gap-1.5 text-[11px] font-mono-code text-[#35D9FF] hover:underline font-bold"
                       >
                         <span>{m.actionText}</span>
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </div>

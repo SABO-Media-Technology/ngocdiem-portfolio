@@ -1,15 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Introduction from "@/components/Introduction";
-import WhatIDo from "@/components/WhatIDo";
-import SelectedWork from "@/components/SelectedWork";
-import DigitalDesk from "@/components/DigitalDesk";
-import Toolbox from "@/components/Toolbox";
-import HowIWork from "@/components/HowIWork";
-import Experience from "@/components/Experience";
-import About from "@/components/About";
+import HomePortalGrid from "@/components/HomePortalGrid";
 import Philosophy from "@/components/Philosophy";
-import Contact from "@/components/Contact";
+import HomeContactCTA from "@/components/HomeContactCTA";
 import Footer from "@/components/Footer";
 import QuickAssistant from "@/components/QuickAssistant";
 
@@ -26,18 +19,18 @@ export default function Home() {
       <Navbar />
 
       {/* Main Spatial Environment */}
-      <main className="flex-1 w-full space-y-16 sm:space-y-24">
+      <main className="flex-1 w-full">
+        {/* Full-bleed 3D Hero */}
         <Hero />
-        <Introduction />
-        <WhatIDo />
-        <SelectedWork />
-        <DigitalDesk />
-        <Toolbox />
-        <HowIWork />
-        <Experience />
-        <About />
+
+        {/* 4 Portals to Detailed Pages */}
+        <HomePortalGrid />
+
+        {/* Compact Work Philosophy */}
         <Philosophy />
-        <Contact />
+
+        {/* Quick Contact CTA */}
+        <HomeContactCTA />
       </main>
 
       {/* Quick AI Assistant (Inspired by longsang.sabo.com.vn) */}

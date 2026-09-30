@@ -159,13 +159,10 @@ export default function Introduction() {
               <div className="w-16 h-1 bg-gradient-to-r from-[#2563FF] to-[#35D9FF] rounded-full" />
             </div>
 
-            {/* EXACT COPY FROM PROMPT IN VIETNAMESE */}
+            {/* INTRO COPY FROM DATA */}
             <div className="p-6 sm:p-8 rounded-3xl chrome-glass-card space-y-4 border border-[#35D9FF]/25">
               <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-heading font-normal">
-                “Tôi tốt nghiệp ngành Tài chính – Ngân hàng với kinh nghiệm thực chiến trong vận hành doanh nghiệp, hành chính, tài chính, nội dung số, thiết kế và tối ưu quy trình bằng AI.
-              </p>
-              <p className="text-base sm:text-lg text-[#35D9FF] leading-relaxed font-heading font-medium">
-                Làm việc qua nhiều mảng khác nhau giúp tôi nhìn nhận và giải quyết vấn đề từ cả góc độ vận hành lẫn kỹ thuật số.”
+                {PERSONAL_INFO.introCopy}
               </p>
             </div>
 
