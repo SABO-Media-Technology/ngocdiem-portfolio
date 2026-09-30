@@ -38,6 +38,15 @@ export const metadata: Metadata = {
     "SABO Arena",
     "SABO Media",
   ],
+  openGraph: {
+    title: "Võ Ngọc Diễm — Vận Hành Doanh Nghiệp × Kỹ Thuật Số × AI",
+    description:
+      "Tư duy vận hành. Định hướng số hóa. Luôn luôn cải tiến. Hồ sơ năng lực thực chiến của Võ Ngọc Diễm.",
+    url: "https://diem.saboarena.com",
+    siteName: "Võ Ngọc Diễm Portfolio",
+    locale: "vi_VN",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -45,11 +54,55 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLdPerson = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Võ Ngọc Diễm",
+    alternateName: "Ngọc Diễm",
+    description: "Business Operations & Digital/AI Specialist — SABO Ecosystem",
+    url: "https://diem.saboarena.com",
+    jobTitle: "Operations Specialist",
+    email: "mailto:ngocdiem1112@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "TP Hồ Chí Minh",
+      addressCountry: "VN",
+    },
+    sameAs: [
+      "https://facebook.com/vongocdiem",
+      "https://linkedin.com/in/vongocdiem",
+    ],
+    worksFor: {
+      "@type": "Organization",
+      name: "SABO M&T",
+      url: "https://sabo.com.vn",
+    },
+  };
+
+  const jsonLdWebsite = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Võ Ngọc Diễm — Personal Portfolio",
+    url: "https://diem.saboarena.com",
+    description: "Hồ sơ năng lực thực chiến: Vận hành, Digital, AI & Creative",
+    inLanguage: ["vi", "en"],
+  };
+
   return (
     <html
       lang="vi"
       className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${silkscreen.variable} dark scroll-smooth h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-[#050816] text-[#F5FAFF] font-heading selection:bg-blue-600/35 selection:text-cyan-200">
         {children}
       </body>

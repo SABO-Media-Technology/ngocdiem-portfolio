@@ -11,6 +11,7 @@ import About from "@/components/About";
 import Philosophy from "@/components/Philosophy";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import QuickAssistant from "@/components/QuickAssistant";
 
 export default function Home() {
   return (
@@ -38,6 +39,9 @@ export default function Home() {
         <Philosophy />
         <Contact />
       </main>
+
+      {/* Quick AI Assistant (Inspired by longsang.sabo.com.vn) */}
+      <QuickAssistant />
 
       {/* Footer */}
       <Footer />
