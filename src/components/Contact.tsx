@@ -1,179 +1,179 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { Mail, MapPin, Send, CheckCircle2, MessageSquare, ArrowUpRight, Terminal } from "lucide-react";
+import { ArrowUpRight, Copy, Check, Mail, Globe, Terminal, Sparkles } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Contact() {
-  const [copied, setCopied] = useState(false);
-  const [formState, setFormState] = useState({ name: "", contact: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const copyEmail = () => {
-    navigator.clipboard.writeText(PERSONAL_INFO.email).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(PERSONAL_INFO.email);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formState.contact) return;
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      setFormState({ name: "", contact: "", message: "" });
-    }, 5000);
-  };
+  const contactChannels = [
+    {
+      name: "Email",
+      val: PERSONAL_INFO.email,
+      href: `mailto:${PERSONAL_INFO.email}`,
+      icon: <Mail className="w-5 h-5 text-[#35D9FF]" />,
+      actionLabel: copiedEmail ? "COPIED!" : "COPY",
+      isCopy: true,
+    },
+    {
+      name: "Facebook",
+      val: "facebook.com/vongocdiem",
+      href: PERSONAL_INFO.facebook,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current text-[#35D9FF]">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      ),
+      actionLabel: "VISIT ↗",
+      isCopy: false,
+    },
+    {
+      name: "LinkedIn",
+      val: "linkedin.com/in/vongocdiem",
+      href: PERSONAL_INFO.linkedin,
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current text-[#35D9FF]">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg>
+      ),
+      actionLabel: "CONNECT ↗",
+      isCopy: false,
+    },
+    {
+      name: "Portfolio / Website",
+      val: "diem.saboarena.com",
+      href: PERSONAL_INFO.website,
+      icon: <Globe className="w-5 h-5 text-[#35D9FF]" />,
+      actionLabel: "EXPLORE ↗",
+      isCopy: false,
+    },
+  ];
 
   return (
-    <section id="contact" className="space-y-8 scroll-mt-24">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-blue-500/15">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <span className="font-pixel text-[10px] text-cyan-400 tracking-widest uppercase">
-              // SECTOR 04: ĐIỂM KẾT NỐI & TRAO ĐỔI
-            </span>
-          </div>
-          <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Khởi Tạo Dự Án Cùng Diễm
-          </h2>
-        </div>
-        <div className="font-mono-code text-xs text-blue-300/80">
-          PHẢN HỒI NHANH QUA ZALO & EMAIL
-        </div>
-      </div>
+    <section id="contact" className="relative py-28 sm:py-36 overflow-hidden">
+      {/* Background Volumetric Glows */}
+      <div className="volumetric-glow -bottom-20 -left-20 w-[600px] h-[600px] bg-[#2563FF]/20" />
+      <div className="volumetric-glow top-0 right-0 w-[550px] h-[550px] bg-[#35D9FF]/15" />
 
-      <div className="grid md:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Direct Beacon Links */}
-        <div className="md:col-span-5 chrome-glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        
+        {/* Dark Immersive Casing Card */}
+        <div className="rounded-3xl p-8 sm:p-14 lg:p-16 bg-gradient-to-br from-[#071A3D]/90 via-[#0A2463]/70 to-[#050816]/95 border-2 border-[#35D9FF]/35 shadow-[0_30px_90px_rgba(0,0,0,0.85)] backdrop-blur-2xl relative space-y-12">
+          
+          {/* HUD Crosshairs */}
           <div className="hud-corner-tl" />
-          <div className="hud-corner-br" />
-
-          <div className="space-y-2">
-            <span className="font-pixel text-[9px] text-cyan-400 tracking-wider">
-              // COMM_BEACON
-            </span>
-            <h3 className="font-techno font-bold text-xl text-white">Kênh Trực Tiếp</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Bạn có thể gửi tin nhắn qua Zalo hoặc sao chép email để thảo luận về yêu cầu và thời hạn bàn giao.
-            </p>
-          </div>
-
-          <div className="space-y-3.5 text-xs font-mono-code">
-            <div className="p-3.5 rounded-2xl bg-blue-950/40 border border-blue-500/20 space-y-1">
-              <span className="text-[10px] text-slate-400 uppercase tracking-wider block">EMAIL</span>
-              <div className="flex items-center justify-between">
-                <span className="text-white font-medium">{PERSONAL_INFO.email}</span>
-                <button
-                  onClick={copyEmail}
-                  className="px-2 py-0.5 rounded-md bg-cyan-500/15 text-cyan-300 border border-cyan-400/30 text-[10px] hover:bg-cyan-500/30 transition-colors cursor-pointer"
-                >
-                  {copied ? "Đã chép!" : "Chép email"}
-                </button>
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-blue-950/40 border border-blue-500/20 space-y-1">
-              <span className="text-[10px] text-slate-400 uppercase tracking-wider block">ZALO / SĐT</span>
-              <div className="text-white font-medium">Nhắn tin trực tiếp qua Zalo</div>
-              <p className="text-[11px] text-slate-400">Gửi ảnh mẫu và phản hồi duyệt file thuận tiện nhất</p>
-            </div>
-
-            <div className="p-3.5 rounded-2xl bg-blue-950/40 border border-blue-500/20 space-y-1">
-              <span className="text-[10px] text-slate-400 uppercase tracking-wider block">ĐỊA BÀN</span>
-              <div className="text-white">{PERSONAL_INFO.location}</div>
-            </div>
-          </div>
-
-          <div className="pt-2 border-t border-blue-500/15 text-xs text-slate-300 space-y-1.5">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Báo giá trọn gói minh bạch</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Chỉnh sửa chu đáo theo ý bạn</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column: Quick Terminal Form */}
-        <div className="md:col-span-7 chrome-glass-card rounded-3xl p-6 sm:p-8 space-y-5">
           <div className="hud-corner-tr" />
           <div className="hud-corner-bl" />
+          <div className="hud-corner-br" />
 
-          <div className="space-y-1">
-            <div className="flex items-center gap-2 text-cyan-400">
-              <Terminal className="w-4 h-4" />
-              <span className="font-pixel text-[9px] tracking-wider">// DISPATCH_TERMINAL</span>
-            </div>
-            <h3 className="font-techno font-bold text-xl text-white">Gửi Nhanh Yêu Cầu Dự Án</h3>
+          {/* Section Indicator */}
+          <div className="flex items-center justify-between text-xs font-mono-code text-[#35D9FF] pb-4 border-b border-[#35D9FF]/20">
+            <span className="font-pixel text-[10px]">TRANSMISSION // 10</span>
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-ping" />
+              STATUS: READY FOR INQUIRIES
+            </span>
           </div>
 
-          {sent ? (
-            <div className="p-6 rounded-2xl bg-cyan-500/15 border border-cyan-400/30 text-center space-y-2">
-              <CheckCircle2 className="w-10 h-10 text-cyan-400 mx-auto" />
-              <h4 className="font-bold text-white text-base">Đã tiếp nhận thông tin!</h4>
-              <p className="text-xs text-slate-300">
-                Diễm sẽ liên hệ lại với bạn qua số Zalo / SĐT đã cung cấp trong thời gian sớm nhất.
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-end">
+            
+            {/* LEFT: DRAMATIC HEADLINE & SUPPORTING TEXT */}
+            <div className="lg:col-span-7 space-y-6">
+              
+              {/* LARGE HEADLINE (Exact required text) */}
+              <div className="space-y-1 font-display text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-[0.92] text-white">
+                <div>HAVE</div>
+                <div className="text-chrome">SOMETHING</div>
+                <div className="text-outline-cyan hover:text-[#35D9FF] transition-colors">
+                  TO BUILD?
+                </div>
+              </div>
+
+              {/* SUPPORTING TEXT (Exact required text) */}
+              <p className="text-xl sm:text-2xl text-slate-200 font-heading font-medium">
+                {PERSONAL_INFO.contactSub}
               </p>
+
+              {/* MAIN CTA: LET'S TALK ↗ */}
+              <div className="pt-2">
+                <a
+                  href={`mailto:${PERSONAL_INFO.email}?subject=Project%20Inquiry%20%E2%80%94%20V%C3%B5%20Ng%E1%BB%8Dc%20Di%E1%BB%85m`}
+                  className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-mono-code text-sm sm:text-base uppercase font-bold bg-gradient-to-r from-[#2563FF] via-[#1d4ed8] to-[#35D9FF] hover:from-[#1d4ed8] hover:to-[#35D9FF] text-white shadow-xl shadow-[#2563FF]/40 transition-all hover:scale-105 active:scale-95 cursor-pointer border border-[#35D9FF]/50"
+                >
+                  <span>LET&apos;S TALK</span>
+                  <ArrowUpRight className="w-5 h-5 text-white" />
+                </a>
+              </div>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-mono-code text-slate-300">
-                    TÊN / CÁCH XƯNG HÔ:
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Ví dụ: Anh Nam, Chị Linh..."
-                    value={formState.name}
-                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-blue-950/40 border border-blue-500/25 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400 transition-colors"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-mono-code text-slate-300">
-                    SỐ ZALO HOẶC SĐT (*):
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Nhập số Zalo hoặc SĐT liên hệ"
-                    value={formState.contact}
-                    onChange={(e) => setFormState({ ...formState, contact: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-blue-950/40 border border-blue-500/25 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400 transition-colors"
-                  />
-                </div>
+
+            {/* RIGHT: CONTACT CHANNELS (Email, Facebook, LinkedIn, Portfolio / Website) */}
+            <div className="lg:col-span-5 space-y-3 font-mono-code text-xs">
+              <div className="text-[10px] text-[#35D9FF] uppercase tracking-wider mb-2">
+                DIRECT COMMUNICATION CHANNELS:
               </div>
 
-              <div className="space-y-1.5">
-                <label className="block text-xs font-mono-code text-slate-300">
-                  NỘI DUNG DỰ ÁN HOẶC MONG MUỐN CỦA BẠN:
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder="Ví dụ: Mình cần thiết kế poster giải thể thao / làm clip ngắn AI TikTok..."
-                  value={formState.message}
-                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-blue-950/40 border border-blue-500/25 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-400 transition-colors resize-none"
-                ></textarea>
-              </div>
+              {contactChannels.map((c) => (
+                <div
+                  key={c.name}
+                  className="p-4 rounded-2xl bg-[#050816]/75 border border-[#35D9FF]/20 hover:border-[#35D9FF]/60 transition-all flex items-center justify-between gap-3 group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 rounded-xl bg-[#0A2463] text-[#35D9FF] group-hover:scale-110 transition-transform">
+                      {c.icon}
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#94A3B8] uppercase">
+                        {c.name}
+                      </div>
+                      <div className="font-semibold text-white truncate max-w-[180px] sm:max-w-[220px]">
+                        {c.val}
+                      </div>
+                    </div>
+                  </div>
 
-              <button
-                type="submit"
-                className="w-full py-3.5 rounded-xl font-mono-code text-xs uppercase font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white shadow-xl shadow-blue-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Send className="w-3.5 h-3.5" />
-                <span>Gửi Thông Tin Yêu Cầu</span>
-              </button>
-            </form>
-          )}
+                  {c.isCopy ? (
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="px-3 py-1.5 rounded-xl bg-[#2563FF]/20 hover:bg-[#2563FF]/40 border border-[#35D9FF]/40 text-[#35D9FF] transition-all flex items-center gap-1.5 cursor-pointer text-[10px] font-bold"
+                    >
+                      {copiedEmail ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-green-400" />
+                          <span className="text-green-400">COPIED</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>COPY</span>
+                        </>
+                      )}
+                    </button>
+                  ) : (
+                    <a
+                      href={c.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-xl bg-[#2563FF]/20 hover:bg-[#2563FF]/40 border border-[#35D9FF]/40 text-[#35D9FF] transition-all flex items-center gap-1 cursor-pointer text-[10px] font-bold"
+                    >
+                      <span>{c.actionLabel}</span>
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );

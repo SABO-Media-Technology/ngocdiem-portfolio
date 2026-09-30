@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Silkscreen } from "next/font/google";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-heading",
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -15,11 +15,28 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const silkscreen = Silkscreen({
+  variable: "--font-pixel",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Võ Ngọc Diễm — Thiết Kế Poster, Video AI, Web & App",
+  title: "Võ Ngọc Diễm — Business Operations × Digital × AI",
   description:
-    "Portfolio sáng tạo của Võ Ngọc Diễm: Thiết kế poster, sáng tạo video AI, lập trình website & mobile app. Trẻ trung, linh hoạt, đúng hạn.",
+    "Portfolio of Võ Ngọc Diễm: Business Operations, Digital Solutions, AI Workflows & Creative Design. “I make things work. Then I make them better.”",
   authors: [{ name: "Võ Ngọc Diễm" }],
+  keywords: [
+    "Võ Ngọc Diễm",
+    "Business Operations",
+    "Digital",
+    "AI",
+    "Creative",
+    "Finance & Banking",
+    "SABO Arena",
+    "SABO Media",
+  ],
 };
 
 export default function RootLayout({
@@ -29,10 +46,10 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="vi"
-      className={`${plusJakarta.variable} ${jetbrainsMono.variable} dark scroll-smooth h-full antialiased`}
+      lang="en"
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${silkscreen.variable} dark scroll-smooth h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#070d1e] text-slate-100 font-sans selection:bg-blue-500/30 selection:text-cyan-200">
+      <body className="min-h-full flex flex-col bg-[#050816] text-[#F5FAFF] font-heading selection:bg-blue-600/35 selection:text-cyan-200">
         {children}
       </body>
     </html>

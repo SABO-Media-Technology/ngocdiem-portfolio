@@ -1,64 +1,73 @@
-import { PRINCIPLES } from "@/data/portfolioData";
-import { CheckCircle2, ShieldCheck, Clock, Zap } from "lucide-react";
+"use client";
+
+import { PERSONAL_INFO } from "@/data/portfolioData";
+import { Sparkles, GraduationCap, Compass, Layers, ShieldCheck } from "lucide-react";
 
 export default function About() {
-  const getProtocolIcon = (idx: number) => {
-    switch (idx) {
-      case 0:
-        return <ShieldCheck className="w-5 h-5 text-cyan-400" />;
-      case 1:
-        return <Clock className="w-5 h-5 text-sky-400" />;
-      case 2:
-        return <Zap className="w-5 h-5 text-blue-400" />;
-      default:
-        return <CheckCircle2 className="w-5 h-5 text-cyan-400" />;
-    }
-  };
-
   return (
-    <section id="about" className="space-y-8 scroll-mt-24">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-blue-500/15">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-            <span className="font-pixel text-[10px] text-cyan-400 tracking-widest uppercase">
-              // SECTOR 03: NGUYÊN TẮC THỰC CHIẾN
-            </span>
+    <section id="about-me" className="relative py-20 sm:py-28 overflow-hidden">
+      {/* Background Glow */}
+      <div className="volumetric-glow top-1/3 -left-32 w-[520px] h-[520px] bg-[#2563FF]/15" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+        
+        {/* SECTION HEADER */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
+            <span className="font-pixel text-[10px]">SECTION // 08</span>
+            <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
+            <span>BACKGROUND & ETHOS</span>
           </div>
-          <h2 className="font-display text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Phong Cách Làm Việc
+
+          <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
+            A LITTLE <span className="text-chrome">ABOUT ME</span>
           </h2>
         </div>
-        <div className="font-mono-code text-xs text-blue-300/80">
-          CAM KẾT CHẤT LƯỢNG ĐẦU RA
+
+        {/* HIGHLIGHT PILLS */}
+        <div className="flex flex-wrap gap-2.5 sm:gap-3">
+          {PERSONAL_INFO.aboutHighlights.map((highlight) => (
+            <span
+              key={highlight}
+              className="px-4 py-2 rounded-xl bg-[#071A3D]/70 border border-[#35D9FF]/35 text-xs sm:text-sm font-mono-code font-bold text-white shadow-[0_0_15px_rgba(53,217,255,0.15)] flex items-center gap-2"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#35D9FF]" />
+              {highlight}
+            </span>
+          ))}
         </div>
-      </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {PRINCIPLES.map((p, idx) => (
-          <div
-            key={idx}
-            className="chrome-glass-card p-6 sm:p-7 rounded-3xl space-y-3.5 relative overflow-visible"
-          >
-            {/* Corner HUD accent */}
-            <div className="hud-corner-tl" />
-            <div className="hud-corner-br" />
-
-            <div className="flex items-center justify-between">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center">
-                {getProtocolIcon(idx)}
-              </div>
-              <span className="font-pixel text-[9px] text-cyan-400 tracking-wider">
-                0{idx + 1} // PROTOCOL
-              </span>
-            </div>
-
-            <h3 className="font-techno font-bold text-lg text-white">{p.title}</h3>
-            <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-              {p.desc}
+        {/* MAIN EDITORIAL QUOTE & BREAKDOWN */}
+        <div className="grid lg:grid-cols-12 gap-8 items-center">
+          
+          <div className="lg:col-span-8 p-8 sm:p-12 rounded-3xl chrome-glass-card border border-[#35D9FF]/30 space-y-6">
+            <p className="text-lg sm:text-2xl text-[#F5FAFF] font-heading font-medium leading-relaxed">
+              “{PERSONAL_INFO.aboutCopy}”
             </p>
+
+            <div className="pt-4 border-t border-[#35D9FF]/20 flex flex-wrap items-center justify-between gap-4 text-xs font-mono-code text-[#94A3B8]">
+              <div className="flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-[#35D9FF]" />
+                <span>SAIGON UNIVERSITY (SGU) · FINANCE & BANKING GRADUATE</span>
+              </div>
+              <span className="text-[#35D9FF]">HO CHI MINH CITY, VN</span>
+            </div>
           </div>
-        ))}
+
+          <div className="lg:col-span-4 p-8 rounded-3xl bg-[#050816]/70 border border-[#35D9FF]/20 space-y-4 font-heading">
+            <div className="text-xs font-mono-code text-[#35D9FF] uppercase tracking-wider">
+              // THE INTERDISCIPLINARY ADVANTAGE
+            </div>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Rather than viewing operations, design, or AI as isolated silos, I treat them as unified levers to build systems that are robust, beautiful, and effortless to maintain.
+            </p>
+            <div className="pt-2 text-xs font-mono-code text-[#35D9FF]">
+              OPERATIONS × DIGITAL × AI
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );

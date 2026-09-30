@@ -1,29 +1,41 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Projects from "@/components/Projects";
+import Introduction from "@/components/Introduction";
+import WhatIDo from "@/components/WhatIDo";
+import SelectedWork from "@/components/SelectedWork";
+import DigitalDesk from "@/components/DigitalDesk";
+import Toolbox from "@/components/Toolbox";
+import HowIWork from "@/components/HowIWork";
+import Experience from "@/components/Experience";
 import About from "@/components/About";
+import Philosophy from "@/components/Philosophy";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#040816] text-slate-100 selection:bg-blue-500/30 selection:text-cyan-200">
+    <div className="relative min-h-screen flex flex-col bg-[#050816] text-[#F5FAFF] selection:bg-[#2563FF]/35 selection:text-cyan-200">
       {/* Retro-Futuristic Isometric Coordinate Grid */}
       <div className="fixed inset-0 retro-grid pointer-events-none -z-10" />
 
-      {/* Subtle Digital Screen Noise Overlay */}
+      {/* Subtle Digital Screen Texture */}
       <div className="fixed inset-0 digital-noise opacity-40 pointer-events-none -z-10" />
 
-      {/* Header */}
+      {/* Floating Navigation */}
       <Navbar />
 
       {/* Main Spatial Environment */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 space-y-28 py-6 sm:py-12">
+      <main className="flex-1 w-full space-y-16 sm:space-y-24">
         <Hero />
-        <Services />
-        <Projects />
+        <Introduction />
+        <WhatIDo />
+        <SelectedWork />
+        <DigitalDesk />
+        <Toolbox />
+        <HowIWork />
+        <Experience />
         <About />
+        <Philosophy />
         <Contact />
       </main>
 

@@ -1,64 +1,47 @@
+"use client";
+
 import Link from "next/link";
+import { ArrowUp } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
-import { ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="border-t border-blue-500/15 bg-[#050915] py-10 mt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
-              <span className="font-bold text-base text-white tracking-tight">
-                {PERSONAL_INFO.name}
-              </span>
-              <span className="text-xs font-mono-code text-blue-300/70">
-                · {PERSONAL_INFO.role}
-              </span>
-            </div>
-            <p className="text-xs text-slate-400">
-              {PERSONAL_INFO.location} · Thiết kế & lập trình thực tế, đúng hẹn
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs font-mono-code text-slate-300">
-            <Link href="/poster" className="hover:text-cyan-300 transition-colors">
-              Poster & Đồ Họa
-            </Link>
-            <Link href="/video-ai" className="hover:text-cyan-300 transition-colors">
-              Video AI
-            </Link>
-            <Link href="/web-app" className="hover:text-cyan-300 transition-colors">
-              Web & App
-            </Link>
-            <Link href="/lien-he" className="hover:text-cyan-300 transition-colors">
-              Liên Hệ
-            </Link>
+    <footer className="relative py-12 sm:py-16 border-t border-[#35D9FF]/20 bg-[#050816] text-xs font-mono-code text-[#94A3B8]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        
+        {/* LEFT: BRAND & SUBTITLE */}
+        <div className="space-y-1">
+          <Link href="/" className="inline-block">
+            <span className="font-display font-black text-2xl text-white tracking-tight hover:text-[#35D9FF] transition-colors">
+              DIỄM<span className="text-[#35D9FF] text-xs align-super ml-0.5">®</span>
+            </span>
+          </Link>
+          <div className="text-[11px] text-[#35D9FF] font-semibold tracking-wider">
+            BUSINESS OPERATIONS × DIGITAL × AI
           </div>
         </div>
 
-        <div className="pt-6 border-t border-blue-500/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono-code text-slate-400">
-          <p>© 2026 {PERSONAL_INFO.name}. All rights reserved.</p>
-          <div className="flex items-center gap-4 text-cyan-400">
-            <a
-              href={`mailto:${PERSONAL_INFO.email}`}
-              className="hover:underline flex items-center gap-1"
-            >
-              <span>{PERSONAL_INFO.email}</span>
-            </a>
-            <span className="text-blue-500/40">|</span>
-            <a
-              href={PERSONAL_INFO.github}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:underline flex items-center gap-0.5"
-            >
-              <span>GitHub</span>
-              <ArrowUpRight className="w-3 h-3" />
-            </a>
-          </div>
+        {/* CENTER: COPYRIGHT */}
+        <div className="text-slate-400">
+          © 2026 Võ Ngọc Diễm. All rights reserved.
         </div>
+
+        {/* RIGHT: BACK TO TOP ↑ */}
+        <div>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-[#071A3D]/70 hover:bg-[#0A2463] border border-[#35D9FF]/30 hover:border-[#35D9FF] text-[#F5FAFF] transition-all cursor-pointer shadow-sm hover:shadow-[0_0_15px_rgba(53,217,255,0.25)]"
+          >
+            <span>Back to top ↑</span>
+            <ArrowUp className="w-3.5 h-3.5 text-[#35D9FF] group-hover:-translate-y-0.5 transition-transform" />
+          </button>
+        </div>
+
       </div>
     </footer>
   );

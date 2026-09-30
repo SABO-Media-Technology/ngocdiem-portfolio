@@ -1,86 +1,91 @@
 # Võ Ngọc Diễm — Personal Portfolio
 
-Trang Portfolio cá nhân chuyên nghiệp của **Võ Ngọc Diễm** (Mobile & Full-stack Engineer tại SABO M&T · Cử nhân Tài chính - Ngân hàng ĐH Sài Gòn).
-
-Được thiết kế theo phong cách **Cinematic Obsidian Dark Luxury** tương tự chuẩn mực của `longsang.sabo.com.vn`.
+**Business Operations × Digital × AI × Creative**  
+*“I make things work. Then I make them better.”*  
+Operations-minded. Digital-driven. Always improving.
 
 ---
 
-## 🚀 Công nghệ sử dụng (Tech Stack)
+## 🎨 Creative Direction & Aesthetic Identity
+
+This website is designed as an immersive **Personal Digital World**, not a traditional CV or template:
+
+- **3D Chrome × Glass × Pixel Art × Retro Computer Graphics × Futuristic UI × Modern Editorial Design**
+- **Color Palette:**
+  - Primary Backgrounds: `#050816`, `#071A3D`
+  - Secondary Depth: `#0A2463`
+  - Accent Lighting: `#2563FF`, `#35D9FF`
+  - High-Contrast Text: `#F5FAFF`, `#94A3B8`
+- **Lighting & Materials:** Electric blue glow, cyan rim light, subtle volumetric blooms, realistic reflections, glass refraction, dark contrast and expansive negative space.
+- **Typography:** Modern geometric sans-serif (`Space Grotesk`, `Syne`, `Sora`) paired with pixel-inspired display typography (`Silkscreen`) and technical monospaced metadata (`JetBrains Mono`).
+
+---
+
+## 🚀 Tech Stack
 
 - **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
 - **UI Library:** [React 19](https://react.dev/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Typography:** Google Fonts (`Playfair Display`, `JetBrains Mono`, `Plus Jakarta Sans`)
-- **Icons:** [Lucide React](https://lucide.dev/)
-- **Language:** TypeScript
+- **3D WebGL Engine:** [Three.js](https://threejs.org/) (Liquid chrome knots, translucent glass 4-point stars, 3D pixel smiley badges, isometric cursor, volumetric dust particles)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) with custom glassmorphism, HUD corners, and chrome gradient typography
+- **Icons:** [Lucide React](https://lucide.dev/) + Custom SVG pixel badges
+- **Language:** TypeScript (100% strict type safety)
 
 ---
 
-## 📂 Cấu trúc thư mục
+## 📂 Architecture & Sections
 
 ```text
 src/
 ├── app/
-│   ├── globals.css      # Cấu hình màu nền #040006, font serif, font mono và glassmorphism
-│   ├── layout.tsx       # Tích hợp Google Fonts, SEO Metadata và OpenGraph
-│   └── page.tsx         # Trang chính kết nối toàn bộ các sections
+│   ├── globals.css           # Chrome text gradients, specular pills, HUD corners, retro coordinate grid
+│   ├── layout.tsx            # Google Fonts (Space Grotesk, JetBrains Mono, Silkscreen), SEO metadata
+│   └── page.tsx              # Master page orchestrating all portfolio sections
 ├── components/
-│   ├── Navbar.tsx       # Thanh điều hướng trên cùng, sao chép email nhanh
-│   ├── Hero.tsx         # Giới thiệu tiêu điểm, bằng cử nhân SGU, số liệu thực chiến
-│   ├── Projects.tsx     # Danh mục sản phẩm đã ship (SABO Arena, SABOHUB,...)
-│   ├── ProjectModal.tsx # Cửa sổ xem chi tiết ca kiến trúc và giải pháp
-│   ├── About.tsx        # Câu chuyện chuyển hướng Tài chính × Công nghệ
-│   ├── Skills.tsx       # Bảng ma trận kỹ năng Mobile, Backend, Web, DevOps
-│   ├── Experience.tsx   # Lộ trình học vấn SGU và kinh nghiệm tại SABO M&T
-│   ├── Contact.tsx      # Form liên hệ và thông tin kết nối
-│   └── Footer.tsx       # Chân trang tối giản
+│   ├── Navbar.tsx            # Floating minimal navigation with DIỄM® mark, active indicator, mobile drawer
+│   ├── Hero.tsx              # Full-screen hero, oversized typography, small labels, CTAs, 3D WebGL canvas
+│   ├── Scene3D.tsx           # Three.js WebGL scene with chrome geometries, glass star, mouse parallax
+│   ├── Introduction.tsx      # HELLO, I'M DIỄM, portrait area with blue/chrome HUD treatment, floating badges
+│   ├── WhatIDo.tsx           # WHAT I DO, 4 interactive cards with 3D hover: Operations, Admin/Finance, Digital, AI
+│   ├── SelectedWork.tsx      # SELECTED WORK: SABO Billiards, SABO M&T, SABO Hub, SABO Design
+│   ├── CaseStudyModal.tsx    # Immersive case study viewer: Role, Challenge, Approach, What I Did, Tools, Outcome, Gallery
+│   ├── DigitalDesk.tsx       # MY DIGITAL DESK: Retro-futuristic OS with 6 floating folders & file inspector
+│   ├── Toolbox.tsx           # TOOLS I WORK WITH: AI, Creative, Business, Digital categories
+│   ├── HowIWork.tsx          # FROM IDEA → EXECUTION: 5-stage pipeline with flowing glowing nodes
+│   ├── Experience.tsx        # Career timeline: 2024 (VIB), 2025 (Digital Projects), 2026-NOW (SABO M&T)
+│   ├── About.tsx             # A LITTLE ABOUT ME: Interdisciplinary synergy highlights
+│   ├── Philosophy.tsx        # GOOD WORK SHOULD MAKE THINGS SIMPLER: Dramatic typography & 3D chrome backdrop
+│   ├── Contact.tsx           # HAVE SOMETHING TO BUILD?: Email, Facebook, LinkedIn, Website, direct copy
+│   └── Footer.tsx            # DIỄM®, Business Operations × Digital × AI, © 2026, Back to top ↑
 └── data/
-    └── portfolioData.ts # Toàn bộ dữ liệu nội dung dạng type-safe (dễ chỉnh sửa)
+    └── portfolioData.ts      # Complete type-safe portfolio data, case studies, filesystem entries, toolbox
 ```
 
 ---
 
-## 🛠️ Hướng dẫn cài đặt & Chạy cục bộ
+## 🛠️ Local Development & Build
 
 ```bash
-# 1. Di chuyển vào thư mục dự án
+# 1. Navigate to the project directory
 cd /home/sabopc/Projects/portfolio
 
-# 2. Cài đặt các gói phụ thuộc (nếu cần)
-pnpm install
-
-# 3. Khởi chạy môi trường phát triển (Local Dev Server)
+# 2. Run local development server (Turbopack)
 pnpm dev
-```
 
-Mở trình duyệt tại [http://localhost:3000](http://localhost:3000) để trải nghiệm.
-
----
-
-## 📦 Build & Kiểm thử Production
-
-```bash
-# Kiểm tra TypeScript và đóng gói tĩnh (Static Pre-render)
+# 3. Build for production (Static Pre-rendering & TypeScript verification)
 pnpm build
 
-# Chạy bản production cục bộ
+# 4. Start production build locally
 pnpm start
 ```
 
 ---
 
-## 🌐 Triển khai lên Production (Vercel)
+## 🌐 Production Deployment
 
-Dự án Next.js này đã được tối ưu hóa 100% để deploy lên Vercel:
+The project is pre-configured for instant zero-config deployment to Vercel, Cloudflare Pages, or any modern edge hosting:
 
-1. Đẩy mã nguồn lên GitHub cá nhân của bạn:
-   ```bash
-   git add .
-   git commit -m "feat: initial luxury cinematic portfolio"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/portfolio.git
-   git push -u origin main
-   ```
-2. Truy cập [vercel.com](https://vercel.com) -> Import Repository -> Chọn Framework **Next.js** -> Nhấn **Deploy**.
-3. Cấu hình tên miền tùy chỉnh (ví dụ: `diem.sabo.com.vn` hoặc `vongocdiem.com`).
+```bash
+git add .
+git commit -m "feat: complete polished portfolio for Võ Ngọc Diễm (Operations x Digital x AI)"
+git push origin main
+```

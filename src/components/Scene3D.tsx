@@ -1,105 +1,241 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
-export default function Scene3D({ className = "absolute inset-0 pointer-events-none" }: { className?: string }) {
+export default function Scene3D({
+  className = "absolute inset-0 pointer-events-none",
+}: {
+  className?: string;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hasWebGL, setHasWebGL] = useState(true);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
+    // Check WebGL availability
+    try {
+      const canvas = document.createElement("canvas");
+      const gl =
+        canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      if (!gl) {
+        setHasWebGL(false);
+        return;
+      }
+    } catch {
+      setHasWebGL(false);
+      return;
+    }
+
     // Scene
     const scene = new THREE.Scene();
 
     // Camera
-    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.z = 7;
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      100
+    );
+    camera.position.set(0, 0, 8.5);
 
     // Renderer
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true,
+        powerPreference: "high-performance",
+      });
+    } catch {
+      setHasWebGL(false);
+      return;
+    }
+
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.toneMappingExposure = 1.35;
     container.appendChild(renderer.domElement);
 
-    // Group for objects
-    const group = new THREE.Group();
-    scene.add(group);
+    // Master group for mouse parallax
+    const masterGroup = new THREE.Group();
+    scene.add(masterGroup);
 
-    // Main 3D Liquid Chrome Torus Knot
-    const torusGeometry = new THREE.TorusKnotGeometry(1.4, 0.42, 128, 32, 2, 3);
-    const chromeMaterial = new THREE.MeshStandardMaterial({
+    // ============================================================
+    // 1. TOP-LEFT: FLOWING CHROME RIBBON KNOT (Glossy Silver & Blue reflection)
+    // ============================================================
+    const ribbonGeo = new THREE.TorusKnotGeometry(1.2, 0.36, 120, 32, 2, 5);
+    const chromeMat = new THREE.MeshStandardMaterial({
       color: 0x93c5fd,
-      metalness: 0.95,
+      metalness: 0.98,
       roughness: 0.12,
-      wireframe: false,
     });
-    const mainKnot = new THREE.Mesh(torusGeometry, chromeMaterial);
-    mainKnot.position.set(2.2, 0.2, -1);
-    group.add(mainKnot);
+    const ribbonMesh = new THREE.Mesh(ribbonGeo, chromeMat);
+    ribbonMesh.position.set(-3.8, 2.2, -1.8);
+    ribbonMesh.scale.set(0.9, 0.9, 0.9);
+    masterGroup.add(ribbonMesh);
 
-    // Secondary floating crystal (Icosahedron)
-    const crystalGeo = new THREE.IcosahedronGeometry(0.7, 0);
-    const glassMaterial = new THREE.MeshStandardMaterial({
-      color: 0x38bdf8,
-      metalness: 0.85,
-      roughness: 0.2,
+    // ============================================================
+    // 2. BOTTOM-RIGHT: CYAN CHROME SPIRAL RIDGED SWIRL
+    // ============================================================
+    const spiralGeo = new THREE.TorusKnotGeometry(1.05, 0.3, 96, 32, 3, 4);
+    const cyanChromeMat = new THREE.MeshStandardMaterial({
+      color: 0x35d9ff,
+      metalness: 0.96,
+      roughness: 0.14,
+    });
+    const spiralMesh = new THREE.Mesh(spiralGeo, cyanChromeMat);
+    spiralMesh.position.set(4.0, -2.1, -1.5);
+    spiralMesh.scale.set(0.95, 0.95, 0.95);
+    masterGroup.add(spiralMesh);
+
+    // ============================================================
+    // 3. BACKGROUND: RETRO WIREFRAME ISOMETRIC CAGE
+    // ============================================================
+    const bgKnotGeo = new THREE.IcosahedronGeometry(2.2, 1);
+    const bgWireMat = new THREE.MeshBasicMaterial({
+      color: 0x0a2463,
       wireframe: true,
+      transparent: true,
+      opacity: 0.35,
     });
-    const crystal = new THREE.Mesh(crystalGeo, glassMaterial);
-    crystal.position.set(-2.8, -1.2, 0);
-    group.add(crystal);
+    const bgKnot = new THREE.Mesh(bgKnotGeo, bgWireMat);
+    bgKnot.position.set(3.4, 2.4, -4.0);
+    masterGroup.add(bgKnot);
 
-    // Orbiting octahedron
-    const octGeo = new THREE.OctahedronGeometry(0.45);
-    const octMat = new THREE.MeshStandardMaterial({
-      color: 0x67e8f9,
+    // ============================================================
+    // 4. FLOATING 3D PIXEL SMILEY BADGE (tilted on left)
+    // ============================================================
+    const smileyGroup = new THREE.Group();
+    const coinGeo = new THREE.CylinderGeometry(0.68, 0.68, 0.22, 28);
+    const coinMat = new THREE.MeshStandardMaterial({
+      color: 0x2563ff,
       metalness: 0.9,
-      roughness: 0.1,
+      roughness: 0.2,
     });
-    const octahedron = new THREE.Mesh(octGeo, octMat);
-    octahedron.position.set(-1.8, 1.8, -0.5);
-    group.add(octahedron);
+    const coinMesh = new THREE.Mesh(coinGeo, coinMat);
+    coinMesh.rotation.x = Math.PI / 2;
+    smileyGroup.add(coinMesh);
 
-    // Particle field
-    const particleCount = 100;
+    // White pixel blocks
+    const pixelMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const eyeGeo = new THREE.BoxGeometry(0.12, 0.22, 0.08);
+    const leftEye = new THREE.Mesh(eyeGeo, pixelMat);
+    leftEye.position.set(-0.24, 0.12, 0.13);
+    smileyGroup.add(leftEye);
+
+    const rightEye = new THREE.Mesh(eyeGeo, pixelMat);
+    rightEye.position.set(0.24, 0.12, 0.13);
+    smileyGroup.add(rightEye);
+
+    const mouthBottom = new THREE.Mesh(
+      new THREE.BoxGeometry(0.3, 0.09, 0.08),
+      pixelMat
+    );
+    mouthBottom.position.set(0, -0.2, 0.13);
+    smileyGroup.add(mouthBottom);
+
+    const mouthLeft = new THREE.Mesh(
+      new THREE.BoxGeometry(0.09, 0.11, 0.08),
+      pixelMat
+    );
+    mouthLeft.position.set(-0.19, -0.13, 0.13);
+    smileyGroup.add(mouthLeft);
+
+    const mouthRight = new THREE.Mesh(
+      new THREE.BoxGeometry(0.09, 0.11, 0.08),
+      pixelMat
+    );
+    mouthRight.position.set(0.19, -0.13, 0.13);
+    smileyGroup.add(mouthRight);
+
+    smileyGroup.position.set(-2.8, 0.4, 0.1);
+    smileyGroup.rotation.set(0.15, 0.4, -0.12);
+    masterGroup.add(smileyGroup);
+
+    // ============================================================
+    // 5. 3D TRANSLUCENT GLASS 4-POINT STAR
+    // ============================================================
+    const starShape = new THREE.Shape();
+    const starRadius = 0.65;
+    const innerRadius = 0.14;
+    starShape.moveTo(0, starRadius);
+    starShape.quadraticCurveTo(0.04, innerRadius, innerRadius, innerRadius);
+    starShape.quadraticCurveTo(innerRadius, 0.04, starRadius, 0);
+    starShape.quadraticCurveTo(innerRadius, -0.04, innerRadius, -innerRadius);
+    starShape.quadraticCurveTo(0.04, -innerRadius, 0, -starRadius);
+    starShape.quadraticCurveTo(-0.04, -innerRadius, -innerRadius, -innerRadius);
+    starShape.quadraticCurveTo(-innerRadius, -0.04, -starRadius, 0);
+    starShape.quadraticCurveTo(-innerRadius, 0.04, -innerRadius, innerRadius);
+    starShape.quadraticCurveTo(-0.04, innerRadius, 0, starRadius);
+
+    const starGeo = new THREE.ExtrudeGeometry(starShape, {
+      depth: 0.16,
+      bevelEnabled: true,
+      bevelSegments: 3,
+      bevelSize: 0.05,
+      bevelThickness: 0.05,
+    });
+    const glassStarMat = new THREE.MeshStandardMaterial({
+      color: 0x35d9ff,
+      metalness: 0.65,
+      roughness: 0.08,
+      transparent: true,
+      opacity: 0.85,
+    });
+    const starMesh = new THREE.Mesh(starGeo, glassStarMat);
+    starMesh.position.set(2.5, 1.4, 0.2);
+    starMesh.rotation.set(0.1, 0.2, 0.3);
+    masterGroup.add(starMesh);
+
+    // ============================================================
+    // 6. FLOATING PARTICLES FIELD
+    // ============================================================
+    const particleCount = 70;
     const particleGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount * 3; i += 3) {
       positions[i] = (Math.random() - 0.5) * 16;
       positions[i + 1] = (Math.random() - 0.5) * 12;
-      positions[i + 2] = (Math.random() - 0.5) * 10 - 2;
+      positions[i + 2] = (Math.random() - 0.5) * 8 - 1;
     }
-    particleGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    particleGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3)
+    );
     const particleMaterial = new THREE.PointsMaterial({
-      color: 0x38bdf8,
+      color: 0x35d9ff,
       size: 0.04,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.55,
     });
     const particleField = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particleField);
 
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0x0a192f, 2.5);
+    // ============================================================
+    // 7. LIGHTING SETUP (Electric Blue & Cyan Rim)
+    // ============================================================
+    const ambientLight = new THREE.AmbientLight(0x050816, 2.2);
     scene.add(ambientLight);
 
-    const cyanLight = new THREE.PointLight(0x06b6d4, 8, 20);
-    cyanLight.position.set(4, 3, 3);
+    const cyanLight = new THREE.PointLight(0x35d9ff, 8, 25);
+    cyanLight.position.set(-1.8, 0.6, 4);
     scene.add(cyanLight);
 
-    const blueLight = new THREE.PointLight(0x2563eb, 7, 20);
-    blueLight.position.set(-4, -3, 2);
+    const blueLight = new THREE.PointLight(0x2563ff, 7, 25);
+    blueLight.position.set(3.2, -2, 3);
     scene.add(blueLight);
 
-    const rimLight = new THREE.DirectionalLight(0xffffff, 2);
-    rimLight.position.set(0, 5, 5);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 2.0);
+    rimLight.position.set(0, 6, 5);
     scene.add(rimLight);
 
-    // Mouse movement reactivity
+    // ============================================================
+    // 8. MOUSE INTERACTION & DAMPING
+    // ============================================================
     let targetX = 0;
     let targetY = 0;
     const onMouseMove = (e: MouseEvent) => {
@@ -109,9 +245,8 @@ export default function Scene3D({ className = "absolute inset-0 pointer-events-n
     };
     window.addEventListener("mousemove", onMouseMove);
 
-    // Resize handler
     const onResize = () => {
-      if (!container) return;
+      if (!container || !renderer) return;
       const width = container.clientWidth;
       const height = container.clientHeight;
       camera.aspect = width / height;
@@ -120,55 +255,55 @@ export default function Scene3D({ className = "absolute inset-0 pointer-events-n
     };
     window.addEventListener("resize", onResize);
 
-    // Animation loop
-    let reqId: number;
-    let clock = new THREE.Clock();
+    // ============================================================
+    // 9. ANIMATION LOOP
+    // ============================================================
+    let animationFrameId: number;
+    const clock = new THREE.Clock();
 
     const animate = () => {
-      reqId = requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
-      // Smooth damping rotation
-      mainKnot.rotation.x = elapsedTime * 0.25;
-      mainKnot.rotation.y = elapsedTime * 0.35;
-      mainKnot.position.y = 0.2 + Math.sin(elapsedTime * 0.8) * 0.15;
+      ribbonMesh.rotation.x = elapsedTime * 0.18;
+      ribbonMesh.rotation.y = elapsedTime * 0.24;
 
-      crystal.rotation.x = elapsedTime * 0.4;
-      crystal.rotation.y = elapsedTime * 0.3;
-      crystal.position.y = -1.2 + Math.cos(elapsedTime * 0.9) * 0.12;
+      spiralMesh.rotation.x = elapsedTime * 0.2;
+      spiralMesh.rotation.z = elapsedTime * 0.16;
 
-      octahedron.rotation.y = elapsedTime * 0.5;
-      octahedron.position.y = 1.8 + Math.sin(elapsedTime * 1.1) * 0.1;
+      bgKnot.rotation.y = elapsedTime * 0.06;
 
-      // Group reactive tilt
-      group.rotation.y += (targetX - group.rotation.y) * 0.05;
-      group.rotation.x += (-targetY - group.rotation.x) * 0.05;
+      smileyGroup.position.y = 0.4 + Math.sin(elapsedTime * 1.8) * 0.12;
+      smileyGroup.rotation.y = 0.4 + Math.sin(elapsedTime * 1.2) * 0.12;
 
-      // Particles subtle drift
-      particleField.rotation.y = elapsedTime * 0.02;
+      starMesh.rotation.z = elapsedTime * 0.3;
+      starMesh.position.y = 1.4 + Math.sin(elapsedTime * 2.0) * 0.08;
+
+      particleField.rotation.y = elapsedTime * 0.015;
+
+      masterGroup.rotation.y += (targetX * 0.35 - masterGroup.rotation.y) * 0.05;
+      masterGroup.rotation.x +=
+        (-targetY * 0.35 - masterGroup.rotation.x) * 0.05;
 
       renderer.render(scene, camera);
     };
+
     animate();
 
     return () => {
-      cancelAnimationFrame(reqId);
+      cancelAnimationFrame(animationFrameId);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("resize", onResize);
-      if (container && renderer.domElement) {
+      renderer.dispose();
+      if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
-      torusGeometry.dispose();
-      chromeMaterial.dispose();
-      crystalGeo.dispose();
-      glassMaterial.dispose();
-      octGeo.dispose();
-      octMat.dispose();
-      particleGeometry.dispose();
-      particleMaterial.dispose();
-      renderer.dispose();
     };
   }, []);
 
-  return <div ref={containerRef} className={className} aria-hidden="true" />;
+  if (!hasWebGL) {
+    return null; // Graceful fallback
+  }
+
+  return <div ref={containerRef} className={className} />;
 }
