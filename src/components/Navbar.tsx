@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,18 +17,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
   const navLinks = [
-    { name: "TRANG CHỦ", href: "/" },
-    { name: "GIỚI THIỆU", href: "/gioi-thieu" },
-    { name: "NĂNG LỰC", href: "/nang-luc" },
-    { name: "DỰ ÁN", href: "/du-an" },
-    { name: "KINH NGHIỆM", href: "/kinh-nghiem" },
-    { name: "LIÊN HỆ", href: "/lien-he" },
+    { name: "TRANG CHỦ", href: "#hero" },
+    { name: "DỊCH VỤ", href: "#dich-vu" },
+    { name: "DỰ ÁN", href: "#du-an" },
+    { name: "VỀ TÔI", href: "#ve-toi" },
+    { name: "LIÊN HỆ", href: "#lien-he" },
   ];
 
   return (
@@ -41,128 +33,101 @@ export default function Navbar() {
         }`}
       >
         <div
-          className={`w-full max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 ${
+          className={`w-full max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 ${
             isScrolled
-              ? "bg-[#071A3D]/85 backdrop-blur-xl border border-[#35D9FF]/30 shadow-[0_10px_35px_-10px_rgba(5,8,22,0.85)]"
-              : "bg-[#071A3D]/50 backdrop-blur-md border border-[#35D9FF]/20"
+              ? "bg-[#040816]/90 backdrop-blur-xl border border-[#35D9FF]/35 shadow-[0_10px_35px_-10px_rgba(5,8,22,0.85)]"
+              : "bg-[#040816]/60 backdrop-blur-md border border-[#35D9FF]/20"
           }`}
         >
-          {/* LOGO: DIỄM® */}
-          <Link
-            href="/"
-            className="group flex items-center gap-1.5 focus:outline-none"
+          {/* BRAND WITH AVATAR THUMBNAIL */}
+          <a
+            href="#hero"
+            className="group flex items-center gap-2.5 focus:outline-none"
             aria-label="Võ Ngọc Diễm Trang chủ"
           >
-            <span className="font-display font-black text-lg sm:text-xl tracking-tight text-white group-hover:text-[#35D9FF] transition-colors">
-              DIỄM<span className="text-[#35D9FF] text-xs align-super ml-0.5">®</span>
-            </span>
-            <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#2563FF]/20 border border-[#35D9FF]/30 text-[10px] font-mono-code text-[#35D9FF] ml-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#35D9FF] animate-pulse" />
-              VẬN HÀNH · DIGITAL · AI
-            </span>
-          </Link>
-
-          {/* DESKTOP NAV LINKS */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <div className="flex items-center gap-5">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={`text-xs font-mono-code tracking-wider transition-all duration-200 relative py-1 hover:text-white ${
-                      isActive
-                        ? "text-[#35D9FF] font-bold"
-                        : "text-slate-300"
-                    }`}
-                  >
-                    {link.name}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#2563FF] to-[#35D9FF] rounded-full shadow-[0_0_8px_#35D9FF]" />
-                    )}
-                  </Link>
-                );
-              })}
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-cyan-400/50 shadow-sm shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+              <Image
+                src="/avatar.jpg"
+                alt="Võ Ngọc Diễm"
+                fill
+                className="object-cover object-top"
+                sizes="32px"
+              />
             </div>
+            <div>
+              <span className="font-display font-black text-sm sm:text-base tracking-tight text-white group-hover:text-[#35D9FF] transition-colors">
+                Võ Ngọc Diễm
+              </span>
+              <span className="hidden sm:inline-block ml-2 px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-400/30 text-[9px] font-pixel text-cyan-300">
+                SGU 2025
+              </span>
+            </div>
+          </a>
 
-            {/* CTA Liên Hệ Nhanh */}
-            <div className="flex items-center pl-3 border-l border-[#35D9FF]/20">
-              <Link
-                href="/lien-he"
-                className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2563FF]/25 hover:bg-[#2563FF]/40 border border-[#35D9FF]/40 text-xs font-mono-code text-[#F5FAFF] transition-all hover:border-[#35D9FF] hover:shadow-[0_0_15px_rgba(53,217,255,0.3)]"
+          {/* DESKTOP NAV LINKS (SMOOTH ANCHOR SCROLL) */}
+          <nav className="hidden md:flex items-center gap-1 font-mono-code text-xs">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-cyan-200 hover:bg-blue-950/50 transition-all font-medium"
               >
-                <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-ping" />
-                <span>KẾT NỐI</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#35D9FF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </Link>
-            </div>
+                {link.name}
+              </a>
+            ))}
           </nav>
 
-          {/* TABLET / MOBILE RIGHT BUTTONS */}
-          <div className="flex lg:hidden items-center gap-2">
-            <Link
-              href="/lien-he"
-              className="px-3 py-1 rounded-full bg-[#2563FF]/25 border border-[#35D9FF]/35 text-[11px] font-mono-code text-[#35D9FF]"
+          {/* RIGHT ACTION: LIÊN HỆ */}
+          <div className="hidden sm:flex items-center gap-3">
+            <a
+              href="#lien-he"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-mono-code font-bold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white shadow-lg shadow-blue-500/25 transition-all hover:scale-[1.02] active:scale-95 cursor-pointer"
             >
-              LIÊN HỆ ↗
-            </Link>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 rounded-xl bg-[#0A2463]/70 border border-[#35D9FF]/30 text-white hover:text-[#35D9FF] transition-colors focus:outline-none cursor-pointer"
-              aria-label="Mở bảng điều hướng"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+              <span>NHẬN DỰ ÁN</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
           </div>
+
+          {/* MOBILE MENU TOGGLE BUTTON */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-xl bg-blue-950/40 border border-cyan-400/30 text-cyan-300 focus:outline-none"
+            aria-label="Mở menu điều hướng"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </header>
 
-      {/* MOBILE NAVIGATION DRAWER */}
+      {/* MOBILE MENU OVERLAY */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden flex flex-col justify-center px-6 bg-[#050816]/95 backdrop-blur-2xl transition-all duration-300 animate-in fade-in">
-          <div className="max-w-md w-full mx-auto space-y-6">
-            <div className="text-center pb-4 border-b border-[#35D9FF]/20 space-y-1">
-              <div className="font-display font-black text-2xl text-white">
-                VÕ NGỌC DIỄM
-              </div>
-              <div className="text-xs font-mono-code text-[#35D9FF]">
-                VẬN HÀNH · DIGITAL · AI · SÁNG TẠO
-              </div>
+        <div className="fixed inset-0 z-40 bg-[#040816]/95 backdrop-blur-2xl md:hidden pt-24 px-6 flex flex-col justify-between pb-8">
+          <div className="space-y-4">
+            <div className="text-[10px] font-mono-code text-cyan-400 border-b border-blue-500/20 pb-2">
+              ĐIỀU HƯỚNG // 1 TRANG PORTFOLIO
             </div>
-
-            <nav className="flex flex-col space-y-2">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center justify-between p-3.5 rounded-xl font-mono-code text-sm transition-all ${
-                      isActive
-                        ? "bg-[#2563FF]/30 border border-[#35D9FF]/60 text-white font-bold"
-                        : "bg-[#071A3D]/50 border border-transparent text-slate-300 hover:bg-[#071A3D] hover:text-white"
-                    }`}
-                  >
-                    <span>{link.name}</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#35D9FF]" />
-                  </Link>
-                );
-              })}
-            </nav>
-
-            <div className="pt-4 border-t border-[#35D9FF]/20 text-center">
-              <Link
-                href="/lien-he"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3.5 rounded-xl font-mono-code text-xs uppercase font-bold bg-gradient-to-r from-[#2563FF] to-[#35D9FF] text-white flex items-center justify-center gap-2 shadow-lg shadow-[#2563FF]/30"
-              >
-                <span>HỢP TÁC &amp; GỬI TIN NHẮN</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
+            <div className="flex flex-col space-y-3 font-mono-code text-sm">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2.5 px-3 rounded-xl border border-blue-500/20 bg-blue-950/30 text-slate-200 hover:text-cyan-300 hover:border-cyan-400/40"
+                >
+                  {link.name}
+                </a>
+              ))}
             </div>
+          </div>
+
+          <div className="pt-4 border-t border-blue-500/20 space-y-3">
+            <a
+              href="#lien-he"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-3.5 rounded-xl font-mono-code text-xs uppercase font-bold text-center block text-white bg-gradient-to-r from-blue-600 to-cyan-500"
+            >
+              Liên hệ trao đổi ngay ↗
+            </a>
           </div>
         </div>
       )}
