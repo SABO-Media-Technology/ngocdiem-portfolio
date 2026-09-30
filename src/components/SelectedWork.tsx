@@ -1,187 +1,284 @@
 "use client";
 
-import { useState } from "react";
-import { SELECTED_PROJECTS, ProjectCaseStudy } from "@/data/portfolioData";
-import CaseStudyModal from "./CaseStudyModal";
-import { ArrowUpRight, Eye, Layers } from "lucide-react";
+import Image from "next/image";
+import {
+  Trophy,
+  Smartphone,
+  Globe,
+  LayoutDashboard,
+  Palette,
+  ArrowUpRight,
+  Layers,
+  Sparkles,
+  LucideIcon,
+  Tag,
+} from "lucide-react";
+import { PROJECTS, Project } from "@/data/portfolioData";
+import Scene3D from "./Scene3D";
+
+// Map icon name to modern Lucide component
+const ICON_MAP: Record<string, LucideIcon> = {
+  Trophy,
+  Smartphone,
+  Globe,
+  LayoutDashboard,
+  Palette,
+};
 
 export default function SelectedWork() {
-  const [selectedCaseStudy, setSelectedCaseStudy] = useState<ProjectCaseStudy | null>(null);
-
   return (
-    <section id="work" className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Background Volumetric Glows */}
-      <div className="volumetric-glow -top-40 -left-40 w-[600px] h-[600px] bg-[#2563FF]/15" />
-      <div className="volumetric-glow bottom-20 right-0 w-[550px] h-[550px] bg-[#35D9FF]/12" />
+    <section
+      id="work"
+      className="snap-section-tall relative py-24 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#050816] min-h-screen flex flex-col justify-center"
+    >
+      {/* ── 3D Scene Background Layer ── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Scene3D variant="work" />
+      </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 space-y-12 sm:space-y-16">
-        
-        {/* SECTION HEADER */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 text-xs font-mono-code text-[#35D9FF]">
-            <span className="font-pixel text-[10px]">MỤC // 03</span>
-            <span className="w-8 h-[1px] bg-[#35D9FF]/40" />
-            <span>TRIỂN LÃM DỰ ÁN</span>
-          </div>
+      {/* ── Atmospheric Ambient Glow Orbs ── */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/4 -left-32 w-[600px] h-[600px] rounded-full opacity-20 blur-[130px]"
+          style={{
+            background: "radial-gradient(circle, #2563FF 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute bottom-10 -right-20 w-[550px] h-[550px] rounded-full opacity-15 blur-[140px]"
+          style={{
+            background: "radial-gradient(circle, #35D9FF 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full opacity-10 blur-[160px]"
+          style={{
+            background: "radial-gradient(ellipse, #0A2463 0%, transparent 70%)",
+          }}
+        />
+      </div>
 
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                DỰ ÁN <span className="text-chrome">TIÊU BIỂU</span>
-              </h2>
-              <p className="mt-3 text-base sm:text-lg text-[#94A3B8] font-heading">
-                Hồ sơ ca dự án chuyên sâu về vận hành doanh nghiệp, hệ sinh thái số, quy trình AI và thiết kế nhận diện thương hiệu.
+      {/* ── Subtle Retro Grid Pattern ── */}
+      <div className="absolute inset-0 retro-grid opacity-20 pointer-events-none" />
+
+      {/* ── Digital Dot Screen ── */}
+      <div className="absolute inset-0 digital-noise opacity-15 pointer-events-none" />
+
+      {/* Section Header */}
+      <div className="relative z-10 max-w-7xl mx-auto mb-12 w-full">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles size={14} className="text-[#35D9FF] animate-pulse" />
+              <p className="font-mono-code text-xs tracking-[0.3em] text-[#35D9FF] opacity-90 uppercase">
+                // 04 — SELECTED WORK
               </p>
             </div>
-
-            <div className="px-4 py-2 rounded-xl bg-[#071A3D]/70 border border-[#35D9FF]/30 text-xs font-mono-code text-[#35D9FF] flex items-center gap-2 self-start md:self-auto">
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+              SELECTED <span className="text-chrome">WORK</span>
+            </h2>
+            <p className="mt-2 text-slate-300 text-sm sm:text-base max-w-md font-urbanist">
+              Một số dự án và công việc thực tế tôi đã thực hiện.
+            </p>
+          </div>
+          {/* Project Count Badge */}
+          <div className="flex-shrink-0">
+            <div className="genz-icon-badge gap-2 px-4 py-2 rounded-full shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-pulse" />
-              <span>4 BỘ HỒ SƠ DỰ ÁN</span>
+              <span className="font-mono-code text-xs tracking-[0.2em] text-[#35D9FF] font-bold">
+                05 DỰ ÁN
+              </span>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* 4 LARGE EDITORIAL PROJECT CARDS */}
-        <div className="space-y-12 sm:space-y-16">
-          {SELECTED_PROJECTS.map((project) => (
-            <div
-              key={project.id}
-              className="group relative rounded-3xl p-6 sm:p-10 chrome-glass-card border border-[#35D9FF]/25 hover:border-[#35D9FF]/70 transition-all duration-500 space-y-8"
+      {/* Compact Project Cards Grid */}
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        {PROJECTS.map((project: Project, index: number) => {
+          const IconComponent = project.iconName
+            ? ICON_MAP[project.iconName] ?? Layers
+            : Layers;
+
+          return (
+            <article
+              key={project.id ?? index}
+              className="chrome-glass-card rounded-3xl p-6 sm:p-7 border border-[#35D9FF]/20 hover:border-[#35D9FF]/70 transition-all duration-400 hover:shadow-[0_20px_50px_-15px_rgba(53,217,255,0.25)] hover:-translate-y-2 group relative overflow-hidden flex flex-col justify-between h-full bg-[#071A3D]/40 backdrop-blur-md"
             >
-              {/* HUD Corners */}
+              {/* HUD Corners on each card */}
               <div className="hud-corner-tl" />
               <div className="hud-corner-tr" />
               <div className="hud-corner-bl" />
               <div className="hud-corner-br" />
 
-              {/* Top Meta Line: Number, Tags & Ecosystem context */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#35D9FF]/15">
-                <div className="flex items-center gap-3">
-                  <span className="font-pixel text-2xl sm:text-3xl text-[#35D9FF]">
-                    DỰ ÁN {project.number}
-                  </span>
-                  <span className="font-mono-code text-xs text-[#94A3B8]">
-                    // CA_DỰ_ÁN
-                  </span>
+              <div>
+                {/* Top Visual Area with Real Project Photography */}
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block relative mb-5 rounded-2xl overflow-hidden aspect-[16/10] w-full border border-white/10 group-hover:border-[#35D9FF]/60 transition-all bg-[#050816] cursor-pointer"
+                  >
+                    {/* Real Image */}
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background: `linear-gradient(135deg, ${project.color ?? "#2563FF"}35 0%, #071A3D 60%, ${project.color ?? "#35D9FF"}20 100%)`,
+                        }}
+                      />
+                    )}
+
+                    {/* Dark Vignette Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/80 via-transparent to-black/20 pointer-events-none" />
+
+                    {/* Top Bar inside image */}
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                      <span className="genz-icon-badge gap-1.5 font-mono-code text-[11px] tracking-[0.15em] text-[#35D9FF] font-black uppercase px-2.5 py-1 rounded-full shadow-[0_0_12px_rgba(53,217,255,0.3)] backdrop-blur-md">
+                        <IconComponent size={13} className="text-[#35D9FF] shrink-0" />
+                        0{index + 1}
+                      </span>
+                      <span className="w-2 h-2 rounded-full bg-[#35D9FF] shadow-[0_0_8px_#35D9FF] opacity-90" />
+                    </div>
+
+                    {/* Bottom Neon Accent line */}
+                    <div
+                      className="absolute bottom-0 left-0 h-[2px] w-1/4 opacity-80 transition-all duration-500 group-hover:w-full"
+                      style={{
+                        background: `linear-gradient(90deg, ${project.color ?? "#35D9FF"}, transparent)`,
+                      }}
+                    />
+                  </a>
+                ) : (
+                  <div className="relative mb-5 rounded-2xl overflow-hidden aspect-[16/10] w-full border border-white/10 group-hover:border-[#35D9FF]/50 transition-colors bg-[#050816]">
+                    {/* Real Image */}
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background: `linear-gradient(135deg, ${project.color ?? "#2563FF"}35 0%, #071A3D 60%, ${project.color ?? "#35D9FF"}20 100%)`,
+                        }}
+                      />
+                    )}
+
+                    {/* Dark Vignette Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/80 via-transparent to-black/20 pointer-events-none" />
+
+                    {/* Top Bar inside image */}
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                      <span className="genz-icon-badge gap-1.5 font-mono-code text-[11px] tracking-[0.15em] text-[#35D9FF] font-black uppercase px-2.5 py-1 rounded-full shadow-[0_0_12px_rgba(53,217,255,0.3)] backdrop-blur-md">
+                        <IconComponent size={13} className="text-[#35D9FF] shrink-0" />
+                        0{index + 1}
+                      </span>
+                      <span className="w-2 h-2 rounded-full bg-[#35D9FF] shadow-[0_0_8px_#35D9FF] opacity-90" />
+                    </div>
+
+                    {/* Bottom Neon Accent line */}
+                    <div
+                      className="absolute bottom-0 left-0 h-[2px] w-1/4 opacity-80 transition-all duration-500 group-hover:w-full"
+                      style={{
+                        background: `linear-gradient(90deg, ${project.color ?? "#35D9FF"}, transparent)`,
+                      }}
+                    />
+                  </div>
+                )}
+
+                {/* Project Title & Category */}
+                <div className="mb-3">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    {project.link ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-display font-black text-xl sm:text-2xl text-white group-hover:text-[#35D9FF] transition-colors leading-tight hover:underline inline-flex items-center gap-1.5"
+                      >
+                        <span>{project.title}</span>
+                        <ArrowUpRight size={16} className="text-[#35D9FF] opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </a>
+                    ) : (
+                      <h3 className="font-display font-black text-xl sm:text-2xl text-white group-hover:text-[#35D9FF] transition-colors leading-tight">
+                        {project.title}
+                      </h3>
+                    )}
+                  </div>
+
+                  {/* Category tags */}
+                  {project.tags && project.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {project.tags.slice(0, 3).map((tag: string, tagIndex: number) => (
+                        <span
+                          key={tagIndex}
+                          className="inline-flex items-center gap-1 rounded-full bg-[#2563FF]/15 border border-[#35D9FF]/25 text-[10px] font-mono-code text-[#35D9FF] px-2 py-0.5 leading-none font-medium"
+                        >
+                          <span className="text-[#35D9FF] opacity-60">✦</span>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 rounded-full bg-[#2563FF]/20 border border-[#35D9FF]/30 text-[11px] font-mono-code text-[#35D9FF]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                {/* Description */}
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-urbanist mb-4 line-clamp-3">
+                  {project.description}
+                </p>
               </div>
 
-              {/* Project Core Description & Action Bar */}
-              <div className="grid lg:grid-cols-12 gap-8 items-start">
-                
-                <div className="lg:col-span-7 space-y-4">
-                  <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-white group-hover:text-[#35D9FF] transition-colors leading-tight">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-base sm:text-lg text-slate-200 font-heading leading-relaxed">
-                    “{project.tagline}”
-                  </p>
-
-                  <div className="pt-2 flex items-center gap-2 text-xs font-mono-code text-[#94A3B8]">
-                    <span className="text-[#35D9FF] font-semibold">VAI TRÒ:</span>
-                    <span>{project.role}</span>
-                  </div>
-
-                  {/* View Case Study Button */}
-                  <div className="pt-4">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedCaseStudy(project)}
-                      className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-xl font-mono-code text-xs uppercase font-bold bg-gradient-to-r from-[#2563FF] to-[#35D9FF] text-white shadow-lg shadow-[#2563FF]/30 hover:opacity-95 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                    >
-                      <span>XEM CHI TIẾT CA DỰ ÁN</span>
-                      <ArrowUpRight className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Right Column: Key Challenge & Approach Preview */}
-                <div className="lg:col-span-5 p-5 rounded-2xl bg-[#050816]/70 border border-[#35D9FF]/20 space-y-3 font-heading">
-                  <div className="text-[11px] font-mono-code text-[#35D9FF] flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5" />
-                    <span>TÓM TẮT PHƯƠNG PHÁP</span>
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    {project.approach}
-                  </p>
-
-                  <div className="pt-2 flex flex-wrap gap-1.5">
-                    {project.tools.map((tool) => (
+              {/* Card Footer: Scope Pills & Live Link CTA */}
+              <div className="pt-4 border-t border-[#35D9FF]/10 flex flex-col gap-3">
+                {project.work && project.work.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.work.slice(0, 4).map((item: string, itemIndex: number) => (
                       <span
-                        key={tool}
-                        className="px-2.5 py-0.5 rounded-md bg-[#0A2463]/70 border border-[#35D9FF]/20 text-[10px] font-mono-code text-slate-300"
+                        key={itemIndex}
+                        className="rounded-md bg-white/5 border border-white/10 text-[11px] font-mono-code text-slate-300 px-2.5 py-1 leading-none group-hover:border-[#35D9FF]/40 group-hover:text-[#35D9FF] transition-colors"
                       >
-                        {tool}
+                        {item}
                       </span>
                     ))}
                   </div>
-                </div>
+                )}
 
-              </div>
-
-              {/* VISUAL DELIVERABLE PLACEHOLDERS */}
-              <div className="pt-4 space-y-3">
-                <div className="flex items-center justify-between text-xs font-mono-code text-[#35D9FF]">
-                  <span className="flex items-center gap-1.5">
-                    <Eye className="w-3.5 h-3.5" />
-                    TƯ LIỆU THỰC TẾ &amp; ẤN PHẨM BÀN GIAO:
-                  </span>
-                  <span className="text-[10px] text-[#94A3B8]">
-                    NHẤN &quot;XEM CHI TIẾT&quot; ĐỂ XEM ĐẦY ĐỦ QUY CHUẨN
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
-                  {project.gallery.map((item, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => setSelectedCaseStudy(project)}
-                      className="group/card p-3 rounded-xl bg-[#071A3D]/70 hover:bg-[#0A2463] border border-[#35D9FF]/20 hover:border-[#35D9FF] transition-all cursor-pointer space-y-1.5 flex flex-col justify-between"
+                {/* Direct Link Action Button */}
+                {project.link && (
+                  <div className="pt-1 flex items-center justify-between">
+                    <span className="font-mono-code text-[10px] text-slate-500 uppercase tracking-widest">
+                      STATUS // DEPLOYED
+                    </span>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#2563FF]/20 hover:bg-[#2563FF] border border-[#35D9FF]/40 hover:border-[#35D9FF] text-xs font-mono-code text-[#35D9FF] hover:text-white transition-all shadow-[0_0_12px_rgba(53,217,255,0.15)] hover:shadow-[0_0_20px_rgba(53,217,255,0.4)] group/btn"
                     >
-                      <div className="flex items-center justify-between text-[9px] font-mono-code text-[#35D9FF]">
-                        <span className="font-pixel">0{idx + 1}</span>
-                        <span className="text-[#94A3B8] truncate max-w-[60px]">
-                          {item.category}
-                        </span>
-                      </div>
-
-                      <div className="text-xs font-display font-bold text-white group-hover/card:text-[#35D9FF] transition-colors leading-tight line-clamp-2">
-                        {item.label}
-                      </div>
-
-                      <div className="text-[10px] text-[#94A3B8] font-mono-code truncate">
-                        {item.badge}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                      <span className="font-bold">{project.linkLabel ?? "XEM CHI TIẾT"}</span>
+                      <ArrowUpRight size={13} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                    </a>
+                  </div>
+                )}
               </div>
-
-            </div>
-          ))}
-        </div>
-
+            </article>
+          );
+        })}
       </div>
-
-      {/* Case Study Modal */}
-      <CaseStudyModal
-        project={selectedCaseStudy}
-        onClose={() => setSelectedCaseStudy(null)}
-      />
     </section>
   );
 }

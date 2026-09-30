@@ -1,138 +1,59 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { PERSONAL_INFO } from "@/data/portfolioData";
+import Scene3D from "./Scene3D";
 
 export default function Philosophy() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 25;
-      const y = (e.clientY / innerHeight - 0.5) * 25;
-      setMousePos({ x, y });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden select-none">
-      {/* Volumetric Center Bloom */}
-      <div className="volumetric-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#2563FF]/20" />
-      <div
-        className="volumetric-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#35D9FF]/18"
-        style={{ animationDelay: "-5s" }}
-      />
-
-      {/* LARGE 3D CHROME/GLASS OBJECT BEHIND TYPOGRAPHY */}
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40 z-0"
-        style={{
-          transform: `translate(${mousePos.x * -0.5}px, ${mousePos.y * -0.5}px)`,
-          transition: "transform 0.2s ease-out",
-        }}
-      >
-        <div className="relative w-[340px] sm:w-[540px] md:w-[680px] aspect-square">
-          <svg
-            viewBox="0 0 400 400"
-            className="w-full h-full animate-float-slow"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="chromeGrad1" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#ffffff" stopOpacity="0.8" />
-                <stop offset="0.3" stopColor="#35D9FF" stopOpacity="0.6" />
-                <stop offset="0.7" stopColor="#2563FF" stopOpacity="0.5" />
-                <stop offset="1" stopColor="#071A3D" stopOpacity="0.8" />
-              </linearGradient>
-
-              <radialGradient id="glassSphere" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#35D9FF" stopOpacity="0.4" />
-                <stop offset="60%" stopColor="#2563FF" stopOpacity="0.15" />
-                <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-
-            <circle cx="200" cy="200" r="180" fill="url(#glassSphere)" />
-
-            <circle
-              cx="200"
-              cy="200"
-              r="150"
-              stroke="url(#chromeGrad1)"
-              strokeWidth="4"
-              strokeDasharray="12 8"
-              opacity="0.7"
-            />
-
-            <ellipse
-              cx="200"
-              cy="200"
-              rx="170"
-              ry="75"
-              transform="rotate(35 200 200)"
-              stroke="#35D9FF"
-              strokeWidth="3"
-              opacity="0.85"
-            />
-
-            <ellipse
-              cx="200"
-              cy="200"
-              rx="170"
-              ry="75"
-              transform="rotate(-40 200 200)"
-              stroke="#ffffff"
-              strokeWidth="2"
-              opacity="0.6"
-            />
-
-            <path
-              d="M200 40 L240 160 L360 200 L240 240 L200 360 L160 240 L40 200 L160 160 Z"
-              fill="url(#chromeGrad1)"
-              stroke="#ffffff"
-              strokeWidth="3"
-              opacity="0.75"
-            />
-          </svg>
-        </div>
+    <section
+      id="philosophy"
+      className="snap-section relative py-28 sm:py-36 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex flex-col justify-center bg-[#050816]"
+    >
+      {/* ── 3D Scene Background Layer (Peripheral objects) ── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Scene3D variant="philosophy" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-10">
-        
-        {/* Top Technical Metadata */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#071A3D]/80 border border-[#35D9FF]/30 text-xs font-mono-code text-[#35D9FF] shadow-[0_0_15px_rgba(53,217,255,0.2)]">
-          <span className="font-pixel text-[9px]">TUYÊN NGÔN // 09</span>
-          <span className="text-[#94A3B8]">TRIẾT LÝ HÀNH ĐỘNG</span>
+      {/* Background ambient glow orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full bg-[#2563FF]/10 blur-[130px]" />
+        <div className="absolute top-1/4 right-10 w-80 h-80 rounded-full bg-[#35D9FF]/8 blur-[90px]" />
+        <div className="absolute bottom-1/4 left-10 w-80 h-80 rounded-full bg-[#071A3D]/80 blur-[90px]" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center gap-10 sm:gap-14">
+        {/* Section label */}
+        <div className="flex items-center gap-3">
+          <span className="font-mono-code text-[#35D9FF] text-xs tracking-[0.3em] uppercase opacity-80">
+            // 07 — PHILOSOPHY
+          </span>
         </div>
 
-        {/* DRAMATIC OVERSIZED TYPOGRAPHY IN VIETNAMESE */}
-        <div className="space-y-1 sm:space-y-3 font-display text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.92]">
-          <div className="text-white hover:scale-105 transition-transform duration-300">
-            CÔNG VIỆC TỐT
+        {/* Stacked headline with generous line height for Vietnamese diacritics */}
+        <div className="flex flex-col items-center gap-2 sm:gap-4 select-none">
+          <div className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white leading-tight">
+            TÔI THÍCH
           </div>
-          <div className="text-chrome hover:scale-105 transition-transform duration-300">
-            LÀ LÀM CHO
+          <div className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white leading-tight">
+            NHỮNG THỨ
           </div>
-          <div className="text-outline-cyan hover:text-[#35D9FF] transition-colors hover:scale-105 duration-300">
-            MỌI THỨ
-          </div>
-          <div className="text-white hover:scale-105 transition-transform duration-300">
-            ĐƠN GIẢN HƠN.
+          <div className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-chrome leading-tight pb-2">
+            THỰC TẾ.
           </div>
         </div>
 
-        {/* SMALL SUPPORTING COPY IN VIETNAMESE */}
-        <div className="max-w-2xl mx-auto pt-4">
-          <p className="text-base sm:text-xl text-[#F5FAFF] font-heading font-normal leading-relaxed p-6 rounded-2xl bg-[#050816]/75 border border-[#35D9FF]/25 backdrop-blur-xl shadow-2xl">
-            “{PERSONAL_INFO.philosophyCopy}”
+        {/* Supporting paragraph in a delicate glass capsule for maximum legibility */}
+        <div className="max-w-2xl mx-auto px-6 py-5 rounded-2xl bg-[#071A3D]/40 border border-[#35D9FF]/20 backdrop-blur-sm">
+          <p className="text-center text-slate-200 text-sm sm:text-base md:text-lg leading-relaxed font-urbanist">
+            Tôi quan tâm đến những giải pháp có thể được sử dụng thật, giải quyết
+            vấn đề thật và tạo ra giá trị rõ ràng.
+            <br className="hidden sm:block mt-2" />
+            <span className="block mt-2 sm:mt-1">
+              Từ website, nội dung đến hình ảnh thương hiệu, tôi luôn cố gắng cân
+              bằng giữa thẩm mỹ, tính thực tế và mục tiêu kinh doanh.
+            </span>
           </p>
         </div>
-
       </div>
     </section>
   );

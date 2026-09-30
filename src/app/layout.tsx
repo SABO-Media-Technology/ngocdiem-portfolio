@@ -1,11 +1,31 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono, Silkscreen } from "next/font/google";
+import {
+  Unbounded,
+  Urbanist,
+  Plus_Jakarta_Sans,
+  JetBrains_Mono,
+  Silkscreen,
+} from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-heading",
+const unbounded = Unbounded({
+  variable: "--font-unbounded",
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700", "800", "900"],
+  display: "swap",
+});
+
+const urbanist = Urbanist({
+  variable: "--font-urbanist",
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-sans",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -91,7 +111,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${silkscreen.variable} dark scroll-smooth h-full antialiased`}
+      className={`${unbounded.variable} ${urbanist.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} ${silkscreen.variable} dark scroll-smooth h-full antialiased`}
     >
       <head>
         <script
@@ -103,7 +123,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#050816] text-[#F5FAFF] font-heading selection:bg-blue-600/35 selection:text-cyan-200">
+      <body className="min-h-full flex flex-col bg-[#050816] text-[#F5FAFF] font-sans selection:bg-blue-600/35 selection:text-cyan-200">
         {children}
       </body>
     </html>

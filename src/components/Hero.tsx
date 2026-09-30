@@ -1,202 +1,195 @@
 "use client";
 
-import Image from "next/image";
-import { ArrowDown, ArrowUpRight, GraduationCap, CheckCircle2, Terminal } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
+import { ArrowUpRight, ArrowDown, Terminal } from "lucide-react";
 import Scene3D from "./Scene3D";
-import PortFolioCenterpiece from "./PortFolioCenterpiece";
+import { PERSONAL_INFO } from "@/data/portfolioData";
+import MarqueeTicker from "./MarqueeTicker";
 
 export default function Hero() {
+  /* ── Mouse parallax state ─────────────────────────────────────────── */
+  const [mouse, setMouse] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const headlineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Normalize to [-1, 1]
+      const x = (e.clientX / window.innerWidth  - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      setMouse({ x, y });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // Parallax transform values (subtle)
+  const parallaxStyle = {
+    transform: `translate(${mouse.x * -10}px, ${mouse.y * -6}px)`,
+    transition: "transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+  };
+
+  const handleScroll = (href: string) => {
+    const id = href.replace("#", "");
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center pt-24 sm:pt-28 pb-16 overflow-hidden select-none"
+      className="snap-section relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-[#050816]"
     >
-      {/* 3D WebGL Background Scene with Liquid Chrome Ribbons */}
-      <Scene3D className="absolute inset-0 z-0 pointer-events-none opacity-85" />
+      {/* ── Real-time 3D WebGL Scene Canvas ── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Scene3D />
+      </div>
 
-      {/* Volumetric Color Blooms */}
-      <div className="volumetric-glow top-[-80px] left-[-80px] w-[520px] h-[520px] bg-[#2563FF]/20" />
+      {/* ── Volumetric glow orbs ──────────────────────────────────────── */}
       <div
-        className="volumetric-glow top-[35%] right-[-100px] w-[580px] h-[580px] bg-[#35D9FF]/18"
-        style={{ animationDelay: "-3s" }}
+        className="volumetric-glow absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full pointer-events-none z-[1]"
+        style={{
+          background:
+            "radial-gradient(circle at 40% 40%, rgba(37,99,255,0.18) 0%, transparent 70%)",
+          filter: "blur(48px)",
+        }}
       />
       <div
-        className="volumetric-glow bottom-0 left-[25%] w-[480px] h-[480px] bg-[#0A2463]/35"
-        style={{ animationDelay: "-6s" }}
+        className="volumetric-glow absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none z-[1]"
+        style={{
+          background:
+            "radial-gradient(circle at 60% 60%, rgba(53,217,255,0.14) 0%, transparent 70%)",
+          filter: "blur(56px)",
+        }}
+      />
+      <div
+        className="volumetric-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none z-[1]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(37,99,255,0.08) 0%, transparent 65%)",
+          filter: "blur(40px)",
+        }}
       />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 space-y-6 sm:space-y-10">
-        
-        {/* Top HUD Metadata & Coordinates */}
-        <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono-code text-[#35D9FF] border-b border-[#35D9FF]/20 pb-3">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#35D9FF] animate-pulse" />
-            <span className="font-pixel text-[9px] tracking-wider text-[#35D9FF]">
-              HỆ THỐNG // KHÔNG GIAN SỐ VÕ NGỌC DIỄM
-            </span>
+      {/* ── Retro grid overlay ────────────────────────────────────────── */}
+      <div className="retro-grid absolute inset-0 pointer-events-none z-[1] opacity-30" />
+
+      {/* ── Digital noise overlay ─────────────────────────────────────── */}
+      <div className="digital-noise absolute inset-0 pointer-events-none z-[2] opacity-20" />
+
+      {/* ── HUD corners ───────────────────────────────────────────────── */}
+      <div className="hud-corner-tl absolute top-8 left-8 z-10 pointer-events-none" />
+      <div className="hud-corner-tr absolute top-8 right-8 z-10 pointer-events-none" />
+      <div className="hud-corner-bl absolute bottom-8 left-8 z-10 pointer-events-none" />
+      <div className="hud-corner-br absolute bottom-8 right-8 z-10 pointer-events-none" />
+
+      {/* ── Main content ──────────────────────────────────────────────── */}
+      <div className="relative z-10 flex flex-col items-center text-center px-4 pt-28 pb-8 w-full max-w-7xl mx-auto my-auto">
+
+        {/* Live label with Saigon real-time clock */}
+        <div className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-[#35D9FF]/20 bg-[#071A3D]/50 backdrop-blur-sm shadow-sm">
+          {/* Live dot */}
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#35D9FF] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#35D9FF]" />
+          </span>
+          <span className="font-mono-code text-[11px] tracking-[0.25em] text-[#35D9FF] font-semibold uppercase">
+            {PERSONAL_INFO?.name ?? "VÕ NGỌC DIỄM"}
+          </span>
+          <span className="text-[#35D9FF]/40 text-xs">|</span>
+          <span className="font-mono-code text-[10px] tracking-wider text-slate-400 uppercase">
+            HCM • 2026
+          </span>
+        </div>
+
+        {/* Giant stacked headline with parallax */}
+        <div
+          ref={headlineRef}
+          style={parallaxStyle}
+          className="mb-8 select-none"
+          aria-label="Digital Creative Business"
+        >
+          {/* Line 1: DIGITAL — outlined */}
+          <div
+            className="font-display font-black tracking-tighter leading-[0.88]"
+            style={{
+              fontSize: "clamp(3.8rem, 13vw, 9.5rem)",
+            }}
+          >
+            <span className="text-outline text-transparent">DIGITAL</span>
           </div>
-          <div className="flex items-center gap-3 text-slate-400">
-            <span>TOẠ ĐỘ: 10.8231° B · 106.6297° Đ</span>
-            <span>·</span>
-            <span className="text-[#35D9FF]">TP. HỒ CHÍ MINH, VIỆT NAM</span>
+
+          {/* Line 2: CREATIVE — chrome gradient */}
+          <div
+            className="font-display font-black tracking-tighter leading-[0.88]"
+            style={{
+              fontSize: "clamp(3.8rem, 13vw, 9.5rem)",
+            }}
+          >
+            <span className="text-chrome">CREATIVE</span>
+          </div>
+
+          {/* Line 3: BUSINESS — solid white */}
+          <div
+            className="font-display font-black tracking-tighter leading-[0.88]"
+            style={{
+              fontSize: "clamp(3.8rem, 13vw, 9.5rem)",
+            }}
+          >
+            <span className="text-[#F5FAFF]">BUSINESS</span>
           </div>
         </div>
 
-        {/* 1. MASTER 3D RETRO-FUTURISTIC "Port [folio]" CENTERPIECE */}
-        <div className="flex justify-center w-full">
-          <PortFolioCenterpiece />
+        {/* Tagline */}
+        <p className="max-w-xl text-slate-300 text-base sm:text-lg leading-relaxed mb-10 font-urbanist font-normal">
+          Tôi thiết kế website, xây dựng nội dung và phát triển hình ảnh số cho
+          doanh nghiệp.
+        </p>
+
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
+          {/* Primary: gradient button */}
+          <a
+            href="#work"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("#work");
+            }}
+            className="group flex items-center gap-2 px-7 py-3.5 rounded-full font-mono-code text-xs tracking-widest font-bold text-[#F5FAFF] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_32px_rgba(37,99,255,0.5)]"
+            style={{
+              background: "linear-gradient(135deg, #2563FF 0%, #35D9FF 100%)",
+            }}
+          >
+            XEM DỰ ÁN
+            <ArrowUpRight
+              size={16}
+              strokeWidth={2.5}
+              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
+            />
+          </a>
+
+          {/* Secondary: outline button */}
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("#contact");
+            }}
+            className="group flex items-center gap-2 px-7 py-3.5 rounded-full font-mono-code text-xs tracking-widest font-bold text-[#35D9FF] border border-[#35D9FF]/50 hover:border-[#35D9FF] hover:bg-[#35D9FF]/10 transition-all duration-300 hover:scale-105"
+          >
+            LIÊN HỆ
+            <ArrowUpRight
+              size={16}
+              strokeWidth={2.5}
+              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
+            />
+          </a>
         </div>
+      </div>
 
-        {/* 2. DUAL COLUMN: EDITORIAL IDENTITY & HOLOGRAPHIC PORTRAIT */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center pt-1">
-          
-          {/* Left Column: Headline & Concise Bio */}
-          <div className="lg:col-span-7 space-y-5 text-left">
-            
-            {/* Display Headline */}
-            <div className="space-y-2">
-              <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-                Sáng tạo Poster, <br />
-                <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-300 bg-clip-text text-transparent">
-                  Video AI & Lập trình Web/App
-                </span>
-              </h1>
-              <p className="font-mono-code text-xs sm:text-sm text-cyan-300/85 tracking-widest uppercase">
-                // DESIGN · NEURAL AI MOTION · RUNTIME APPS
-              </p>
-            </div>
-
-            {/* Concise Bio */}
-            <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-xl">
-              Hồ sơ năng lực cá nhân của <strong className="text-white font-semibold">Võ Ngọc Diễm</strong> — 
-              chuyên thiết kế ấn phẩm in ấn sắc nét, sản xuất video ngắn AI giữ chân người xem và phát triển ứng dụng di động Flutter chuẩn xác, tinh gọn.
-            </p>
-
-            {/* Education Badge & Status */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-blue-500/30 bg-blue-950/50 text-xs text-blue-200 font-mono-code shadow-sm">
-                <GraduationCap className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Cử nhân ĐH Sài Gòn (SGU) · Tài chính - Ngân hàng</span>
-              </div>
-              <span className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-400/40 text-cyan-300 text-xs font-mono-code flex items-center gap-1.5 shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Sẵn sàng nhận dự án mới</span>
-              </span>
-            </div>
-
-            {/* 4 Technical Modules Badges */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 text-xs font-mono-code text-slate-200">
-              <a href="#dich-vu" className="px-3 py-2 rounded-xl bg-blue-950/40 border border-blue-500/25 relative group hover:border-cyan-400/50 transition-colors">
-                <div className="text-[9px] text-cyan-400 font-pixel">01 // PRINT</div>
-                <div className="font-semibold text-white mt-0.5">Poster & Banner</div>
-              </a>
-              <a href="#dich-vu" className="px-3 py-2 rounded-xl bg-blue-950/40 border border-blue-500/25 relative group hover:border-cyan-400/50 transition-colors">
-                <div className="text-[9px] text-cyan-400 font-pixel">02 // NEURAL</div>
-                <div className="font-semibold text-white mt-0.5">Video Ngắn AI</div>
-              </a>
-              <a href="#dich-vu" className="px-3 py-2 rounded-xl bg-blue-950/40 border border-blue-500/25 relative group hover:border-cyan-400/50 transition-colors">
-                <div className="text-[9px] text-cyan-400 font-pixel">03 // WEB</div>
-                <div className="font-semibold text-white mt-0.5">Landing Page</div>
-              </a>
-              <a href="#dich-vu" className="px-3 py-2 rounded-xl bg-blue-950/40 border border-blue-500/25 relative group hover:border-cyan-400/50 transition-colors">
-                <div className="text-[9px] text-cyan-400 font-pixel">04 // MOBILE</div>
-                <div className="font-semibold text-white mt-0.5">Flutter App</div>
-              </a>
-            </div>
-
-            {/* Quick Action CTAs */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <a
-                href="#dich-vu"
-                className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-xl font-mono-code text-xs uppercase font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white shadow-xl shadow-blue-500/30 transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer"
-              >
-                <span>Xem dịch vụ & dự án</span>
-                <ArrowDown className="w-4 h-4" />
-              </a>
-              <a
-                href="#lien-he"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-mono-code text-xs uppercase font-bold border border-cyan-400/40 bg-blue-950/40 hover:bg-blue-900/60 hover:border-cyan-300 text-cyan-200 shadow-md shadow-cyan-500/10 transition-all hover:-translate-y-0.5 active:scale-95 cursor-pointer"
-              >
-                <Terminal className="w-4 h-4 text-cyan-400" />
-                <span>Liên hệ trao đổi</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
-
-          </div>
-
-          {/* Right Column: Holographic Editorial Portrait with Luxury HUD Framing */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative group max-w-[320px] sm:max-w-[360px] w-full">
-              
-              {/* Luminous Volumetric Halo */}
-              <div className="absolute -inset-3 bg-gradient-to-tr from-blue-600 via-cyan-400 to-indigo-600 rounded-3xl blur-2xl opacity-45 group-hover:opacity-70 transition duration-700 -z-10" />
-
-              {/* Futuristic HUD Casing */}
-              <div className="relative chrome-glass-card rounded-3xl p-3.5 sm:p-4 overflow-visible">
-                {/* 4 Technical Corner HUD Crosshairs */}
-                <div className="hud-corner-tl" />
-                <div className="hud-corner-tr" />
-                <div className="hud-corner-bl" />
-                <div className="hud-corner-br" />
-
-                {/* Top HUD Readout */}
-                <div className="flex items-center justify-between pb-2.5 px-1 text-[10px] font-mono-code text-cyan-300/80 border-b border-blue-500/20 mb-2.5">
-                  <span className="font-pixel text-[8px] tracking-widest text-cyan-400">
-                    // HỒ SƠ CHÍNH THỨC
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-                    ONLINE FEED
-                  </span>
-                </div>
-
-                {/* Portrait Image (3:4 ratio) */}
-                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden bg-slate-950 shadow-inner">
-                  <Image
-                    src="/avatar.jpg"
-                    alt="Võ Ngọc Diễm"
-                    fill
-                    priority
-                    className="object-cover object-top transition duration-700 group-hover:scale-[1.02]"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
-                  
-                  {/* Subtle digital gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#040816] via-[#040816]/30 to-transparent" />
-
-                  {/* Floating Frosted Glass Label inside photo */}
-                  <div className="absolute bottom-3 inset-x-3 p-3 rounded-2xl backdrop-blur-md bg-blue-950/85 border border-cyan-400/35 space-y-1 shadow-2xl">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h2 className="font-display font-extrabold text-white text-base tracking-tight">
-                          Võ Ngọc Diễm
-                        </h2>
-                        <p className="text-[11px] text-cyan-300 font-mono-code">
-                          Design · Video AI · Web/App
-                        </p>
-                      </div>
-                      <span className="px-2 py-1 rounded-md bg-cyan-400/15 text-cyan-300 text-[10px] font-pixel font-bold border border-cyan-400/30">
-                        SGU 2025
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom Technical Specs */}
-                <div className="mt-3 pt-2.5 border-t border-blue-500/20 flex items-center justify-between text-[11px] font-mono-code text-slate-300 px-1">
-                  <span className="text-slate-400">CỬ NHÂN ĐH SÀI GÒN</span>
-                  <span className="text-cyan-400 font-semibold flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    Uy tín & Đúng hẹn
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
+      {/* ── Marquee Ticker at bottom of hero ── */}
+      <div className="w-full relative z-10">
+        <MarqueeTicker />
       </div>
     </section>
   );

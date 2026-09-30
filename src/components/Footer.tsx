@@ -1,46 +1,50 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowUp } from "lucide-react";
+import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const hero = document.getElementById("hero");
+    if (hero) {
+      hero.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
-    <footer className="relative py-12 sm:py-16 border-t border-[#35D9FF]/20 bg-[#050816] text-xs font-mono-code text-[#94A3B8]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-        
-        {/* LEFT: BRAND & SUBTITLE */}
-        <div className="space-y-1">
-          <Link href="/" className="inline-block">
-            <span className="font-display font-black text-2xl text-white tracking-tight hover:text-[#35D9FF] transition-colors">
-              DIỄM<span className="text-[#35D9FF] text-xs align-super ml-0.5">®</span>
+    <footer className="relative border-t border-[#35D9FF]/15">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="flex items-center justify-between gap-4">
+          {/* Left: Brand */}
+          <div className="flex flex-col gap-1">
+            <span className="font-display font-black text-white text-xl tracking-tight leading-none">
+              DIỄM®
             </span>
-          </Link>
-          <div className="text-[11px] text-[#35D9FF] font-semibold tracking-wider">
-            VẬN HÀNH DOANH NGHIỆP × KỸ THUẬT SỐ × TRÍ TUỆ NHÂN TẠO
+            <span className="font-mono-code text-xs text-[#35D9FF] tracking-[0.2em] uppercase">
+              DIGITAL • CREATIVE • BUSINESS
+            </span>
           </div>
-        </div>
 
-        {/* CENTER: COPYRIGHT */}
-        <div className="text-slate-400">
-          © 2026 Võ Ngọc Diễm. Giữ toàn bộ bản quyền.
-        </div>
+          {/* Center: Copyright */}
+          <p className="text-xs text-slate-500 text-center hidden sm:block">
+            © 2026 {PERSONAL_INFO.name}
+          </p>
 
-        {/* RIGHT: BACK TO TOP ↑ */}
-        <div>
+          {/* Right: Back to top */}
           <button
-            type="button"
             onClick={scrollToTop}
-            className="group flex items-center gap-2 px-4 py-2 rounded-xl bg-[#071A3D]/70 hover:bg-[#0A2463] border border-[#35D9FF]/30 hover:border-[#35D9FF] text-[#F5FAFF] transition-all cursor-pointer shadow-sm hover:shadow-[0_0_15px_rgba(53,217,255,0.25)]"
+            aria-label="Quay lại đầu trang"
+            className="font-mono-code text-xs text-[#35D9FF] hover:text-white transition-colors duration-200 cursor-pointer shrink-0"
           >
-            <span>Lên đầu trang ↑</span>
-            <ArrowUp className="w-3.5 h-3.5 text-[#35D9FF] group-hover:-translate-y-0.5 transition-transform" />
+            Back to top ↑
           </button>
         </div>
 
+        {/* Copyright on mobile (below row) */}
+        <p className="text-xs text-slate-500 text-center mt-4 sm:hidden">
+          © 2026 {PERSONAL_INFO.name}
+        </p>
       </div>
     </footer>
   );
